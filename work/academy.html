@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algolia Academy LMS — Drew Burton</title>
+<meta name="description" content="Rethinking the LMS as a customer learning layer, not a course repository.">
+<meta name="theme-color" content="#07080a">
+<script>document.documentElement.classList.add('js')</script>
+<meta property="og:title" content="Algolia Academy LMS — Drew Burton">
+<meta property="og:description" content="Rethinking the LMS as a customer learning layer, not a course repository.">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/img/drew-head.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+
+</head>
+<body class="is-project">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="brand">
+  <a class="brand__name" href="../index.html">Drew Burton</a>
+  <span class="brand__face" data-face><img src="../assets/img/drew-head.webp" alt="" width="48" height="48"></span>
+  <span class="brand__ow" data-ow aria-hidden="true">Ow!</span>
+</header>
+
+<nav class="rail" aria-label="Sections">
+  <a class="rail__item" href="../index.html#top" data-navdot="top" aria-label="Home"><i></i><span class="rail__label"><b>H</b><b>o</b><b>m</b><b>e</b></span></a>
+  <a class="rail__item" href="../index.html#about" data-navdot="about" aria-label="About"><i></i><span class="rail__label"><b>A</b><b>b</b><b>o</b><b>u</b><b>t</b></span></a>
+  <a class="rail__item" href="../index.html#work" data-navdot="work" aria-label="Work"><i></i><span class="rail__label"><b>W</b><b>o</b><b>r</b><b>k</b></span></a>
+  <a class="rail__item" href="../index.html#contact" data-navdot="contact" aria-label="Contact"><i></i><span class="rail__label"><b>C</b><b>o</b><b>n</b><b>t</b><b>a</b><b>c</b><b>t</b></span></a>
+</nav>
+
+<a class="cta cta--fixed" data-magnet href="../index.html#contact">Let's talk <span data-arrow aria-hidden="true">↗</span></a>
+
+<main id="main" class="view">
+  <div class="wrap stack stack--lg proj">
+    <a class="back mono" href="../index.html#work"><span>←</span> All work</a>
+    <header class="stack stack--tight">
+      <p class="mono lime-t">01 / 04</p>
+      <h1 class="proj__title">Algolia Academy LMS</h1>
+      <p class="proj__short">Rethinking the LMS as a customer learning layer, not a course repository.</p>
+      <ul class="chips"><li>Learning platform</li><li>Information architecture</li><li>Handoff</li></ul>
+    </header>
+
+    <div class="proj__hero" data-reveal><div class="art art--grid"><svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-opacity=".5"><path d="M0 0H800"/><path d="M0 62.5H800"/><path d="M0 125H800"/><path d="M0 187.5H800"/><path d="M0 250H800"/><path d="M0 312.5H800"/><path d="M0 375H800"/><path d="M0 437.5H800"/><path d="M0 500H800"/><path d="M0 0V500"/><path d="M61.5 0V500"/><path d="M123 0V500"/><path d="M184.5 0V500"/><path d="M246 0V500"/><path d="M307.5 0V500"/><path d="M369 0V500"/><path d="M430.5 0V500"/><path d="M492 0V500"/><path d="M553.5 0V500"/><path d="M615 0V500"/><path d="M676.5 0V500"/><path d="M738 0V500"/><path d="M799.5 0V500"/></g>
+    <rect x="110" y="90" width="250" height="150" rx="14" fill="#07080a" stroke="currentColor"/>
+    <rect x="390" y="90" width="300" height="70" rx="14" fill="#b6ff3d"/>
+    <rect x="390" y="180" width="140" height="150" rx="14" fill="#07080a" stroke="currentColor"/>
+    <rect x="550" y="180" width="140" height="150" rx="14" fill="#07080a" stroke="currentColor"/>
+    <rect x="110" y="270" width="250" height="140" rx="14" fill="#07080a" stroke="currentColor"/>
+    <g fill="currentColor" fill-opacity=".7"><rect x="130" y="112" width="120" height="8" rx="4"/><rect x="130" y="132" width="180" height="8" rx="4"/><rect x="130" y="292" width="150" height="8" rx="4"/></g>
+  </svg></div></div>
+
+    <div class="proj__body">
+      <dl class="proj__meta">
+        <div><dt class="mono">Role</dt><dd>Design lead, front-end build, product direction</dd></div><div><dt class="mono">Type</dt><dd>Learning platform redesign + extension</dd></div><div><dt class="mono">Year</dt><dd>2024</dd></div><div><dt class="mono">Tools</dt><dd>Claude Design, Claude Code, Supabase, GitHub, Vercel</dd></div>
+      </dl>
+      <div class="stack stack--lg">
+        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">The problem</h2><p class="proj__lead">An LMS is usually treated as a place to store courses. Customers arrive, browse a library, pick something that looks close to their situation, and hope it applies. Nothing in the system knows anything true about them — their role, their implementation, what they've already configured, or where they're actually stuck.</p></section>
+        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">What I did</h2><p class="proj__lead">I redesigned an existing shell into a ~31-page production-ready admin UI built against sample data, then packaged the entire thing as a 45-file handoff for the engineer who owns the schema, auth, and repo.</p><p class="proj__lead">The handoff led with an intent document rather than a requirements list. Every screen got a structured block: <strong>its job, what it argues, and what would count as failure.</strong> Most specs describe what a screen contains. This one described what it was supposed to do to the person looking at it.</p><p class="proj__lead">I also specced a connected-apps feature: customers authenticate their own Algolia application so Academy can read their real configuration, analytics, and usage — and recommend based on their actual system rather than their self-reported level.</p></section>
+        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">Why it matters</h2><p class="proj__lead">The LMS stops being a content library and becomes a learning layer: content, paths, practice, recommendations, certification, learning history, and product signals in one place. Education personalized by what's actually true about the customer.</p></section>
+        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">What I'd highlight</h2><ul class="hlist"><li>Design as specification, not decoration — the mock <em class="hl">was</em> the spec</li><li>Intent-first documentation that survived handoff</li><li>A proposal that reframes what a learning platform is for</li></ul></section>
+      </div>
+    </div>
+
+    <a class="next" data-card-dark href="world-of-search.html" data-reveal>
+      <div><p class="mono dim">Next project</p><p class="next__t">World of Search</p></div>
+      <span class="next__a" data-arrow aria-hidden="true">→</span>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <div>Drew Burton — Customer Education</div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="texture" data-texture aria-hidden="true">
+  <div class="texture__grunge"><i style="background-image:url(../assets/img/grunge-1.webp);animation-delay:0.000s"></i><i style="background-image:url(../assets/img/grunge-2.webp);animation-delay:-0.125s"></i><i style="background-image:url(../assets/img/grunge-3.webp);animation-delay:-0.250s"></i><i style="background-image:url(../assets/img/grunge-4.webp);animation-delay:-0.375s"></i><i style="background-image:url(../assets/img/grunge-5.webp);animation-delay:-0.500s"></i><i style="background-image:url(../assets/img/grunge-6.webp);animation-delay:-0.625s"></i></div>
+  <div class="texture__tooth"><i style="background-image:url(../assets/img/tex-1.webp);animation-delay:0.0000s"></i><i style="background-image:url(../assets/img/tex-2.webp);animation-delay:-0.0833s"></i><i style="background-image:url(../assets/img/tex-3.webp);animation-delay:-0.1666s"></i><i style="background-image:url(../assets/img/tex-4.webp);animation-delay:-0.2499s"></i></div>
+  <div class="texture__vignette"></div>
+</div>
+<div class="blob" data-blob aria-hidden="true"><span>View</span></div>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
