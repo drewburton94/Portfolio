@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { site, hero, about, approach, toolkit, projects, workIntro, history, contact } from './content.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const handSvg = readFileSync(join(root, 'assets/img/hand.inc.svg'), 'utf8');
+const handSvg = readFileSync(join(root, 'assets/img/hand.inc.html'), 'utf8');
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 // *italic-ish highlight* -> lime mark, **bold**, `code`
@@ -152,7 +152,7 @@ ${chrome(0)}
 
 <section id="top" class="hero">
   <div class="wrap hero__in">
-    <p class="hero__hi"><span class="w"><span data-heroword class="hi">Hi!<span class="hand" aria-hidden="true">${handSvg}</span></span></span></p>
+    <p class="hero__hi"><span class="w"><span data-heroword class="hi">Hi!${handSvg}</span></span></p>
     <h1 class="hero__h1">${heroWords}</h1>
     <p class="hero__sub" data-herofade>${esc(hero.sub)}</p>
     <div class="hero__cue mono" data-herofade>Want to find out more?
