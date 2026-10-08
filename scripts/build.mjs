@@ -134,7 +134,7 @@ const heroWords = hero.headline
   .join(' ');
 
 const projectCard = (p, i) => `
-        <a class="card${i === 0 || i === projects.length - 1 ? ' card--wide' : ''}" data-card data-grow href="work/${p.id}.html">
+        <a class="card" data-card data-grow href="work/${p.id}.html">
           <div class="card__shot" data-shot><div class="art art--${p.art}">${art[p.art]}</div></div>
           <div class="card__meta">
             <div>
