@@ -127,7 +127,7 @@ const heroWords = hero.headline
     const word = hl ? m[1] : w.replace(/[,.]$/, '');
     const punct = hl ? m[2] : (w.match(/[,.]$/) || [''])[0];
     const inner = hl
-      ? `<span class="hero__adopt" data-adopt><span class="w"><span data-heroword class="lime">${word}</span></span>${punct ? `<span class="w"><span data-heroword>${punct}</span></span>` : ''}<svg class="squiggle" data-underline viewBox="0 0 300 24" preserveAspectRatio="none" fill="none" aria-hidden="true"><path data-squiggle d="M1 12 C 40 4, 70 20, 110 12 S 190 4, 230 12 S 280 18, 299 10" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/></svg></span>`
+      ? `<span class="hero__adopt" data-adopt><span class="w"><span data-heroword class="lime">${word}</span></span>${punct ? `<span class="w"><span data-heroword>${punct}</span></span>` : ''}<svg class="squiggle" data-underline viewBox="0 0 300 24" preserveAspectRatio="none" fill="none" aria-hidden="true"><path data-squiggle d="M1 12 L299 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span>`
       : `<span class="w"><span data-heroword>${word}${punct}</span></span>`;
     return inner;
   })
