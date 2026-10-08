@@ -67,6 +67,34 @@
   maskTexture();
   window.addEventListener('resize', maskTexture);
 
+  // ---- project cards grow and settle as they scroll in -------------------
+  var grow = $('[data-grow]');
+  var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+  var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+  function growCards() {
+    var vh = window.innerHeight;
+    grow.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      // 0 when the card's top edge is at the bottom of the screen, 1 once it sits ~30% down
+      var p = ease(clamp((vh - r.top) / (vh * 0.7)));
+      // and ease back out slightly as it leaves the top
+      var out = clamp((r.bottom - vh * 0.05) / (vh * 0.4));
+      var k = p * (0.88 + 0.12 * out);
+      el.style.transform = 'translate3d(0,' + ((1 - p) * 90).toFixed(1) + 'px,0) rotateX(' + ((1 - p) * 14).toFixed(2) + 'deg) scale(' + (0.74 + 0.26 * k).toFixed(4) + ')';
+      el.style.opacity = (0.15 + 0.85 * clamp(p * 1.6)).toFixed(3);
+      var art = el.querySelector('.art');
+      if (art) art.style.transform = 'scale(' + (1.35 - 0.35 * p).toFixed(4) + ') translateY(' + ((r.top - vh / 2) * -0.06).toFixed(1) + 'px)';
+      el.style.setProperty('--g', (1 - 0.85 * clamp(1 - Math.abs((r.top + r.height / 2) - vh / 2) / (vh * 0.45))).toFixed(2));
+    });
+  }
+  if (grow.length && !reduce) {
+    window.addEventListener('scroll', function () { requestAnimationFrame(growCards); }, { passive: true });
+    window.addEventListener('resize', growCards);
+    growCards();
+  } else {
+    grow.forEach(function (el) { el.style.opacity = 1; });
+  }
+
   // ---- arrows bob --------------------------------------------------------
   if (!reduce) $('[data-arrow]').forEach(function (el, i) { el.style.animation = 'bob 2.8s ease-in-out ' + (i % 4) * 0.25 + 's infinite'; });
 
