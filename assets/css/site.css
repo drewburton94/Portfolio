@@ -356,20 +356,13 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
 .how__row { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 40px; align-items: baseline; border-top: 1px solid var(--line); padding: 30px 0; }
 .how__old { color: rgba(255, 255, 255, 0.55); }
 .how__old .mono { display: block; margin-bottom: 8px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
-.how__old s { text-decoration: none; font: 400 clamp(15px, 1.5vw, 19px) / 1.5 var(--mono); background: linear-gradient(var(--lime), var(--lime)) 0 56% / 0% 2px no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size 0.7s cubic-bezier(.6, 0, .2, 1) 0.35s; }
-.how__row.in .how__old s { background-size: 100% 2px; }
+.how__old s { text-decoration: none; font: 400 clamp(15px, 1.5vw, 19px) / 1.5 var(--mono); background: linear-gradient(var(--lime), var(--lime)) 0 56% / calc(var(--s, 1) * 100%) 2px no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .how__now { font-family: var(--disp); font-weight: 800; font-size: clamp(24px, 3.1vw, 46px); line-height: 1.1; letter-spacing: -0.04em; text-wrap: balance; }
-.js .how__now { opacity: 0; transform: translateY(34px); filter: blur(8px); transition: opacity 0.8s ease 0.95s, transform 0.95s cubic-bezier(.2, .8, .2, 1) 0.95s, filter 0.8s ease 0.95s; }
-.js .how__row.in .how__now { opacity: 1; transform: none; filter: none; }
-.how__now .hl { background: none; color: var(--lime); padding: 0; margin: 0; }
-.js .how__now .hl { color: #fff; transition: color 0.7s ease 1.9s; }
-.js .how__row.in .how__now .hl { color: var(--lime); }
+.how__now { opacity: var(--n, 1); transform: translateY(calc((1 - var(--n, 1)) * 34px)); filter: blur(calc((1 - var(--n, 1)) * 8px)); will-change: opacity, transform; }
+.how__now .hl { background: none; color: color-mix(in srgb, var(--lime) calc(var(--h, 1) * 100%), #fff); padding: 0; margin: 0; }
 @media (max-width: 720px) {
   .how { margin-top: 80px; }
   .how__row { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .how__old s { transition: none; }
-  .js .how__now { transition: none; opacity: 1; transform: none; filter: none; }
-  .js .how__now .hl { transition: none; color: var(--lime); }
 }

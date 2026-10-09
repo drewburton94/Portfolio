@@ -197,6 +197,26 @@
     intro.addEventListener('pointerleave', function () { pwPaint(false); });
   }
 
+  // ---- about: statements animate with the scroll, top to bottom ----------
+  var seq = $('[data-seq]');
+  if (seq.length && !reduce) {
+    var paintSeq = function () {
+      var vh = window.innerHeight;
+      seq.forEach(function (el) {
+        var top = el.getBoundingClientRect().top;
+        var p = clamp((vh * 0.9 - top) / (vh * 0.45));
+        el.style.setProperty('--s', clamp(p / 0.3).toFixed(3));
+        el.style.setProperty('--n', clamp((p - 0.25) / 0.45).toFixed(3));
+        el.style.setProperty('--h', clamp((p - 0.7) / 0.3).toFixed(3));
+      });
+    };
+    var seqQueued = false;
+    var kickSeq = function () { if (seqQueued) return; seqQueued = true; requestAnimationFrame(function () { seqQueued = false; paintSeq(); }); };
+    window.addEventListener('scroll', kickSeq, { passive: true });
+    window.addEventListener('resize', kickSeq);
+    paintSeq();
+  }
+
   // ---- about: from machine to human --------------------------------------
   var ai = document.querySelector('[data-ai]');
   if (ai) {

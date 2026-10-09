@@ -197,7 +197,7 @@ ${chrome(0)}
     <div class="how">
       <p class="kicker">${about.think.kicker}</p>
       <ul class="how__rows">
-        ${about.think.rows.map((r) => `<li class="how__row" data-reveal>
+        ${about.think.rows.map((r) => `<li class="how__row" data-seq>
           <p class="how__old"><span class="mono">The default</span><s>${esc(r.old)}</s></p>
           <p class="how__now">${rich(r.now)}</p>
         </li>`).join('')}
