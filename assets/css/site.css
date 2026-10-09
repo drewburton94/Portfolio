@@ -269,9 +269,8 @@ html:not(.js) .squiggle { opacity: 1; } html:not(.js) .squiggle path { stroke-da
 /* ---------- chat assistant ---------- */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .chat { position: fixed; z-index: 65; right: 24px; bottom: 24px; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
-.chat__fab { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: #0a0c0a; border: 0; border-radius: 100px; padding: 15px 22px; font: 600 15px var(--sans); letter-spacing: -0.01em; cursor: pointer; box-shadow: 0 14px 40px -12px rgba(182, 255, 61, 0.45); }
-.chat__dot { width: 9px; height: 9px; border-radius: 100px; background: #0a0c0a; animation: breathe 2.2s ease-in-out infinite; }
-@keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.chat__face { width: 32px; height: 32px; border-radius: 100px; object-fit: cover; background: #1a1d1a; border: 2px solid #0a0c0a; }
+.chat__fab { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: #0a0c0a; border: 0; border-radius: 100px; padding: 8px 22px 8px 8px; font: 600 15px var(--sans); letter-spacing: -0.01em; cursor: pointer; box-shadow: 0 14px 40px -12px rgba(182, 255, 61, 0.45); }
 .chat__panel { width: min(400px, calc(100vw - 32px)); height: min(560px, calc(100vh - 120px)); display: flex; flex-direction: column; background: #0e1012; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 26px; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7); transform-origin: 100% 100%; }
 .chat__panel[hidden] { display: none; }
 .chat__panel.open { animation: chatin 320ms cubic-bezier(.2, .9, .25, 1); }
