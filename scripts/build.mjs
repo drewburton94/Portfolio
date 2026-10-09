@@ -112,7 +112,7 @@ const foot = (depth) => {
 </div>
 <div class="blob" data-blob aria-hidden="true"><span>View</span></div>
 <div class="chat" data-chat>
-  <button class="chat__fab" type="button" data-chat-open data-magnet data-onlime aria-expanded="false" aria-controls="chat-panel"><img class="chat__face" src="${depth ? '../' : ''}assets/img/stanley.webp" alt="" width="38" height="38">Ask about Drew</button>
+  <button class="chat__fab" type="button" data-chat-open data-magnet data-onlime aria-expanded="false" aria-controls="chat-panel"><img class="chat__face" src="${depth ? '../' : ''}assets/img/stanley.webp" alt="" width="38" height="38">Ask me about Drew</button>
   <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Ask about Drew" hidden>
     <header class="chat__head">
       <div class="chat__who"><img src="${depth ? '../' : ''}assets/img/stanley.webp" alt="" width="44" height="44"><div><p class="chat__title">Stanley</p><p class="chat__sub mono">Drew's dog · AI assistant</p></div></div>
