@@ -44,7 +44,8 @@ ul, ol { padding: 0; list-style: none; }
 .kicker.lime-t { color: var(--lime); }
 .display { font-family: var(--disp); font-weight: 800; font-size: clamp(38px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.04em; text-wrap: balance; }
 .display--sm { font-size: clamp(30px, 3.2vw, 46px); line-height: 1.06; }
-.display--xl { font-family: var(--sans); font-weight: 700; font-size: clamp(44px, 6vw, 86px); line-height: 0.94; letter-spacing: -0.055em; max-width: 11em; }
+.display--xl { font-family: var(--sans); font-weight: 700; font-size: clamp(30px, 3.3vw, 48px); line-height: 1.02; letter-spacing: -0.05em; max-width: none; text-wrap: balance; }
+@media (min-width: 1000px) { .display--xl { white-space: nowrap; } }
 
 /* ---------- fixed chrome ---------- */
 .brand { position: absolute; z-index: 60; top: 38px; left: 28px; display: flex; align-items: center; gap: 13px; }
@@ -100,7 +101,7 @@ ul, ol { padding: 0; list-style: none; }
 /* ---------- about ---------- */
 .about { padding-top: 108px; }
 .lede { font-weight: 500; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.42; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.95); max-width: 640px; text-wrap: pretty; }
-.lede--plain { max-width: 680px; }
+.lede--plain { max-width: none; font-size: clamp(17px, 1.5vw, 21px); }
 .hl { font-style: normal; display: inline-block; white-space: nowrap; background: var(--lime); color: var(--bg); border-radius: 6px; padding: 0 0.22em; margin: 0 0.04em; transform-origin: left center; }
 .js .lede .hl { transform: scaleX(0); }
 .js .lede .hl.in { transform: scaleX(1); transition: transform 760ms cubic-bezier(.2, .8, .2, 1) 200ms; }
