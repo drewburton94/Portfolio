@@ -157,6 +157,7 @@
       blob.classList.toggle('is-card', S.card);
       blob.classList.toggle('is-cta', !S.card && !!c.closest('[data-magnet]'));
       blob.classList.toggle('on-light', !!c.closest('[data-light]'));
+      blob.classList.toggle('on-lime', !!c.closest('[data-onlime]'));
     });
     document.addEventListener('mouseleave', function () { S.in = false; });
     (function tick() {
