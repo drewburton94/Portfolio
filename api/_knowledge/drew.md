@@ -28,7 +28,7 @@ delete anything you don't want it to say. Redeploy to update the assistant.
 > Designing learning experiences for adoption, not just consumption.
 
 **Sub-line (one of these):**
-- There's a lot of bad training out there. For 11 years I've been building the alternative.
+- There's a lot of bad training out there. For 12+ years I've been building the alternative.
 - I design and build the systems that help customers actually use the product — courses, tools, assistants, and everything in between.
 - Learning experience design at the seam between customer education, product, and customer success.
 - I find where people are operating without the information they need, and I build the thing that fixes it.
@@ -256,7 +256,7 @@ Education shouldn't live in an isolated reporting system. I want to understand h
 
 ## Short version (for the top of the page)
 
-I'm Drew — a learning experience designer and builder working at the seam between customer education, product, and customer success. Eleven years in, across enterprise software, staffing, manufacturing, and higher ed. Graphic design background. Not a developer by training — but shipping real, deployed software anyway, using AI tooling as the bridge between design intent and working code.
+I'm Drew — a learning experience designer and builder working at the seam between customer education, product, and customer success. 12+ years in, across enterprise software, staffing, manufacturing, and higher ed. Graphic design background. Not a developer by training — but shipping real, deployed software anyway, using AI tooling as the bridge between design intent and working code.
 
 ---
 
@@ -264,7 +264,7 @@ I'm Drew — a learning experience designer and builder working at the seam betw
 
 There's a lot of bad training out there. That's most of what got me here.
 
-Eleven years across customer education, internal enablement, and e-learning development — Algolia, Talkdesk, Kelly Services, Dow Chemical, Delta College — and the through-line has been the same the whole time: make learning clear, useful, and human. Early on that meant building modules and assessments. It increasingly means building systems, tools, and product experiences.
+12+ years across customer education, internal enablement, and e-learning development — Algolia, Talkdesk, Kelly Services, Dow Chemical, Delta College — and the through-line has been the same the whole time: make learning clear, useful, and human. Early on that meant building modules and assessments. It increasingly means building systems, tools, and product experiences.
 
 My role sits in customer education, but the way I approach it is broader than instructional design. I rarely think only in terms of courses or content. I think about the full system around learning: what the customer is actually trying to do, what would help them move forward fastest, what information should appear at the moment they need it, and how any of it connects to whether they successfully adopt the product.
 
@@ -358,13 +358,13 @@ Drew Burton — learning experience designer and builder. I design and ship the 
 Customer Education @ Algolia · Designing learning experiences for adoption, not just consumption
 
 ## Resume summary (revised)
-There's a lot of bad training out there. For 11 years I've built education programs with one goal: make learning clear, useful, and human. I design learning experiences for adoption, not just consumption — connecting education to product enablement, implementation quality, and retention. Increasingly that means building the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable product champions.
+There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design learning experiences for adoption, not just consumption — connecting education to product enablement, implementation quality, and retention. Increasingly that means building the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable product champions.
 
 ## One-liner (for bios, intros, speaker cards)
 Drew designs learning experiences for adoption, not just consumption — and usually ends up building them too.
 
 ## Proof points worth surfacing
-- 11 years across customer education, enablement, and e-learning development
+- 12+ years across customer education, enablement, and e-learning development
 - Drove record Academy engagement — exceeding the previous four years combined in one year
 - Enabled a process automation rollout for 2,000+ global operators (Kelly Services)
 - Redesigned Algolia Academy around interactive, applied, and personalized experiences
@@ -413,3 +413,12 @@ The common thread across all four: **someone is operating without the informatio
 
 ---
 
+
+
+---
+
+## Part 3: Quick facts
+
+- 15+ years in design.
+- 12+ years in learning and development.
+- Endless curiosity about what's possible.

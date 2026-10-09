@@ -14,7 +14,7 @@ export const site = {
 
 export const hero = {
   headline: ['I', 'design', 'learning', 'systems', 'for', '*adoption*,', 'not', 'just', 'consumption.'],
-  sub: "There's a lot of bad training out there. For 11 years I've been building the alternative.",
+  sub: "There's a lot of bad training out there. For 12+ years I've been building the alternative.",
 };
 
 export const about = {
