@@ -171,4 +171,75 @@
       requestAnimationFrame(tick);
     })();
   }
+
+  // ---- chat assistant ----------------------------------------------------
+  var chat = document.querySelector('[data-chat]');
+  if (chat) {
+    var fab = chat.querySelector('[data-chat-open]');
+    var panel = chat.querySelector('.chat__panel');
+    var log = chat.querySelector('[data-chat-log]');
+    var form = chat.querySelector('[data-chat-form]');
+    var input = form.querySelector('input');
+    var send = form.querySelector('button');
+    var chips = chat.querySelector('[data-chat-chips]');
+    var history = [];
+    var busy = false;
+
+    function add(text, cls) {
+      var d = document.createElement('div');
+      d.className = 'msg ' + cls;
+      d.textContent = text;
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+      return d;
+    }
+    function setOpen(open) {
+      panel.hidden = !open;
+      fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        panel.classList.remove('open'); void panel.offsetWidth; panel.classList.add('open');
+        if (!log.children.length) add("Hi, I'm an assistant that knows Drew's work and background. Ask me anything about his projects, experience or approach.", 'msg--bot');
+        input.focus();
+      } else { fab.focus(); }
+    }
+    fab.addEventListener('click', function () { setOpen(panel.hidden); });
+    chat.querySelector('[data-chat-close]').addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) setOpen(false); });
+
+    function ask(q) {
+      if (busy || !q) return;
+      busy = true; send.disabled = true; chips.hidden = true;
+      add(q, 'msg--me');
+      history.push({ role: 'user', content: q });
+      var typing = add('···', 'msg--bot msg--typing');
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: history.slice(-10) })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; });
+      }).then(function (res) {
+        typing.remove();
+        if (res.ok && res.d.reply) {
+          history.push({ role: 'assistant', content: res.d.reply });
+          add(res.d.reply, 'msg--bot');
+        } else {
+          history.pop();
+          add(res.d.error || "The assistant isn't available on this preview. It runs on the live site.", 'msg--bot msg--err');
+        }
+      }).catch(function () {
+        typing.remove(); history.pop();
+        add("The assistant couldn't be reached. Please try again, or email Drew directly.", 'msg--bot msg--err');
+      }).then(function () { busy = false; send.disabled = false; input.focus(); });
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = input.value.trim();
+      input.value = '';
+      ask(q);
+    });
+    chips.addEventListener('click', function (e) {
+      if (e.target.tagName === 'BUTTON') ask(e.target.textContent);
+    });
+  }
 })();

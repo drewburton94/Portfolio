@@ -85,6 +85,27 @@
   <div class="texture__vignette"></div>
 </div>
 <div class="blob" data-blob aria-hidden="true"><span>View</span></div>
+<div class="chat" data-chat>
+  <button class="chat__fab" type="button" data-chat-open data-magnet aria-expanded="false" aria-controls="chat-panel"><span class="chat__dot" aria-hidden="true"></span>Ask about Drew</button>
+  <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Ask about Drew" hidden>
+    <header class="chat__head">
+      <div><p class="chat__title">Ask about Drew</p><p class="chat__sub mono">AI assistant · answers from Drew's own notes</p></div>
+      <button class="chat__x" type="button" data-chat-close aria-label="Close chat">×</button>
+    </header>
+    <div class="chat__log" data-chat-log role="log" aria-live="polite"></div>
+    <div class="chat__chips" data-chat-chips>
+      <button type="button">What does Drew do?</button>
+      <button type="button">Tell me about the Academy LMS</button>
+      <button type="button">Where has Drew worked?</button>
+    </div>
+    <form class="chat__form" data-chat-form autocomplete="off">
+      <label class="sr" for="chat-input">Your question</label>
+      <input id="chat-input" name="q" type="text" maxlength="600" placeholder="Ask about Drew's work or background…" required>
+      <button type="submit" aria-label="Send">↑</button>
+    </form>
+  </section>
+</div>
+
 <script src="../assets/js/site.js" defer></script>
 </body>
 </html>
