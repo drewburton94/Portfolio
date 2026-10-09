@@ -23,14 +23,12 @@ export const about = {
   me: "I'm Drew. A designer, a problem-solver, and someone who has a hard time leaving a good idea alone.",
   think: {
     kicker: 'How I think',
-    title: 'Why are we doing it this way?',
     rows: [
       { old: 'Create more content.', now: "The goal isn't more learning. *It's helping people do more.*" },
       { old: 'Make sure everything is included.', now: 'Make the complicated feel simple. *Not the other way around.*' },
       { old: 'Create a course.', now: '*Create an experience.* One people can try, practice, and apply.' },
       { old: 'Start building the solution right away.', now: "*Share early. Collaborate often.* Build on what's already there." },
     ],
-    closing: 'What if we tried something different?',
   },
   ai: {
     kicker: 'AI, with people at the center',

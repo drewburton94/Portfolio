@@ -196,14 +196,12 @@ ${chrome(0)}
 
     <div class="how">
       <p class="kicker">${about.think.kicker}</p>
-      <h3 class="how__title" data-reveal>${esc(about.think.title)}</h3>
       <ul class="how__rows">
         ${about.think.rows.map((r) => `<li class="how__row" data-reveal>
           <p class="how__old"><span class="mono">The default</span><s>${esc(r.old)}</s></p>
           <p class="how__now">${rich(r.now)}</p>
         </li>`).join('')}
       </ul>
-      <p class="how__close" data-reveal>${esc(about.think.closing)}</p>
     </div>
 
     <div class="ai" data-ai>

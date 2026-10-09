@@ -352,7 +352,6 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
 
 /* ---------- about: how I think ---------- */
 .how { margin-top: 120px; display: flex; flex-direction: column; gap: 30px; }
-.how__title { font-family: var(--disp); font-weight: 800; font-size: clamp(34px, 5vw, 76px); line-height: 1.04; letter-spacing: -0.045em; max-width: 14em; text-wrap: balance; }
 .how__rows { display: flex; flex-direction: column; }
 .how__row { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 40px; align-items: baseline; border-top: 1px solid var(--line); padding: 30px 0; }
 .how__old { color: rgba(255, 255, 255, 0.55); }
@@ -363,7 +362,6 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
 .js .how__now { opacity: 0.25; transition: opacity 0.6s ease 0.9s; }
 .js .how__row.in .how__now { opacity: 1; }
 .how__now .hl { background: none; color: var(--lime); padding: 0; margin: 0; }
-.how__close { font-family: var(--disp); font-weight: 800; font-size: clamp(30px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.045em; color: var(--lime); border-top: 1px solid var(--line); padding-top: 34px; }
 @media (max-width: 720px) {
   .how { margin-top: 80px; }
   .how__row { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
