@@ -196,6 +196,7 @@
     }
     function setOpen(open) {
       panel.hidden = !open;
+      chat.classList.toggle('is-open', open);
       fab.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open) {
         panel.classList.remove('open'); void panel.offsetWidth; panel.classList.add('open');
