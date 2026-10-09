@@ -71,26 +71,43 @@
   var grow = $('[data-grow]');
   var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
   var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
-  function growCards() {
+  // Scroll sets a target for each card; the card eases toward it, so the growth
+  // trails the scroll a little and feels slower and smoother.
+  function growTargets() {
     var vh = window.innerHeight;
     grow.forEach(function (el) {
       var r = el.getBoundingClientRect();
-      // 0 when the card's top edge is at the bottom of the screen, 1 once it sits ~30% down
-      var p = ease(clamp((vh - r.top) / (vh * 1.35)));
-      // and ease back out slightly as it leaves the top
-      var out = clamp((r.bottom - vh * 0.05) / (vh * 0.4));
-      var k = p * (0.88 + 0.12 * out);
-      el.style.transform = 'translate3d(0,' + ((1 - p) * 40).toFixed(1) + 'px,0) rotateX(' + ((1 - p) * 6).toFixed(2) + 'deg) scale(' + (0.5 + 0.5 * k).toFixed(4) + ')';
-      el.style.opacity = (0.15 + 0.85 * clamp(p * 1.6)).toFixed(3);
-      var art = el.querySelector('.art');
-      if (art) art.style.transform = 'scale(' + (1.3 - 0.3 * p).toFixed(4) + ') translateY(' + ((r.top - vh / 2) * -0.06).toFixed(1) + 'px)';
-      el.style.setProperty('--g', (1 - 0.85 * clamp(1 - Math.abs((r.top + r.height / 2) - vh / 2) / (vh * 0.45))).toFixed(2));
+      el.__t = ease(clamp((vh - r.top) / (vh * 1.8)));
+      el.__top = r.top;
+      el.__mid = r.top + r.height / 2;
+      if (el.__p === undefined) el.__p = el.__t;
     });
   }
+  function growPaint() {
+    var vh = window.innerHeight, busy = false;
+    grow.forEach(function (el) {
+      var d = el.__t - el.__p;
+      if (Math.abs(d) > 0.0004) { el.__p += d * 0.07; busy = true; } else { el.__p = el.__t; }
+      var p = el.__p;
+      el.style.transform = 'translate3d(0,' + ((1 - p) * 40).toFixed(1) + 'px,0) rotateX(' + ((1 - p) * 6).toFixed(2) + 'deg) scale(' + (0.5 + 0.5 * p).toFixed(4) + ')';
+      el.style.opacity = (0.15 + 0.85 * clamp(p * 1.6)).toFixed(3);
+      var art = el.querySelector('.art');
+      if (art) art.style.transform = 'scale(' + (1.3 - 0.3 * p).toFixed(4) + ') translateY(' + ((el.__top - vh / 2) * -0.06).toFixed(1) + 'px)';
+      el.style.setProperty('--g', (1 - 0.85 * clamp(1 - Math.abs(el.__mid - vh / 2) / (vh * 0.45))).toFixed(2));
+    });
+    return busy;
+  }
+  var growRaf = 0;
+  function growLoop() {
+    growRaf = 0;
+    growTargets();
+    if (growPaint()) growRaf = requestAnimationFrame(growLoop);
+  }
+  function growKick() { if (!growRaf) growRaf = requestAnimationFrame(growLoop); }
   if (grow.length && !reduce) {
-    window.addEventListener('scroll', function () { requestAnimationFrame(growCards); }, { passive: true });
-    window.addEventListener('resize', growCards);
-    growCards();
+    window.addEventListener('scroll', growKick, { passive: true });
+    window.addEventListener('resize', growKick);
+    growLoop();
   } else {
     grow.forEach(function (el) { el.style.opacity = 1; });
   }
