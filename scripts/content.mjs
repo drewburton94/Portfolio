@@ -20,9 +20,9 @@ export const hero = {
 export const about = {
   kicker: 'About',
   facts: [
-    { n: 11, suffix: '', t: 'Years across customer education, enablement, and e-learning development' },
-    { n: 4, suffix: ' yrs', t: 'Of Academy engagement topped in a single year, a record' },
-    { n: 2000, suffix: '+', t: 'Global operators enabled for a process automation rollout' },
+    { n: 15, suffix: '+', t: 'Years in design' },
+    { n: 12, suffix: '+', t: 'Years in learning & development' },
+    { n: '∞', suffix: '', t: "Curiosity about what's possible" },
   ],
   intro: "I'm curious how things work. Even more curious how they could work better.",
   me: "I'm Drew. A designer, a problem-solver, and someone who has a hard time leaving a good idea alone.",

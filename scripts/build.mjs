@@ -195,7 +195,9 @@ ${chrome(0)}
     </div>
 
     <div class="facts" data-facts>
-      ${about.facts.map((f) => `<div data-reveal><div class="facts__n" data-count="${f.n}" data-suffix="${esc(f.suffix)}">${f.n.toLocaleString('en-US')}${esc(f.suffix)}</div><p class="mono">${esc(f.t)}</p></div>`).join('')}
+      ${about.facts.map((f) => typeof f.n === 'number'
+        ? `<div data-reveal><div class="facts__n" data-count="${f.n}" data-suffix="${esc(f.suffix)}">${f.n.toLocaleString('en-US')}${esc(f.suffix)}</div><p class="mono">${esc(f.t)}</p></div>`
+        : `<div data-reveal><div class="facts__n facts__n--static">${esc(String(f.n))}</div><p class="mono">${esc(f.t)}</p></div>`).join('')}
     </div>
 
     <div class="how">
