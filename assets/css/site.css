@@ -139,7 +139,7 @@ ul, ol { padding: 0; list-style: none; }
 .work__intro { margin: 24px 0 46px; max-width: 640px; font-size: 18px; color: #4a4943; }
 .cards { display: flex; flex-direction: column; gap: 90px; }
 .cards { perspective: 1400px; }
-.js .card[data-grow] { will-change: transform, opacity; transform-origin: 50% 70%; }
+.js .card[data-grow] { will-change: transform, opacity; transform-origin: 50% 100%; }
 .js .card[data-grow] .art { will-change: transform; }
 .card { display: block; border-radius: 34px; overflow: hidden; background: var(--paper); color: var(--ink); transition: box-shadow 400ms; }
 .card:hover { color: var(--ink); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.32); }
