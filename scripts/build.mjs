@@ -138,7 +138,7 @@ const foot = (depth) => {
 `;
 };
 
-const arrowLink = (href, label) => `<a class="pill" data-magnet href="${href}">${label} <span data-arrow aria-hidden="true">↗</span></a>`;
+const arrowLink = (href, label) => `<a class="pill" data-magnet data-onlime href="${href}">${label} <span data-arrow aria-hidden="true">↗</span></a>`;
 
 // ---- home ----------------------------------------------------------------
 const heroWords = hero.headline
