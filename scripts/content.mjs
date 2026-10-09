@@ -28,7 +28,6 @@ export const about = {
       { old: 'Start building the solution right away.', now: "*Share early. Collaborate often.* Build on what's already there." },
       { old: 'Create more content.', now: "The goal isn't more learning. *It's helping people do more.*" },
       { old: 'Make sure everything is included.', now: 'Make the complicated feel simple. *Not the other way around.*' },
-      { old: "That's outside my expertise.", now: 'Start with what you want to create. *Then figure out how to build it.*' },
       { old: 'Focus on the individual deliverable.', now: "Don't just design the solution. *Design the experience around it.*" },
     ],
     closing: 'What if we tried something different?',
