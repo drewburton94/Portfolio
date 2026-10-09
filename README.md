@@ -36,7 +36,7 @@ npx wrangler pages secret put ADMIN_PASSWORD   --project-name drew-portfolio   #
 npx wrangler pages secret put SESSION_SECRET   --project-name drew-portfolio   # any long random string
 npx wrangler pages secret put ANTHROPIC_API_KEY --project-name drew-portfolio  # powers Stanley
 
-# 6. Deploy
+# 6. Deploy (always publishes to production, whatever git branch you're on)
 npm run deploy
 ```
 

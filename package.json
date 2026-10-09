@@ -7,7 +7,7 @@
     "dev": "node scripts/build.mjs && wrangler pages dev public --port 8788",
     "db:local": "wrangler d1 migrations apply drew-portfolio --local",
     "db:remote": "wrangler d1 migrations apply drew-portfolio --remote",
-    "deploy": "node scripts/build.mjs && wrangler pages deploy public --project-name drew-portfolio"
+    "deploy": "node scripts/build.mjs && wrangler pages deploy public --project-name drew-portfolio --branch main"
   },
   "devDependencies": {
     "wrangler": "^3.114.0"
