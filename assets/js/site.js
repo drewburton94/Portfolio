@@ -204,7 +204,7 @@
       var vh = window.innerHeight;
       seq.forEach(function (el) {
         var top = el.getBoundingClientRect().top;
-        var p = clamp((vh * 0.9 - top) / (vh * 0.45));
+        var p = clamp((vh * 1.0 - top) / (vh * 0.32));
         el.style.setProperty('--s', clamp(p / 0.3).toFixed(3));
         el.style.setProperty('--n', clamp((p - 0.25) / 0.45).toFixed(3));
         el.style.setProperty('--h', clamp((p - 0.7) / 0.3).toFixed(3));
@@ -249,7 +249,7 @@
     if (fabBtn && pnl && pnl.hidden) fabBtn.click();
     else if (pnl) { var inp = pnl.querySelector('input'); if (inp) inp.focus(); }
   }
-  $('[data-stanley], [data-ask-stanley]').forEach(function (b) { b.addEventListener('click', askStanley); });
+  $('[data-ask-stanley]').forEach(function (b) { b.addEventListener('click', askStanley); });
 
   // ---- case studies open in place (single page) --------------------------
   var dlg = document.getElementById('case');

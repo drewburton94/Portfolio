@@ -36,8 +36,6 @@ export const about = {
     key: "who we're doing it for.",
     note: "I use AI every day to build things I couldn't before. It still needs a person on the other end.",
   },
-  // Personal moment: edit this line to say whatever you like about Stanley.
-  stanley: { note: "That's Stanley. Click him, he'll tell you about me." },
 };
 
 export const projects = [

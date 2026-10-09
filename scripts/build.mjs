@@ -221,11 +221,6 @@ ${chrome(0)}
       </div>
       <p class="ai__note" data-reveal>${esc(about.ai.note)}</p>
     </div>
-
-    <div class="stan" data-stan data-reveal>
-      <p class="stan__note mono">${esc(about.stanley.note)}<svg viewBox="0 0 90 50" fill="none" aria-hidden="true"><path d="M3 8 C 35 2, 70 14, 84 42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M70 38 L85 44 L89 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
-      <button class="stan__dog" type="button" data-stanley aria-label="Say hi to Stanley, Drew's dog"><img src="assets/img/stanley-lg.webp" alt="" width="240" height="242" loading="lazy"></button>
-    </div>
   </div>
 </section>
 

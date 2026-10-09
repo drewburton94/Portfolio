@@ -301,14 +301,6 @@ html:not(.js) .squiggle { opacity: 1; } html:not(.js) .squiggle path { stroke-da
 .ai__range::-moz-range-thumb { width: 26px; height: 26px; border-radius: 100px; background: var(--lime); border: 0; cursor: grab; }
 .ai__note { font-size: clamp(17px, 1.5vw, 20px); color: rgba(255, 255, 255, 0.8); max-width: 34em; }
 
-/* ---------- about: Stanley peeks in ---------- */
-.stan { position: relative; margin-top: 60px; height: 190px; overflow: hidden; display: flex; align-items: flex-end; gap: 10px; }
-.stan__note { align-self: center; display: flex; align-items: flex-start; gap: 8px; max-width: 250px; font-size: 13.5px; line-height: 1.55; color: rgba(255, 255, 255, 0.85); }
-.stan__note svg { width: 72px; height: 40px; flex: none; margin-top: 30px; color: var(--lime); }
-.stan__dog { width: 240px; flex: none; background: none; border: 0; padding: 0; cursor: pointer; transform: translateY(46%); transition: transform 0.7s cubic-bezier(.2, .9, .25, 1); }
-.stan__dog img { width: 100%; height: auto; }
-.stan.in .stan__dog { transform: translateY(24%); }
-.stan.in .stan__dog:hover, .stan.in .stan__dog:focus-visible { transform: translateY(8%) rotate(-4deg); }
 
 .linkish { font: inherit; color: var(--lime); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .linkish:hover { color: #fff; }
@@ -339,15 +331,11 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
   .ai { margin-top: 80px; --aiw: 36px; }
   .ai__line { min-height: calc(var(--aiw) * 6.2); }
   .aw { font-size: 25px; }
-  .stan { margin-top: 40px; height: 170px; }
-  .stan__dog { width: 190px; }
-  .stan__note { max-width: 170px; font-size: 12.5px; }
-  .stan__note svg { display: none; }
   .case__x { top: 14px; right: 14px; width: 46px; height: 46px; }
   .case__art.proj { padding-top: 90px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pw, .aw, .stan__dog { transition: none !important; }
+  .pw, .aw { transition: none !important; }
 }
 
 /* ---------- about: how I think ---------- */
