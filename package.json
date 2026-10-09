@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "dev": "node scripts/build.mjs && wrangler pages dev public --port 8788",
-    "db:local": "wrangler d1 migrations apply drew-portfolio --local",
-    "db:remote": "wrangler d1 migrations apply drew-portfolio --remote",
-    "deploy": "node scripts/build.mjs && wrangler pages deploy public --project-name drew-portfolio --branch main"
+    "dev": "wrangler dev --port 8788",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "db:remote": "wrangler d1 migrations apply DB --remote",
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^3.114.0"

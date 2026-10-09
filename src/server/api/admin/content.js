@@ -1,6 +1,6 @@
 import { json, loadRows } from '../../_lib/util.js';
 import { guard } from '../../_lib/auth.js';
-import { mergeContent, validate, DEFAULTS } from '../../../src/content.mjs';
+import { mergeContent, validate, DEFAULTS } from '../../../content.mjs';
 
 export async function onRequestGet({ request, env }) {
   const denied = await guard(request, env);

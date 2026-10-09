@@ -1,6 +1,6 @@
 // Stanley, the chat assistant. Answers only from the knowledge text saved in the admin.
 import { json, loadRows, overLimit, clientIp, sha256Hex, deviceClass, isBot } from '../_lib/util.js';
-import { mergeContent } from '../../src/content.mjs';
+import { mergeContent } from '../../content.mjs';
 
 const MAX_TURNS = 10;
 const MAX_CHARS = 600;

@@ -1,20 +1,29 @@
-name = "drew-portfolio"
+name = "portfolio"
+main = "src/server/worker.js"
 compatibility_date = "2025-01-01"
-pages_build_output_dir = "public"
 
-# Replace database_id after running: npx wrangler d1 create drew-portfolio
+# Static files: styles, scripts, images and the /admin screens.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Replace database_id with the id of your D1 database (dashboard: Storage & Databases > D1).
 [[d1_databases]]
 binding = "DB"
 database_name = "drew-portfolio"
 database_id = "REPLACE_WITH_YOUR_D1_ID"
 migrations_dir = "migrations"
 
-# Create with: npx wrangler r2 bucket create drew-portfolio-media
+# Bucket for uploaded images (dashboard: R2 Object Storage).
 [[r2_buckets]]
 binding = "MEDIA"
 bucket_name = "drew-portfolio-media"
 
-# Secrets (never put these in this file). Set with `npx wrangler pages secret put NAME`:
+[observability]
+enabled = true
+
+# Secrets (never put these in this file). Add them under Settings > Variables and Secrets,
+# or run `npx wrangler secret put NAME`:
 #   ADMIN_PASSWORD     the password for /admin
 #   SESSION_SECRET     any long random string (signs login cookies, salts analytics hashes)
 #   ANTHROPIC_API_KEY  powers the Stanley chat assistant
