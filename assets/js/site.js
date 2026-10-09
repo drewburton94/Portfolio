@@ -77,7 +77,7 @@
     var vh = window.innerHeight;
     grow.forEach(function (el) {
       var r = el.getBoundingClientRect();
-      el.__t = ease(clamp((vh - r.top) / (vh * 1.8)));
+      el.__t = ease(clamp((vh - r.top) / (vh * 1.5)));
       el.__top = r.top;
       el.__mid = r.top + r.height / 2;
       if (el.__p === undefined) el.__p = el.__t;
@@ -87,7 +87,7 @@
     var vh = window.innerHeight, busy = false;
     grow.forEach(function (el) {
       var d = el.__t - el.__p;
-      if (Math.abs(d) > 0.0004) { el.__p += d * 0.07; busy = true; } else { el.__p = el.__t; }
+      if (Math.abs(d) > 0.0004) { el.__p += d * 0.12; busy = true; } else { el.__p = el.__t; }
       var p = el.__p;
       el.style.transform = 'translate3d(0,' + ((1 - p) * 40).toFixed(1) + 'px,0) rotateX(' + ((1 - p) * 6).toFixed(2) + 'deg) scale(' + (0.5 + 0.5 * p).toFixed(4) + ')';
       el.style.opacity = (0.15 + 0.85 * clamp(p * 1.6)).toFixed(3);
