@@ -202,8 +202,16 @@
   if (flip) {
     var stage = flip.querySelector('.flip__stage');
     var pa = flip.querySelector('[data-flip-a]'), pb = flip.querySelector('[data-flip-b]');
+    var fitFlip = function () {
+      var cur = stage.getAttribute('data-state') === 'different' ? pb : pa;
+      stage.style.height = cur.scrollHeight + 'px';
+    };
+    window.addEventListener('resize', fitFlip);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFlip);
+    fitFlip();
     var setFlip = function (different) {
       stage.setAttribute('data-state', different ? 'different' : 'default');
+      fitFlip();
       pa.inert = different; pb.inert = !different;
       pa.setAttribute('aria-hidden', different ? 'true' : 'false');
       pb.setAttribute('aria-hidden', different ? 'false' : 'true');
