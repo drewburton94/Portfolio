@@ -184,6 +184,6 @@ export const history = [
 ];
 
 export const contact = {
-  heading: "Got a problem that doesn't fit the usual answer?",
-  body: "I'd like to hear about it. Tell me what you're working on and we'll see what we can figure out.",
+  heading: 'Imagine what we could create together.',
+  body: "I'm always excited to meet people who care about making things better. If that sounds like your team, I'd love to talk.",
 };
