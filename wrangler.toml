@@ -11,7 +11,7 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "drew-portfolio"
-database_id = "REPLACE_WITH_YOUR_D1_ID"
+database_id = "7d0de173-a7ec-485d-aa78-9c1674d65f84"
 migrations_dir = "migrations"
 
 # Bucket for uploaded images (dashboard: R2 Object Storage).
