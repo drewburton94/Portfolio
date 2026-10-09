@@ -1,0 +1,3 @@
+ADMIN_PASSWORD=choose-a-password
+SESSION_SECRET=paste-a-long-random-string
+ANTHROPIC_API_KEY=

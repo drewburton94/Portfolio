@@ -281,6 +281,7 @@
       if (!dlg.open) { dlg.showModal(); document.body.classList.add('case-open'); }
       dlg.scrollTop = 0;
       if (push) window.history.pushState(null, '', '#work/' + id);
+      if (window.__track) window.__track('project', id);
     };
     var hideCase = function (fromHash) {
       if (dlg.open) dlg.close();
@@ -305,6 +306,57 @@
     window.addEventListener('popstate', fromHash);
     fromHash();
   }
+
+  // ---- cookie-free analytics (no cookies, no IP stored; respects Do Not Track) --
+  var dnt = navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+  function track(type, name, extra) {
+    if (dnt) return;
+    try {
+      var body = { type: type, name: name || null };
+      if (extra) for (var k in extra) body[k] = extra[k];
+      fetch('/api/collect', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body), keepalive: true }).catch(function () {});
+    } catch (e) { /* ignore */ }
+  }
+  window.__track = track;
+  track('pageview', location.pathname, { ref: document.referrer });
+  if ('IntersectionObserver' in window) {
+    var secIo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        track('section', e.target.getAttribute('data-track'));
+        secIo.unobserve(e.target);
+      });
+    }, { threshold: 0.35 });
+    [['#about', 'about'], ['.how', 'how-i-think'], ['.ai', 'human-first'], ['#work', 'work'], ['#history', 'history'], ['#contact', 'contact']].forEach(function (s) {
+      var el = document.querySelector(s[0]);
+      if (el) { el.setAttribute('data-track', s[1]); secIo.observe(el); }
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a, button');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('mailto:') === 0) track('click', 'email');
+    else if (/linkedin\.com/i.test(href)) track('click', 'linkedin');
+    else if (/github\.com/i.test(href)) track('click', 'github');
+    else if (a.hasAttribute('download')) track('click', 'resume');
+    else if (a.classList.contains('cta--fixed')) track('click', 'lets-talk');
+    else if (a.hasAttribute('data-chat-open')) track('click', 'chat-open');
+    else if (a.hasAttribute('data-ask-stanley')) track('click', 'ask-stanley');
+  });
+
+  // ---- YouTube: load the player only when asked (no third-party requests until click) --
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-yt]');
+    if (!b) return;
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.title = b.getAttribute('aria-label') || 'Video';
+    b.replaceWith(f);
+    track('click', 'video-play');
+  });
 
   // ---- chat assistant ----------------------------------------------------
   var chat = document.querySelector('[data-chat]');

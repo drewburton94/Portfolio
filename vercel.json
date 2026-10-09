@@ -1,5 +1,0 @@
-{
-  "functions": {
-    "api/chat.js": { "includeFiles": "api/_knowledge/**", "maxDuration": 30 }
-  }
-}

@@ -1,0 +1,21 @@
+name = "drew-portfolio"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "public"
+
+# Replace database_id after running: npx wrangler d1 create drew-portfolio
+[[d1_databases]]
+binding = "DB"
+database_name = "drew-portfolio"
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+migrations_dir = "migrations"
+
+# Create with: npx wrangler r2 bucket create drew-portfolio-media
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "drew-portfolio-media"
+
+# Secrets (never put these in this file). Set with `npx wrangler pages secret put NAME`:
+#   ADMIN_PASSWORD     the password for /admin
+#   SESSION_SECRET     any long random string (signs login cookies, salts analytics hashes)
+#   ANTHROPIC_API_KEY  powers the Stanley chat assistant
+# Optional variable: CHAT_MODEL (default claude-haiku-5-5)
