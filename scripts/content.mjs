@@ -31,10 +31,10 @@ export const about = {
     ],
   },
   ai: {
-    kicker: 'AI, with people at the center',
+    kicker: 'Human first. AI enabled.',
     line: "The more we can do with AI, the more important it is to remember who we're doing it for.",
     key: "who we're doing it for.",
-    note: "I use AI every day to build things I couldn't before. It still needs a person on the other end.",
+    note: "AI has changed what I'm able to create, but not why I create it.",
   },
 };
 
