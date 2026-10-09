@@ -44,8 +44,7 @@ ul, ol { padding: 0; list-style: none; }
 .kicker.lime-t { color: var(--lime); }
 .display { font-family: var(--disp); font-weight: 800; font-size: clamp(38px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.04em; text-wrap: balance; }
 .display--sm { font-size: clamp(30px, 3.2vw, 46px); line-height: 1.06; }
-.display--xl { font-family: var(--sans); font-weight: 700; font-size: clamp(30px, 4.2vw, 62px); line-height: 1.02; letter-spacing: -0.05em; max-width: none; text-wrap: balance; }
-@media (min-width: 1000px) { .display--xl { white-space: nowrap; } }
+.display--xl { font-family: var(--sans); font-weight: 700; font-size: clamp(40px, 6.6vw, 96px); line-height: 0.98; letter-spacing: -0.055em; max-width: none; text-wrap: balance; }
 
 /* ---------- fixed chrome ---------- */
 .brand { position: absolute; z-index: 60; top: 38px; left: 28px; display: flex; align-items: center; gap: 13px; }
@@ -148,7 +147,8 @@ ul, ol { padding: 0; list-style: none; }
 .timeline .mono.dim { font-size: 13px; margin-top: 4px; }
 .timeline__body { margin-top: 12px; color: rgba(255, 255, 255, 0.78); max-width: 62ch; font-size: 15px; }
 
-.contact { padding: 160px 0 60px; }
+.contact { padding: 110px 0 40px; }
+.contact .stack { gap: 34px; }
 
 .foot { position: relative; z-index: 2; background: var(--bg); padding: 40px 0; }
 .foot__row { display: flex; align-items: baseline; justify-content: space-between; gap: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 26px; font: 11.5px var(--mono); color: rgba(255, 255, 255, 0.78); margin: 0 auto; }
