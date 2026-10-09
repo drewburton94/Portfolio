@@ -197,32 +197,6 @@
     intro.addEventListener('pointerleave', function () { pwPaint(false); });
   }
 
-  // ---- about: the default vs something different ------------------------
-  var flip = document.querySelector('[data-flip]');
-  if (flip) {
-    var stage = flip.querySelector('.flip__stage');
-    var pa = flip.querySelector('[data-flip-a]'), pb = flip.querySelector('[data-flip-b]');
-    var fitFlip = function () {
-      var cur = stage.getAttribute('data-state') === 'different' ? pb : pa;
-      stage.style.height = cur.scrollHeight + 'px';
-    };
-    window.addEventListener('resize', fitFlip);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFlip);
-    fitFlip();
-    var setFlip = function (different) {
-      stage.setAttribute('data-state', different ? 'different' : 'default');
-      fitFlip();
-      pa.inert = different; pb.inert = !different;
-      pa.setAttribute('aria-hidden', different ? 'true' : 'false');
-      pb.setAttribute('aria-hidden', different ? 'false' : 'true');
-      var target = flip.querySelector(different ? '[data-flip-b] [data-diff]' : '[data-flip-a] [data-diff]');
-      if (target && document.activeElement && flip.contains(document.activeElement)) target.focus({ preventScroll: true });
-    };
-    $('[data-diff]', flip).forEach(function (b) {
-      b.addEventListener('click', function () { setFlip(stage.getAttribute('data-state') !== 'different'); });
-    });
-  }
-
   // ---- about: from machine to human --------------------------------------
   var ai = document.querySelector('[data-ai]');
   if (ai) {

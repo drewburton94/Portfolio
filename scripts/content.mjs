@@ -23,12 +23,14 @@ export const about = {
   me: "I'm Drew. A designer, a problem-solver, and someone who has a hard time leaving a good idea alone.",
   think: {
     kicker: 'How I think',
-    first: 'Why are we doing it this way?',
-    pivotStart: 'What if we tried something ',
-    pivotWord: 'different',
-    pivotEnd: '?',
-    last: "I'd rather build it and see what happens.",
-    hint: 'Try the lime word.',
+    title: 'Why are we doing it this way?',
+    rows: [
+      { old: 'Make a course.', now: 'Start with the job, not the format.' },
+      { old: 'The dashboard says it\'s fine.', now: 'Green checkmark? *Go look anyway.*' },
+      { old: 'Write the proposal.', now: '*Build it* and see what happens.' },
+      { old: 'Fill the knowledge gap.', now: 'Most gaps are about *visibility*, not knowledge.' },
+    ],
+    closing: 'What if we tried something different?',
   },
   ai: {
     kicker: 'AI, with people at the center',

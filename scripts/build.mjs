@@ -194,27 +194,16 @@ ${chrome(0)}
       <figure class="portrait" data-reveal><div data-portrait><img src="assets/img/drew-portrait.jpg" alt="Portrait of Drew Burton" width="900" height="1341" loading="lazy"></div></figure>
     </div>
 
-    <div class="flip" data-flip>
+    <div class="how">
       <p class="kicker">${about.think.kicker}</p>
-      <div class="flip__stage" data-state="default">
-        <div class="flip__a" data-flip-a>
-          <p class="flip__tag mono">The default</p>
-          <ul class="flip__list">
-            <li>${esc(about.think.first)}</li>
-            <li>${esc(about.think.pivotStart)}<button class="diff" type="button" data-diff aria-pressed="false">${about.think.pivotWord}</button>${esc(about.think.pivotEnd)}</li>
-            <li>${esc(about.think.last)}</li>
-          </ul>
-        </div>
-        <div class="flip__b" data-flip-b aria-hidden="true" inert>
-          <p class="flip__tag mono">Something different</p>
-          <div class="flip__big">
-            <p class="q q1">${esc(about.think.first)}</p>
-            <p class="q q2">${esc(about.think.pivotStart)}<button class="diff diff--on" type="button" data-diff aria-pressed="true">${about.think.pivotWord}</button>${esc(about.think.pivotEnd)}</p>
-            <p class="q q3">${esc(about.think.last)}</p>
-          </div>
-        </div>
-      </div>
-      <p class="flip__hint mono">${esc(about.think.hint)}</p>
+      <h3 class="how__title" data-reveal>${esc(about.think.title)}</h3>
+      <ul class="how__rows">
+        ${about.think.rows.map((r) => `<li class="how__row" data-reveal>
+          <p class="how__old"><span class="mono">The default</span><s>${esc(r.old)}</s></p>
+          <p class="how__now">${rich(r.now)}</p>
+        </li>`).join('')}
+      </ul>
+      <p class="how__close" data-reveal>${esc(about.think.closing)}</p>
     </div>
 
     <div class="ai" data-ai>

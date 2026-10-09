@@ -288,34 +288,6 @@ html:not(.js) .squiggle { opacity: 1; } html:not(.js) .squiggle path { stroke-da
 .intro__me { margin-top: 30px; font-weight: 500; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.42; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.9); max-width: 32em; text-wrap: pretty; }
 .portrait { margin: 0; aspect-ratio: 4 / 5; border-radius: 34px; overflow: hidden; background: rgba(255, 255, 255, 0.05); }
 
-/* ---------- about: the default vs something different ---------- */
-.flip { margin-top: 90px; display: flex; flex-direction: column; gap: 26px; }
-.flip__stage { display: grid; align-items: start; transition: height 0.6s cubic-bezier(.2, .8, .2, 1); }
-.flip__a, .flip__b { grid-area: 1 / 1; min-width: 0; transition: opacity 0.45s ease, transform 0.6s cubic-bezier(.2, .8, .2, 1), visibility 0s linear 0s; }
-.flip__tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mut); margin-bottom: 16px; }
-.flip__a { align-self: start; border: 1px dashed rgba(255, 255, 255, 0.28); border-radius: 22px; padding: 28px 32px 34px; max-width: 760px; }
-.flip__list { display: flex; flex-direction: column; gap: 16px; font: 400 clamp(15px, 1.6vw, 20px)/1.5 var(--mono); color: rgba(255, 255, 255, 0.72); }
-.flip__list li { position: relative; padding-left: 20px; }
-.flip__list li::before { content: '•'; position: absolute; left: 4px; }
-.flip__b { align-self: start; opacity: 0; visibility: hidden; transform: translateY(24px); transition-delay: 0s, 0s, 0.6s; }
-.flip__b .flip__tag { color: var(--lime); }
-.flip__big { display: flex; flex-direction: column; gap: 0.1em; font-family: var(--disp); font-weight: 800; font-size: clamp(34px, 6vw, 92px); line-height: 1; letter-spacing: -0.045em; }
-.flip__big .q { text-wrap: balance; transition: transform 0.7s cubic-bezier(.2, .8, .2, 1), opacity 0.5s ease; opacity: 0; transform: translateY(40px) rotate(0deg); }
-.flip__big .q1 { max-width: 12em; }
-.flip__big .q2 { margin-left: 6%; max-width: 12em; color: #fff; }
-.flip__big .q3 { margin-left: 16%; max-width: 11em; color: rgba(255, 255, 255, 0.75); }
-.flip__stage[data-state="different"] .flip__a { opacity: 0; visibility: hidden; transform: translateY(-14px); transition-delay: 0s, 0s, 0.45s; }
-.flip__stage[data-state="different"] .flip__b { opacity: 1; visibility: visible; transform: none; transition-delay: 0s, 0s, 0s; }
-.flip__stage[data-state="different"] .q { opacity: 1; }
-.flip__stage[data-state="different"] .q1 { transform: rotate(-1.6deg); transition-delay: 0.05s; }
-.flip__stage[data-state="different"] .q2 { transform: rotate(1.1deg); transition-delay: 0.16s; }
-.flip__stage[data-state="different"] .q3 { transform: rotate(-0.8deg); transition-delay: 0.27s; }
-.flip__hint { font-size: 12px; color: var(--mut); }
-.diff { font: inherit; letter-spacing: inherit; color: var(--bg); background: var(--lime); border: 0; border-radius: 100px; padding: 0.04em 0.55em 0.08em; margin: 0 0.1em; cursor: pointer; line-height: 1.15; }
-.flip__list .diff { font: 500 0.9em var(--mono); padding: 3px 14px; animation: nudge 2.4s ease-in-out 1.2s 3; }
-.diff:hover { background: #fff; }
-.diff--on { padding: 0.02em 0.4em 0.06em; }
-@keyframes nudge { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.12); } 24% { transform: scale(1); } }
 
 /* ---------- about: AI, with people at the center ---------- */
 .ai { --aiw: clamp(34px, 5.4vw, 80px); margin-top: 110px; display: flex; flex-direction: column; gap: 26px; }
@@ -364,9 +336,6 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
   .portrait { max-width: 420px; }
 }
 @media (max-width: 720px) {
-  .flip { margin-top: 70px; }
-  .flip__big .q2 { margin-left: 3%; }
-  .flip__big .q3 { margin-left: 8%; }
   .ai { margin-top: 80px; --aiw: 36px; }
   .ai__line { min-height: calc(var(--aiw) * 6.2); }
   .aw { font-size: 25px; }
@@ -378,6 +347,29 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
   .case__art.proj { padding-top: 90px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pw, .aw, .flip__a, .flip__b, .flip__big .q, .stan__dog { transition: none !important; }
-  .flip__list .diff { animation: none; }
+  .pw, .aw, .stan__dog { transition: none !important; }
+}
+
+/* ---------- about: how I think ---------- */
+.how { margin-top: 120px; display: flex; flex-direction: column; gap: 30px; }
+.how__title { font-family: var(--disp); font-weight: 800; font-size: clamp(34px, 5vw, 76px); line-height: 1.04; letter-spacing: -0.045em; max-width: 14em; text-wrap: balance; }
+.how__rows { display: flex; flex-direction: column; }
+.how__row { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 40px; align-items: baseline; border-top: 1px solid var(--line); padding: 30px 0; }
+.how__old { display: flex; flex-direction: column; gap: 8px; color: rgba(255, 255, 255, 0.55); }
+.how__old .mono { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+.how__old s { position: relative; text-decoration: none; font: 400 clamp(15px, 1.5vw, 19px) / 1.4 var(--mono); width: fit-content; }
+.how__old s::after { content: ''; position: absolute; left: -3px; right: -3px; top: 52%; height: 2px; background: var(--lime); transform-origin: left; transform: scaleX(0); transition: transform 0.7s cubic-bezier(.6, 0, .2, 1) 0.35s; }
+.how__row.in .how__old s::after { transform: scaleX(1); }
+.how__now { font-family: var(--disp); font-weight: 800; font-size: clamp(26px, 3.6vw, 52px); line-height: 1.08; letter-spacing: -0.04em; text-wrap: balance; }
+.js .how__now { opacity: 0.25; transition: opacity 0.6s ease 0.9s; }
+.js .how__row.in .how__now { opacity: 1; }
+.how__now .hl { background: none; color: var(--lime); padding: 0; margin: 0; }
+.how__close { font-family: var(--disp); font-weight: 800; font-size: clamp(30px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.045em; color: var(--lime); border-top: 1px solid var(--line); padding-top: 34px; }
+@media (max-width: 720px) {
+  .how { margin-top: 80px; }
+  .how__row { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .how__old s::after { transition: none; }
+  .js .how__now { transition: none; opacity: 1; }
 }
