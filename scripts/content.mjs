@@ -25,10 +25,10 @@ export const about = {
     kicker: 'How I think',
     title: 'Why are we doing it this way?',
     rows: [
-      { old: 'Start building the solution right away.', now: "*Share early. Collaborate often.* Build on what's already there." },
       { old: 'Create more content.', now: "The goal isn't more learning. *It's helping people do more.*" },
       { old: 'Make sure everything is included.', now: 'Make the complicated feel simple. *Not the other way around.*' },
-      { old: 'Explain how it works.', now: 'Give people a way to *experience it, practice it, and apply it.*' },
+      { old: 'Create a course.', now: '*Create an experience.* One people can try, practice, and apply.' },
+      { old: 'Start building the solution right away.', now: "*Share early. Collaborate often.* Build on what's already there." },
     ],
     closing: 'What if we tried something different?',
   },
