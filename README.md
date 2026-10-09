@@ -64,4 +64,5 @@ npm run dev                      # http://localhost:8788  (admin at /admin)
 ## Notes
 
 - The Worker runs first for `/`, `/api/*` and `/media/*`; everything else comes from `public/`. Don't add `public/index.html`, or it would be served instead of the database-driven page.
+- 
 - Back up your content now and then: `npx wrangler d1 export drew-portfolio --remote --output backup.sql`.
