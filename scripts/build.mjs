@@ -1,8 +1,8 @@
 // Static site generator: `node scripts/build.mjs` writes index.html and work/*.html.
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, hero, about, approach, toolkit, projects, workIntro, history, contact } from './content.mjs';
+import { site, hero, about, projects, workIntro, history, contact } from './content.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const handSvg = readFileSync(join(root, 'assets/img/hand.inc.html'), 'utf8');
@@ -98,7 +98,7 @@ const foot = (depth) => {
   return `
 <footer class="foot">
   <div class="wrap foot__row">
-    <div>${site.name} — ${site.role}</div>
+    <div>${site.name} · ${site.role}</div>
     <nav class="foot__links" aria-label="Footer">
       <a href="${p}#work">Work</a><a href="${p}#about">About</a><a href="${p}#contact">Contact</a>
     </nav>
@@ -155,7 +155,7 @@ const heroWords = hero.headline
   .join(' ');
 
 const projectCard = (p, i) => `
-        <a class="card" data-card data-grow href="work/${p.id}.html">
+        <a class="card" data-card data-grow data-project="${p.id}" href="#work/${p.id}">
           <div class="card__shot" data-shot><div class="art art--${p.art}">${art[p.art]}</div></div>
           <div class="card__meta">
             <div>
@@ -183,50 +183,61 @@ ${chrome(0)}
 </section>
 
 <section id="about" class="about">
-  <div class="wrap stack">
-    <div class="about__top">
-      <div class="stack stack--tight">
-        <p class="kicker">${about.kicker}</p>
-        <h2 class="display">${about.title.join('<br>')}</h2>
-        <p class="lede" data-reveal>${rich(about.lede)}</p>
-        <div class="mono prose" data-reveal>${about.body.map((b) => `<p>${esc(b)}</p>`).join('')}</div>
+  <div class="wrap">
+    <p class="kicker">${about.kicker}</p>
+
+    <div class="intro">
+      <div>
+        <h2 class="intro__h" data-intro aria-label="${esc(about.intro)}">${about.intro.split(' ').map((w) => `<span class="pw" aria-hidden="true">${esc(w)}</span>`).join(' ')}</h2>
+        <p class="intro__me" data-reveal>${esc(about.me)}</p>
       </div>
       <figure class="portrait" data-reveal><div data-portrait><img src="assets/img/drew-portrait.jpg" alt="Portrait of Drew Burton" width="900" height="1341" loading="lazy"></div></figure>
     </div>
 
-    <div class="facts">
-      ${about.facts.map((f) => `<div data-reveal><div class="facts__n">${f.n}</div><p class="mono">${esc(f.t)}</p></div>`).join('')}
-    </div>
-
-    <div class="stack stack--tight">
-      <p class="kicker">What I do</p>
-      <div class="triple">
-        ${about.whatIDo.map((w) => `<div class="triple__item" data-reveal><span class="mono lime-t">${w.num}</span><h3>${w.title}</h3><p>${esc(w.body)}</p></div>`).join('')}
+    <div class="flip" data-flip>
+      <p class="kicker">${about.think.kicker}</p>
+      <div class="flip__stage" data-state="default">
+        <div class="flip__a" data-flip-a>
+          <p class="flip__tag mono">The default</p>
+          <ul class="flip__list">
+            <li>${esc(about.think.first)}</li>
+            <li>${esc(about.think.pivotStart)}<button class="diff" type="button" data-diff aria-pressed="false">${about.think.pivotWord}</button>${esc(about.think.pivotEnd)}</li>
+            <li>${esc(about.think.last)}</li>
+          </ul>
+        </div>
+        <div class="flip__b" data-flip-b aria-hidden="true" inert>
+          <p class="flip__tag mono">Something different</p>
+          <div class="flip__big">
+            <p class="q q1">${esc(about.think.first)}</p>
+            <p class="q q2">${esc(about.think.pivotStart)}<button class="diff diff--on" type="button" data-diff aria-pressed="true">${about.think.pivotWord}</button>${esc(about.think.pivotEnd)}</p>
+            <p class="q q3">${esc(about.think.last)}</p>
+          </div>
+        </div>
       </div>
+      <p class="flip__hint mono">${esc(about.think.hint)}</p>
     </div>
 
-    <div class="stack stack--tight" id="approach">
-      <p class="kicker">${approach.kicker}</p>
-      <h2 class="display display--sm">${approach.title}</h2>
-      <ol class="beliefs">
-        ${approach.principles.map(([t, b], i) => `<li data-reveal><span class="mono lime-t">${String(i + 1).padStart(2, '0')}</span><div><h3>${esc(t)}</h3><p>${esc(b)}</p></div></li>`).join('')}
-      </ol>
-    </div>
-
-    <div class="stack stack--tight">
-      <p class="kicker">Working style</p>
-      <div class="traits">
-        ${about.traits.map(([t, b]) => `<div data-reveal><h3>${esc(t)}</h3><p class="mono">${esc(b)}</p></div>`).join('')}
+    <div class="ai" data-ai>
+      <p class="kicker">${about.ai.kicker}</p>
+      <p class="sr">${esc(about.ai.line)}</p>
+      <p class="ai__line" aria-hidden="true">${(() => {
+        const ws = about.ai.line.split(' ');
+        const start = about.ai.line.indexOf(about.ai.key);
+        const k0 = start < 0 ? -1 : about.ai.line.slice(0, start).split(' ').length - 1;
+        const k1 = k0 + about.ai.key.split(' ').length;
+        return ws.map((w, i) => `<span class="aw${i >= k0 && i < k1 && k0 >= 0 ? ' key' : ''}">${esc(w)}</span>`).join(' ');
+      })()}</p>
+      <div class="ai__ctl">
+        <span class="mono" aria-hidden="true">Machine</span>
+        <input id="ai-range" class="ai__range" type="range" min="0" max="100" value="0" aria-label="From machine to human">
+        <span class="mono" aria-hidden="true">Human</span>
       </div>
+      <p class="ai__note" data-reveal>${esc(about.ai.note)}</p>
     </div>
 
-    <div class="stack stack--tight">
-      <p class="kicker">The toolkit</p>
-      <h2 class="display display--sm">Skills &amp; tools</h2>
-      <div class="toolkit">
-        <div><p class="mono dim">What the work draws on</p><ul class="chips">${toolkit.disciplines.map((d) => `<li>${d}</li>`).join('')}</ul></div>
-        <div><p class="mono dim">Tools</p><ul class="chips">${toolkit.tools.map((d) => `<li>${d}</li>`).join('')}</ul></div>
-      </div>
+    <div class="stan" data-stan data-reveal>
+      <p class="stan__note mono">${esc(about.stanley.note)}<svg viewBox="0 0 90 50" fill="none" aria-hidden="true"><path d="M3 8 C 35 2, 70 14, 84 42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M70 38 L85 44 L89 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      <button class="stan__dog" type="button" data-stanley aria-label="Say hi to Stanley, Drew's dog"><img src="assets/img/stanley-lg.webp" alt="" width="240" height="242" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -261,59 +272,46 @@ ${chrome(0)}
       ${site.linkedin ? arrowLink(site.linkedin, 'LinkedIn') : ''}
       ${site.github ? arrowLink(site.github, 'GitHub') : ''}
     </div>
-    <p class="mono dim">${site.email}</p>
+    <p class="mono dim">${site.email} · <button class="linkish" type="button" data-ask-stanley>or ask Stanley</button></p>
   </div>
 </section>
 
 </main>
 ${foot(0)}`;
 
-writeFileSync(join(root, 'index.html'), index);
-
-// ---- case studies --------------------------------------------------------
-mkdirSync(join(root, 'work'), { recursive: true });
-projects.forEach((p, i) => {
-  const next = projects[(i + 1) % projects.length];
-  const meta = [
-    ['Role', p.role],
-    ['Type', p.type],
-    ['Year', p.year],
-    p.tools ? ['Tools', p.tools] : null,
-  ].filter(Boolean);
-  const page = `${head(`${p.title} — ${site.name}`, p.short, 1)}
-${chrome(1)}
-<main id="main" class="view">
-  <div class="wrap stack stack--lg proj">
-    <a class="back mono" href="../index.html#work"><span>←</span> All work</a>
+const caseDialog = `
+<dialog class="case" id="case" aria-label="Case study">
+  <button class="case__x" type="button" data-case-close aria-label="Close case study">×</button>
+  ${projects.map((p, i) => {
+    const next = projects[(i + 1) % projects.length];
+    const meta = [['Role', p.role], ['Type', p.type], ['Year', p.year], p.tools ? ['Tools', p.tools] : null].filter(Boolean);
+    return `<article class="case__art wrap stack stack--lg proj" id="case-${p.id}" data-title="${esc(p.title)}" hidden>
+    <button class="back mono" type="button" data-case-close><span>←</span> All work</button>
     <header class="stack stack--tight">
       <p class="mono lime-t">${p.num} / ${String(projects.length).padStart(2, '0')}</p>
-      <h1 class="proj__title">${p.title}</h1>
+      <h2 class="proj__title">${p.title}</h2>
       <p class="proj__short">${esc(p.short)}</p>
       <ul class="chips">${p.tags.map((t) => `<li>${t}</li>`).join('')}</ul>
     </header>
-
-    <div class="proj__hero" data-reveal><div class="art art--${p.art}">${art[p.art]}</div></div>
-
+    <div class="proj__hero"><div class="art art--${p.art}">${art[p.art]}</div></div>
     <div class="proj__body">
-      <dl class="proj__meta">
-        ${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
-      </dl>
+      <dl class="proj__meta">${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
       <div class="stack stack--lg">
-        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">The problem</h2><p class="proj__lead">${rich(p.problem)}</p></section>
-        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">What I did</h2>${p.did.map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>
-        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">Why it matters</h2><p class="proj__lead">${rich(p.why)}</p></section>
-        <section data-reveal class="proj__sec"><h2 class="kicker lime-t">What I'd highlight</h2><ul class="hlist">${p.highlights.map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>
+        <section class="proj__sec"><h3 class="kicker lime-t">The problem</h3><p class="proj__lead">${rich(p.problem)}</p></section>
+        <section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${p.did.map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>
+        <section class="proj__sec"><h3 class="kicker lime-t">Why it matters</h3><p class="proj__lead">${rich(p.why)}</p></section>
+        <section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${p.highlights.map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>
       </div>
     </div>
-
-    <a class="next" data-card-dark href="${next.id}.html" data-reveal>
-      <div><p class="mono dim">Next project</p><p class="next__t">${next.title}</p></div>
+    <button class="next" type="button" data-case-open="${next.id}">
+      <span><span class="mono dim">Next project</span><span class="next__t">${next.title}</span></span>
       <span class="next__a" data-arrow aria-hidden="true">→</span>
-    </a>
-  </div>
-</main>
-${foot(1)}`;
-  writeFileSync(join(root, 'work', `${p.id}.html`), page);
-});
+    </button>
+  </article>`;
+  }).join('\n  ')}
+</dialog>
+`;
 
-console.log(`built index.html + ${projects.length} case studies`);
+writeFileSync(join(root, 'index.html'), index.replace('</main>\n', '</main>\n' + caseDialog));
+rmSync(join(root, 'work'), { recursive: true, force: true });
+console.log('built index.html (single page, ' + projects.length + ' case studies in-page)');

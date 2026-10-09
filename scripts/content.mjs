@@ -19,78 +19,25 @@ export const hero = {
 
 export const about = {
   kicker: 'About',
-  title: ['Nobody wakes up', 'wanting to take', 'a course.'],
-  lede:
-    "They wake up wanting to get something done. So I start from the job, not the curriculum — and I treat *learning as a product*.",
-  body: [
-    "I'm Drew — a learning experience designer and builder working at the seam between customer education, product, and customer success. Eleven years in, across enterprise software, staffing, manufacturing, and higher ed.",
-    "My background is graphic design, which shows up in how I work more than in what I make. I shape things visually first, until the intent is unmistakable, and then build or hand off. Not a developer by training — but I ship real, deployed software anyway, using AI tooling as the bridge between design intent and working code.",
-    "A lot of my work starts as an education problem and turns into a product, a workflow, an assistant, a dashboard, or an internal tool.",
-  ],
-  facts: [
-    { n: '11', t: 'Years across customer education, enablement, and e-learning development' },
-    { n: '4 yrs', t: 'Of Academy engagement exceeded in a single year — a record' },
-    { n: '2,000+', t: 'Global operators enabled for a process automation rollout' },
-  ],
-  whatIDo: [
-    {
-      num: '01',
-      title: 'Design the experience',
-      body: "I start with the person, not the format. What do they need to understand? What's in their way? What would make this obvious? The answer isn't always a course.",
-    },
-    {
-      num: '02',
-      title: 'Build the thing',
-      body: 'I prototype aggressively and ship real software. A working version exposes what\'s unclear far faster than a spec does — and a prototype that feels real gets built.',
-    },
-    {
-      num: '03',
-      title: 'Connect it to outcomes',
-      body: "Learning doesn't live in its own reporting system. I connect education to adoption, implementation quality, and customer health so it's clear where it's helping and where to intervene earlier.",
-    },
-  ],
-  traits: [
-    ['Visual thinker', "Show me the diagram, the mock, the example. I'd rather look at the thing than read about the thing."],
-    ['Skeptical of green checkmarks', 'The dashboard says fine, the data says otherwise, so go look.'],
-    ['Comfortable outside my lane', '"I don\'t have that background" reads to me as a logistics problem, not a stop sign.'],
-    ['Restless with inherited models', 'Why does this need to be a course? Why is certification multiple choice? Why do we call it enrollment?'],
-  ],
-};
-
-export const approach = {
-  kicker: 'How I think about it',
-  title: 'Approach',
-  principles: [
-    ['Start with the problem, not the format.', "I don't assume the answer is a course, a video, or an LMS page. I work backward from what someone needs to understand or accomplish — sometimes that's an assistant, a diagnostic, a simulation, or a short explanation at the exact moment it matters."],
-    ['Meet people at the moment of need.', 'The best learning experience appears inside the workflow — during troubleshooting, at adoption moments, before a consequential decision. It doesn\'t always look like learning.'],
-    ['Adapt to intent.', 'Some people want a concept, some a walkthrough, some a sandbox, some just the answer. A good system recognizes the difference instead of routing everyone through the same sequence.'],
-    ['Prototype to make the case.', "I'd rather build a rough working version and react to it than debate an abstract concept. Craft is part of the argument — a handoff that's complete and beautiful gets built."],
-    ['Think in systems.', 'Where is it discovered? Why would someone choose it? What comes after? Can we tell if they applied it? That\'s why I\'m drawn to platforms and infrastructure over isolated assets.'],
-    ['Let AI change what this can be.', 'Not primarily as a faster way to make content — as a way to redesign the experience itself: conversational, adaptive, context-aware, embedded in the workflow.'],
-  ],
-};
-
-export const toolkit = {
-  disciplines: [
-    'Customer & product education',
-    'Learning program strategy',
-    'Learning analytics',
-    'Applied AI in learning',
-    'UI / UX',
-    'Graphic design',
-  ],
-  tools: [
-    'Claude Design',
-    'Claude Code',
-    'Figma',
-    'Adobe Creative Cloud',
-    'Supabase',
-    'GitHub',
-    'Vercel',
-    'Articulate',
-    'Captivate',
-    'Google Sheets + Apps Script',
-  ],
+  intro: "I'm curious how things work. Even more curious how they could work better.",
+  me: "I'm Drew. A designer, a problem-solver, and someone who has a hard time leaving a good idea alone.",
+  think: {
+    kicker: 'How I think',
+    first: 'Why are we doing it this way?',
+    pivotStart: 'What if we tried something ',
+    pivotWord: 'different',
+    pivotEnd: '?',
+    last: "I'd rather build it and see what happens.",
+    hint: 'Try the lime word.',
+  },
+  ai: {
+    kicker: 'AI, with people at the center',
+    line: "The more we can do with AI, the more important it is to remember who we're doing it for.",
+    key: "who we're doing it for.",
+    note: "I use AI every day to build things I couldn't before. It still needs a person on the other end.",
+  },
+  // Personal moment: edit this line to say whatever you like about Stanley.
+  stanley: { note: "That's Stanley. Click him, he'll tell you about me." },
 };
 
 export const projects = [
@@ -234,6 +181,6 @@ export const history = [
 ];
 
 export const contact = {
-  heading: "Let's talk about making your product teachable",
-  body: "I'm interested in work where customer education is treated as a product problem — where the goal is customer capability, not content volume, and where there's room to build the system, not just fill it.",
+  heading: "Got a problem that doesn't fit the usual answer?",
+  body: "I'd like to hear about it. Tell me what you're working on and we'll see what we can figure out.",
 };

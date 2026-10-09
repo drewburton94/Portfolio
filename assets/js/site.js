@@ -173,6 +173,118 @@
     })();
   }
 
+  // ---- about: intro words lift toward the pointer -----------------------
+  var intro = document.querySelector('[data-intro]');
+  if (intro && !reduce) {
+    var pws = $('.pw', intro), pwRaf = 0, pwX = 0, pwY = 0, pwTimer = 0;
+    var pwPaint = function (on) {
+      pwRaf = 0;
+      pws.forEach(function (w) {
+        if (!on) { w.style.setProperty('--k', 0); return; }
+        var r = w.getBoundingClientRect();
+        var d = Math.hypot(pwX - (r.left + r.width / 2), pwY - (r.top + r.height / 2));
+        w.style.setProperty('--k', clamp(1 - d / 170).toFixed(2));
+      });
+    };
+    var pwMove = function (e) {
+      pwX = e.clientX; pwY = e.clientY;
+      clearTimeout(pwTimer);
+      if (!pwRaf) pwRaf = requestAnimationFrame(function () { pwPaint(true); });
+      if (e.pointerType !== 'mouse') pwTimer = setTimeout(function () { pwPaint(false); }, 900);
+    };
+    intro.addEventListener('pointermove', pwMove);
+    intro.addEventListener('pointerdown', pwMove);
+    intro.addEventListener('pointerleave', function () { pwPaint(false); });
+  }
+
+  // ---- about: the default vs something different ------------------------
+  var flip = document.querySelector('[data-flip]');
+  if (flip) {
+    var stage = flip.querySelector('.flip__stage');
+    var pa = flip.querySelector('[data-flip-a]'), pb = flip.querySelector('[data-flip-b]');
+    var setFlip = function (different) {
+      stage.setAttribute('data-state', different ? 'different' : 'default');
+      pa.inert = different; pb.inert = !different;
+      pa.setAttribute('aria-hidden', different ? 'true' : 'false');
+      pb.setAttribute('aria-hidden', different ? 'false' : 'true');
+      var target = flip.querySelector(different ? '[data-flip-b] [data-diff]' : '[data-flip-a] [data-diff]');
+      if (target && document.activeElement && flip.contains(document.activeElement)) target.focus({ preventScroll: true });
+    };
+    $('[data-diff]', flip).forEach(function (b) {
+      b.addEventListener('click', function () { setFlip(stage.getAttribute('data-state') !== 'different'); });
+    });
+  }
+
+  // ---- about: from machine to human --------------------------------------
+  var ai = document.querySelector('[data-ai]');
+  if (ai) {
+    var aws = $('.aw', ai), range = ai.querySelector('.ai__range'), manual = false;
+    var paintAi = function (v) {
+      var n = aws.length;
+      aws.forEach(function (w, i) {
+        var t = clamp((v - (i / n) * 0.72) / 0.28);
+        w.classList.toggle('warm', t > 0.5);
+        w.style.transform = t > 0.5 && !reduce ? 'translateY(' + (((i % 2) ? -1 : 1) * t * 3).toFixed(1) + 'px) rotate(' + (((i % 3) - 1) * t * 2.2).toFixed(2) + 'deg)' : '';
+      });
+    };
+    var scrollAi = function () {
+      if (manual || reduce) return;
+      var r = ai.querySelector('.ai__line').getBoundingClientRect();
+      var v = clamp((window.innerHeight * 0.92 - r.top) / (window.innerHeight * 0.55));
+      range.value = Math.round(v * 100);
+      paintAi(v);
+    };
+    range.addEventListener('input', function () { manual = true; paintAi(range.value / 100); });
+    if (reduce) { range.value = 100; paintAi(1); } else {
+      window.addEventListener('scroll', function () { requestAnimationFrame(scrollAi); }, { passive: true });
+      scrollAi();
+    }
+  }
+
+  // ---- Stanley: click to chat --------------------------------------------
+  function askStanley() {
+    var fabBtn = document.querySelector('[data-chat-open]'), pnl = document.querySelector('.chat__panel');
+    if (fabBtn && pnl && pnl.hidden) fabBtn.click();
+    else if (pnl) { var inp = pnl.querySelector('input'); if (inp) inp.focus(); }
+  }
+  $('[data-stanley], [data-ask-stanley]').forEach(function (b) { b.addEventListener('click', askStanley); });
+
+  // ---- case studies open in place (single page) --------------------------
+  var dlg = document.getElementById('case');
+  if (dlg) {
+    var arts = $('.case__art', dlg), baseTitle = document.title;
+    var showCase = function (id, push) {
+      var hit = false;
+      arts.forEach(function (a) { var on = a.id === 'case-' + id; a.hidden = !on; if (on) { hit = true; document.title = a.getAttribute('data-title') + ' · Drew Burton'; } });
+      if (!hit) return;
+      if (!dlg.open) { dlg.showModal(); document.body.classList.add('case-open'); }
+      dlg.scrollTop = 0;
+      if (push) window.history.pushState(null, '', '#work/' + id);
+    };
+    var hideCase = function (fromHash) {
+      if (dlg.open) dlg.close();
+      document.body.classList.remove('case-open');
+      document.title = baseTitle;
+      if (!fromHash && location.hash.indexOf('#work/') === 0) window.history.replaceState(null, '', '#work');
+    };
+    dlg.addEventListener('close', function () { hideCase(false); });
+    dlg.addEventListener('click', function (e) {
+      var c = e.target.closest('[data-case-close]'), n = e.target.closest('[data-case-open]');
+      if (c) hideCase(false);
+      else if (n) showCase(n.getAttribute('data-case-open'), true);
+    });
+    $('[data-project]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); showCase(a.getAttribute('data-project'), true); });
+    });
+    var fromHash = function () {
+      var m = location.hash.match(/^#work\/([\w-]+)$/);
+      if (m) showCase(m[1], false); else if (dlg.open) hideCase(true);
+    };
+    window.addEventListener('hashchange', fromHash);
+    window.addEventListener('popstate', fromHash);
+    fromHash();
+  }
+
   // ---- chat assistant ----------------------------------------------------
   var chat = document.querySelector('[data-chat]');
   if (chat) {
