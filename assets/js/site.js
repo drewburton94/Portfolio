@@ -197,6 +197,25 @@
     intro.addEventListener('pointerleave', function () { pwPaint(false); });
   }
 
+  // ---- about: numbers count up once ---------------------------------------
+  var counters = $('[data-count]');
+  if (counters.length && !reduce && 'IntersectionObserver' in window) {
+    var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        cio.unobserve(e.target);
+        var el = e.target, to = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '', t0 = performance.now(), dur = 1500;
+        (function step(now) {
+          var k = Math.min(1, (now - t0) / dur), v = to * (1 - Math.pow(1 - k, 3));
+          el.textContent = fmt(v) + suf;
+          if (k < 1) requestAnimationFrame(step);
+        })(t0);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { el.textContent = '0' + (el.getAttribute('data-suffix') || ''); cio.observe(el); });
+  }
+
   // ---- about: statements animate with the scroll, top to bottom ----------
   var seq = $('[data-seq]');
   if (seq.length && !reduce) {

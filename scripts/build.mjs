@@ -194,6 +194,10 @@ ${chrome(0)}
       <figure class="portrait" data-reveal><div data-portrait><img src="assets/img/drew-portrait.jpg" alt="Portrait of Drew Burton" width="900" height="1341" loading="lazy"></div></figure>
     </div>
 
+    <div class="facts" data-facts>
+      ${about.facts.map((f) => `<div data-reveal><div class="facts__n" data-count="${f.n}" data-suffix="${esc(f.suffix)}">${f.n.toLocaleString('en-US')}${esc(f.suffix)}</div><p class="mono">${esc(f.t)}</p></div>`).join('')}
+    </div>
+
     <div class="how">
       <p class="kicker">${about.think.kicker}</p>
       <ul class="how__rows">
