@@ -81,10 +81,15 @@ const visual = (p, where) => {
   }
   return artEl;
 };
-const mediaTile = (m) =>
-  m.type === 'youtube'
-    ? `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${ytId(m.id)}" aria-label="Play video${m.title ? ': ' + esc(m.title) : ''}"><img src="https://i.ytimg.com/vi/${ytId(m.id)}/hqdefault.jpg" alt="" loading="lazy"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`
-    : `<figure class="gallery__item"><img src="${esc(safeUrl(m.src))}" alt="${esc(m.alt || '')}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`;
+const mediaTile = (m, i, items) => {
+  if (m.type !== 'youtube') {
+    return `<figure class="gallery__item"><img src="${esc(safeUrl(m.src))}" alt="${esc(m.alt || '')}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`;
+  }
+  const id = ytId(m.id);
+  const n = items.slice(0, i + 1).filter((x) => x.type === 'youtube').length;
+  const name = m.title ? esc(m.title) : `video ${n}`;
+  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
+};
 
 export function render(content) {
   const site = { ...content.site };
@@ -344,7 +349,7 @@ const caseDialog = `
         ${arr(p.highlights).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${arr(p.highlights).map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>` : ''}
       </div>
     </div>
-    ${gallery.length ? `<div class="gallery">${gallery.map(mediaTile).join('')}</div>` : ''}
+    ${gallery.length ? `<div class="gallery">${gallery.map((m, i) => mediaTile(m, i, gallery)).join('')}</div>` : ''}
     <button class="next" type="button" data-case-open="${next.id}">
       <span><span class="mono dim">Next project</span><span class="next__t">${esc(next.title)}</span></span>
       <span class="next__a" data-arrow aria-hidden="true">→</span>

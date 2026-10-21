@@ -405,3 +405,6 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
 .embed__open a { color: var(--lime); text-decoration: underline; text-underline-offset: 3px; }
 .embed__open a:hover { color: #fff; }
 @media (max-width: 720px) { .embed, .embed[style] { aspect-ratio: auto; height: max(560px, var(--embed-h, 560px)); } }
+.gallery__yt { display: inline-block; margin-top: 8px; font-size: 12.5px; color: var(--lime); text-decoration: underline; text-underline-offset: 3px; }
+.gallery__yt:hover { color: #fff; }
+.gallery > .gallery__item--video:last-child:nth-child(odd):not(:only-child) { grid-column: auto; }

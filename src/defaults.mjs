@@ -193,6 +193,41 @@ export const projects = [
       height: '',
     },
   },
+  {
+    id: 'videos',
+    title: 'Videos',
+    short: 'Making complex ideas easier to understand through storytelling, visuals, and motion.',
+    meta: 'video · motion design',
+    type: 'Video and motion design',
+    tools: 'After Effects, Premiere Pro, Illustrator',
+    tags: ['Video production', 'Motion design', 'Visual storytelling'],
+    art: 'grid',
+    problem: '',
+    did: [
+      "I start with what someone needs to take away. What should they understand? What should they remember? And is video even the right way to say it?",
+      "From there, story, visuals, pacing and sound work together so it feels intentional, not like another presentation.",
+      "**Start with the story.** Find the core message and build a narrative that feels natural and clear. The script comes first, and the voiceover sets the timing. Visuals land on the spoken word.",
+      "**Show, don't just tell.** Visual metaphors, product demos and animation for ideas that words struggle to carry. \"Your information is everywhere\" becomes cards bursting at the camera.",
+      "**Make motion meaningful.** Transitions guide attention and show how ideas connect. They aren't there just to make things move.",
+      "**Keep it focused.** One idea per scene. Cut what doesn't help.",
+      "**Stay consistent.** Type, color, composition and pacing, built from reusable pieces so the whole video holds together and a vertical cut comes from the same system.",
+      "**Try new tools.** AI-assisted workflows and reusable systems let me take on more ambitious work without losing creative control. I adapted an open-source tool that connects Claude Code to After Effects, and a scene that took about eight hours to animate by hand can now be automated.",
+      "**Think beyond the video.** Sometimes a short animation is right. Sometimes a walkthrough, or video plus hands-on practice. Video shouldn't repeat the page. It should add something another format can't, like a process unfolding or a complex relationship made visible.",
+    ],
+    why: "People shouldn't have to work harder to understand something just because it's complicated. I use video to cut that complexity. The goal isn't to make something that looks good. It's to make something that makes sense.",
+    highlights: [
+      'Script first, visuals timed to the spoken word',
+      'Motion that guides attention, not decoration',
+      'Reusable systems that scale production',
+    ],
+    // Captions are blank on purpose until Drew supplies them.
+    media: [
+      { type: 'youtube', id: '_piTxcT-x5w', title: '', caption: '' },
+      { type: 'youtube', id: 'dli4ekL_GbQ', title: '', caption: '' },
+      { type: 'youtube', id: 'nnf6iR9UkH0', title: '', caption: '' },
+      { type: 'youtube', id: 'Vr2DAbjPzHw', title: '', caption: '' },
+    ],
+  },
 ];
 
 export const workIntro =
