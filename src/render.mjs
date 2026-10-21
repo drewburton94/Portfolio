@@ -53,6 +53,17 @@ const art = {
 };
 
 
+// ---- optional interactive embed (a course or demo served from /embeds/) ----------
+const safeEmbed = (f) => (/^\/embeds\/[\w.\-/]+$/.test(String(f ?? '')) && !String(f).includes('..') ? String(f) : '');
+const embedBlock = (p) => {
+  const e = p.embed || {};
+  const file = safeEmbed(e.file);
+  if (!file) return '';
+  const h = Number(e.height);
+  const style = h >= 240 && h <= 2000 ? ` style="--embed-h:${Math.round(h)}px"` : '';
+  return `<section class="proj__sec proj__embed"><h3 class="kicker lime-t">Try it</h3>${e.intro ? `<p class="proj__intro">${esc(e.intro)}</p>` : ''}<div class="embed"${style}><iframe src="${esc(file)}" title="${esc(e.title || 'Interactive preview')}" loading="lazy" allow="fullscreen" sandbox="allow-scripts allow-forms allow-popups"></iframe></div><p class="embed__open"><a class="mono" href="${esc(file)}" target="_blank" rel="noopener">Open full screen</a></p></section>`;
+};
+
 // ---- project media (uploaded images + YouTube) ---------------------------
 const firstImage = (p) => arr(p.media).find((m) => m && m.type === 'image' && safeUrl(m.src));
 const galleryItems = (p) => {
@@ -60,17 +71,25 @@ const galleryItems = (p) => {
   return arr(p.media).filter((m) => m && m !== first && (m.type === 'youtube' ? ytId(m.id) : m.type === 'image' && safeUrl(m.src)));
 };
 const visual = (p, where) => {
-  const img = firstImage(p);
-  if (img) {
-    return `<img class="shot" src="${esc(safeUrl(img.src))}" alt="${esc(img.alt || p.title)}" ${where === 'card' ? 'loading="lazy"' : ''} decoding="async">`;
-  }
+  const cover = where === 'card' && safeUrl(p.cover) ? { src: p.cover, alt: p.title } : null;
+  const img = cover || firstImage(p);
   const a = art[p.art] ? p.art : 'grid';
-  return `<div class="art art--${a}">${art[a]}</div>`;
+  const artEl = `<div class="art art--${a}">${art[a]}</div>`;
+  if (img) {
+    // The artwork sits underneath, so a missing image file falls back to it instead of a broken icon.
+    return `<div class="shotwrap">${artEl}<img class="shot" src="${esc(safeUrl(img.src))}" alt="${esc(img.alt || p.title)}" loading="lazy" decoding="async" onerror="this.remove()"></div>`;
+  }
+  return artEl;
 };
-const mediaTile = (m) =>
-  m.type === 'youtube'
-    ? `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${ytId(m.id)}" aria-label="Play video${m.title ? ': ' + esc(m.title) : ''}"><img src="https://i.ytimg.com/vi/${ytId(m.id)}/hqdefault.jpg" alt="" loading="lazy"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`
-    : `<figure class="gallery__item"><img src="${esc(safeUrl(m.src))}" alt="${esc(m.alt || '')}" loading="lazy" decoding="async">${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`;
+const mediaTile = (m, i, items) => {
+  if (m.type !== 'youtube') {
+    return `<figure class="gallery__item"><img src="${esc(safeUrl(m.src))}" alt="${esc(m.alt || '')}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}</figure>`;
+  }
+  const id = ytId(m.id);
+  const n = items.slice(0, i + 1).filter((x) => x.type === 'youtube').length;
+  const name = m.title ? esc(m.title) : `video ${n}`;
+  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
+};
 
 export function render(content) {
   const site = { ...content.site };
@@ -158,7 +177,7 @@ const foot = (depth) => {
     <div class="chat__log" data-chat-log role="log" aria-live="polite"></div>
     <div class="chat__chips" data-chat-chips>
       <button type="button">What does Drew do?</button>
-      <button type="button">Tell me about the Academy LMS</button>
+      <button type="button">Tell me about the AI-Native LMS</button>
       <button type="button">Where has Drew worked?</button>
     </div>
     <form class="chat__form" data-chat-form autocomplete="off">
@@ -200,7 +219,6 @@ const projectCard = (p) => `
               <p class="card__sub">${esc(p.short)}</p>
               <p class="mono card__tags">${esc(p.meta)}</p>
             </div>
-            <span class="mono card__year">${esc(p.year)}</span>
           </div>
         </a>`;
 
@@ -310,7 +328,7 @@ const caseDialog = `
   <button class="case__x" type="button" data-case-close aria-label="Close case study">×</button>
   ${projects.map((p, i) => {
     const next = projects[(i + 1) % projects.length];
-    const meta = [['Role', p.role], ['Type', p.type], ['Year', p.year], p.tools ? ['Tools', p.tools] : null].filter((m) => m && m[1]);
+    const meta = [['Type', p.type], ['Tools', p.tools]].filter((m) => m[1]);
     const gallery = galleryItems(p);
     return `<article class="case__art wrap stack stack--lg proj" id="case-${p.id}" data-title="${esc(p.title)}" hidden>
     <button class="back mono" type="button" data-case-close><span>←</span> All work</button>
@@ -320,17 +338,18 @@ const caseDialog = `
       <p class="proj__short">${esc(p.short)}</p>
       <ul class="chips">${arr(p.tags).map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
     </header>
-    <div class="proj__hero">${visual(p, 'hero')}</div>
-    <div class="proj__body">
-      <dl class="proj__meta">${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+    <div class="proj__herowrap"><div class="proj__hero">${visual(p, 'hero')}</div>${firstImage(p)?.caption ? `<p class="proj__cap mono">${esc(firstImage(p).caption)}</p>` : ''}</div>
+    <div class="proj__body${meta.length ? '' : ' proj__body--solo'}">
+      ${meta.length ? `<dl class="proj__meta">${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : ''}
       <div class="stack stack--lg">
         ${p.problem ? `<section class="proj__sec"><h3 class="kicker lime-t">The problem</h3><p class="proj__lead">${rich(p.problem)}</p></section>` : ''}
         ${arr(p.did).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${arr(p.did).map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
+        ${embedBlock(p)}
         ${p.why ? `<section class="proj__sec"><h3 class="kicker lime-t">Why it matters</h3><p class="proj__lead">${rich(p.why)}</p></section>` : ''}
         ${arr(p.highlights).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${arr(p.highlights).map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>` : ''}
       </div>
     </div>
-    ${gallery.length ? `<div class="gallery">${gallery.map(mediaTile).join('')}</div>` : ''}
+    ${gallery.length ? `<div class="gallery">${gallery.map((m, i) => mediaTile(m, i, gallery)).join('')}</div>` : ''}
     <button class="next" type="button" data-case-open="${next.id}">
       <span><span class="mono dim">Next project</span><span class="next__t">${esc(next.title)}</span></span>
       <span class="next__a" data-arrow aria-hidden="true">→</span>

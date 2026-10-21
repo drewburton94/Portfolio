@@ -3,6 +3,31 @@
 import * as D from './defaults.mjs';
 import { DEFAULT_KNOWLEDGE } from './knowledge-default.mjs';
 
+// Stanley's starting knowledge: the saved background notes, with the project section
+// regenerated from the project list below so it always matches what is on the site.
+function projectsKnowledge(projects) {
+  const clean = (t) => String(t || '').replace(/\*\*/g, '').replace(/\*/g, '');
+  const parts = projects.map((p) => [
+    `### ${p.title}`,
+    `Short line: ${clean(p.short)}`,
+    p.type ? `Type: ${p.type}` : '',
+    p.tools ? `Tools: ${p.tools}` : '',
+    p.tags && p.tags.length ? `Tags: ${p.tags.join(', ')}` : '',
+    p.problem ? `The problem: ${clean(p.problem)}` : '',
+    p.did && p.did.length ? `What Drew did:\n${p.did.map(clean).join('\n\n')}` : '',
+    p.why ? `Why it matters: ${clean(p.why)}` : '',
+    p.highlights && p.highlights.length ? `Highlights:\n${p.highlights.map((h) => '- ' + clean(h)).join('\n')}` : '',
+  ].filter(Boolean).join('\n\n'));
+  return `## Selected works on the site (${projects.length} projects)\n\n${parts.join('\n\n')}\n\n---\n\n`;
+}
+
+function buildKnowledge(base, projects) {
+  const a = base.indexOf('## Featured work strip');
+  const b = base.indexOf('# 3. Approach');
+  if (a < 0 || b < 0 || b < a) return base;
+  return base.slice(0, a) + projectsKnowledge(projects) + base.slice(b);
+}
+
 export const DEFAULTS = {
   site: D.site,
   hero: { sub: D.hero.sub, headline: D.hero.headline },
@@ -11,7 +36,7 @@ export const DEFAULTS = {
   workIntro: D.workIntro,
   history: D.history,
   contact: D.contact,
-  knowledge: DEFAULT_KNOWLEDGE,
+  knowledge: buildKnowledge(DEFAULT_KNOWLEDGE, D.projects),
 };
 
 export const KEYS = Object.keys(DEFAULTS);

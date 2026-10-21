@@ -353,8 +353,12 @@
     f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.getAttribute('data-yt')) + '?autoplay=1&rel=0';
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
-    f.title = b.getAttribute('aria-label') || 'Video';
-    b.replaceWith(f);
+    var label = (b.getAttribute('aria-label') || 'video').replace(/^Play /, '');
+    f.title = label.charAt(0).toUpperCase() + label.slice(1);
+    var box = document.createElement('div');
+    box.className = 'yt';
+    box.append(f);
+    b.replaceWith(box);
     track('click', 'video-play');
   });
 

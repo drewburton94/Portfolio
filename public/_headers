@@ -5,3 +5,5 @@
   X-Frame-Options: DENY
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+/embeds/*
+  X-Robots-Tag: noindex, nofollow
