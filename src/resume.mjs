@@ -24,7 +24,7 @@ const safeUrl = (u) => {
 const range = (s) => esc(String(s ?? '').replace(/\s*[—–]\s*/g, '–'));
 
 export const RESUME = {
-  roleLine: 'Customer Education and Customer Success',
+  roleLine: 'Customer Success Enablement',
   summary:
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
