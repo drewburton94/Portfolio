@@ -27,25 +27,11 @@ export const RESUME = {
   roleLine: 'Learning experience designer & builder',
   summary:
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for *adoption, not just consumption*, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
-  catalog: [
-    { k: 'Prerequisite', v: 'Curiosity' },
-    { k: 'Duration', v: '12+ years' },
-    { k: 'Format', v: 'Applied, hands-on' },
-    { k: 'Outcome', v: 'People who use the product' },
-  ],
   stats: [
     { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined, in a single year' },
     { n: '91% vs 79%', t: 'Renewal rate where someone took a course versus where nobody did' },
     { n: '2,000+', t: 'Global operators enabled by a process automation rollout' },
   ],
-  // One-liners for the résumé, keyed by project id. Falls back to the project's short line.
-  work: {
-    'learning-data': 'Tied Academy activity to renewals, and checked it until it held up. Now part of how CS thinks about churn.',
-    'ai-tools': 'Dashboards, review skills and an open-source library that automate the first pass and leave the call to people.',
-    academy: 'An AI-native LMS built around search, a tutor in every course, and what customers actually care about.',
-    'executive-path': 'Five short courses for the leaders who fund the product, built to be shared by CS and Sales.',
-  },
-  workOrder: ['learning-data', 'academy', 'ai-tools', 'executive-path'],
   toolkit: [
     { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
     { k: 'Design & build', v: 'Claude Design, Claude Code, Adobe Creative Cloud, Figma' },
@@ -59,7 +45,7 @@ const CSS = `
 --sans:'Manrope',system-ui,sans-serif;--disp:'Poppins','Manrope',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,monospace}
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:9.4pt;line-height:1.42;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:9.8pt;line-height:1.5;
 -webkit-print-color-adjust:exact;print-color-adjust:exact}
 h1,h2,h3,p,ul,dl,dd{margin:0}ul{padding:0;list-style:none}a{color:inherit;text-decoration:none}
 .mono{font-family:var(--mono)}
@@ -81,7 +67,7 @@ padding:12px 20px;background:rgba(7,8,10,.92);backdrop-filter:blur(8px);color:#f
 /* the sheet */
 .sheet{position:relative;width:8.5in;min-height:11in;margin:22px auto 60px;background:var(--paper);overflow:hidden;
 box-shadow:0 30px 80px rgba(0,0,0,.55)}
-.top{display:grid;grid-template-columns:1fr auto;gap:6px 22px;align-items:center;background:var(--bg);color:#fff;padding:.28in .45in .26in;position:relative}
+.top{display:grid;grid-template-columns:1fr auto;gap:6px 22px;align-items:center;background:var(--bg);color:#fff;padding:.4in .6in .36in;position:relative}
 .top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--lime)}
 .top__kick{font:500 7.4pt var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:10px}
 .top__kick::before{content:'';width:26px;height:3px;border-radius:9px;background:var(--lime)}
@@ -92,22 +78,17 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .face{grid-column:2;grid-row:1/span 3;width:1.02in;height:1.02in;border-radius:50%;border:3px solid var(--lime);overflow:hidden;background:#15181a}
 .face img{width:100%;height:100%;object-fit:cover;display:block}
 
-.body{padding:.16in .45in .3in}
-.catalog{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);border-radius:8px;margin:0 0 .1in;overflow:hidden}
-.catalog div{padding:5px 10px;border-right:1.5px solid var(--ink)}.catalog div:last-child{border-right:0}
-.catalog dt{font:500 6.4pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
-.catalog dd{font:700 9pt var(--disp);margin-top:1px}
-
-.summary{font-size:9.6pt;line-height:1.45;margin-bottom:.1in}
+.body{padding:.34in .6in .4in}
+.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.3in;max-width:6.4in}
 .hl{font-style:normal;font-weight:700;background:linear-gradient(transparent 60%,var(--lime) 60%,var(--lime) 95%,transparent 95%);padding:0 1px}
 
-.cols{display:grid;grid-template-columns:1fr 2.42in;gap:0 .3in}
-h2{display:flex;align-items:center;gap:9px;font:500 7.4pt var(--mono);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.09in}
+.cols{display:grid;grid-template-columns:1fr 2.3in;gap:0 .45in}
+h2{display:flex;align-items:center;gap:9px;font:500 7.6pt var(--mono);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.16in}
 h2::before{content:'';flex:none;width:22px;height:3px;border-radius:9px;background:var(--ink)}
 h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 
 /* the learning path */
-.path{position:relative;display:flex;flex-direction:column;gap:.1in;padding-left:22px}
+.path{position:relative;display:flex;flex-direction:column;gap:.2in;padding-left:24px}
 .path::before{content:'';position:absolute;left:5px;top:6px;bottom:10px;width:2px;background:repeating-linear-gradient(var(--ink) 0 5px,transparent 5px 9px)}
 .mod{position:relative}
 .mod::before{content:'';position:absolute;left:-22px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink)}
@@ -116,30 +97,20 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .here{background:var(--ink);color:var(--lime);border-radius:100px;padding:1px 8px;letter-spacing:.12em}
 .mod__role{font:700 10.4pt/1.25 var(--disp);margin-top:1px}
 .mod__org{font-weight:600;color:var(--mut)}
-.mod__body{margin-top:2px;font-size:8.6pt;line-height:1.4}
+.mod__body{margin-top:3px;font-size:9.2pt;line-height:1.52}
 
 /* sidebar */
-.side{display:flex;flex-direction:column;gap:.15in}
-.stats{display:flex;flex-direction:column;gap:6px}
-.stat{background:var(--bg);color:#fff;border-radius:9px;padding:7px 11px 8px}
+.side{display:flex;flex-direction:column;gap:.3in}
+.stats{display:flex;flex-direction:column;gap:12px}
+.stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
 .stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--lime);letter-spacing:-.01em}
-.stat span{display:block;font-size:7.7pt;line-height:1.32;color:rgba(255,255,255,.82);margin-top:2px}
-.work li{padding:0 0 6px;margin-bottom:6px;border-bottom:1px solid var(--line)}
-.work li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-.work b{display:block;font:700 8.8pt var(--disp)}
-.work span{display:block;font-size:8pt;line-height:1.36;color:#2c302c}
-.tk dt{font:500 6.6pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:5px}
+.stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
+.tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:10px}
 .tk dt:first-child{margin-top:0}
-.tk dd{font-size:8.2pt;line-height:1.38}
+.tk dd{font-size:8.8pt;line-height:1.45}
 
-/* old way / my way */
 .main{display:flex;flex-direction:column}
-.shift{margin:.12in 0 0;border-top:1.5px solid var(--ink);padding-top:.1in}
-.shift ul{display:grid;grid-template-columns:1fr;gap:5px}
-.shift li{display:grid;grid-template-columns:auto 1fr;gap:1px 8px;font-size:8.2pt;line-height:1.34}
-.shift .old{grid-column:1/-1;color:var(--mut);text-decoration:line-through;text-decoration-thickness:1px}
-.shift .arrow{font-weight:800;color:var(--ink)}
-.foot{margin-top:.1in;display:flex;flex-direction:column;gap:1px;font-size:8.2pt;background:var(--lime);border-radius:8px;padding:6px 11px}
+.foot{margin-top:.26in;display:flex;flex-direction:column;gap:1px;font-size:8.8pt;background:var(--lime);border-radius:8px;padding:10px 14px}
 .foot b{font:700 9.4pt var(--disp)}
 .foot span{color:var(--ink)}
 
@@ -147,8 +118,8 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .plain-only,.mod__line{display:none}
 body.plain .plain-only{display:flex}
 body.plain .mod__line{display:block;font:700 10pt/1.3 var(--sans)}
-body.plain .mod__meta,body.plain .mod__role,body.plain .top__kick,body.plain .face,body.plain .catalog,
-body.plain .shift,body.plain .foot,body.plain .here,body.plain h2 .sub,body.plain .top::after{display:none}
+body.plain .mod__meta,body.plain .mod__role,body.plain .top__kick,body.plain .face,
+body.plain .foot,body.plain .here,body.plain h2 .sub,body.plain .top::after{display:none}
 body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
 body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65in .06in}
@@ -161,7 +132,7 @@ body.plain h2::before{display:none}
 body.plain .summary{font-size:10pt;margin:0}
 body.plain .cols{display:flex;flex-direction:column;gap:0}
 body.plain .side,body.plain .main{display:contents}
-body.plain .stats{order:1}body.plain .exp{order:2}body.plain .sel{order:3}body.plain .tkw{order:4}
+body.plain .stats{order:1}body.plain .exp{order:2}body.plain .tkw{order:3}
 body.plain .stats__list{display:block}
 body.plain .stat{background:none;color:var(--ink);padding:0 0 3px 14px;border-radius:0;position:relative}
 body.plain .stat::before{content:'\\2022';position:absolute;left:3px}
@@ -170,10 +141,6 @@ body.plain .stat b{font-weight:700}
 body.plain .stat span::before{content:': '}
 body.plain .path{padding-left:0;gap:.1in}body.plain .path::before,body.plain .mod::before{display:none}
 body.plain .mod__body{font-size:9.6pt;margin-top:1px}
-body.plain .work li{border:0;padding:0 0 3px 14px;margin:0;position:relative}
-body.plain .work li::before{content:'\\2022';position:absolute;left:3px}
-body.plain .work b,body.plain .work span{display:inline;font-size:9.6pt;color:var(--ink)}
-body.plain .work span::before{content:': '}
 body.plain .tk dt{display:inline;font-size:9.6pt;letter-spacing:0;text-transform:none;font-weight:700;color:var(--ink);margin:0}
 body.plain .tk dt::after{content:': '}
 body.plain .tk dd{display:inline;font-size:9.6pt}
@@ -186,11 +153,9 @@ body.plain .sheet{box-shadow:0 30px 80px rgba(0,0,0,.55)}
   .top{grid-template-columns:1fr;padding:22px 20px}.face{grid-column:1;grid-row:auto;width:84px;height:84px;order:-1}
   h1{font-size:28pt}
   .body{padding:16px 20px 24px}
-  .catalog{grid-template-columns:1fr 1fr}.catalog div:nth-child(2){border-right:0}.catalog div:nth-child(-n+2){border-bottom:1.5px solid var(--ink)}
   .cols{grid-template-columns:1fr;gap:24px}
-  .shift ul{grid-template-columns:1fr}
   .foot{flex-direction:column;gap:4px}.foot span{text-align:left}
-  body{font-size:10.5pt}.mod__body{font-size:10pt}.work span,.stat span,.tk dd,.shift li{font-size:9.4pt}
+  body{font-size:10.5pt}.mod__body{font-size:10pt}.stat span,.tk dd{font-size:9.4pt}
 }
 @media screen and (prefers-reduced-motion:no-preference){
   .mod--now::before{animation:ping 2.4s ease-out infinite}
@@ -223,8 +188,6 @@ const JS = `
 export function renderResume(content) {
   const site = content.site || {};
   const history = arr(content.history);
-  const projects = arr(content.projects);
-  const rows = arr(content.about && content.about.think && content.about.think.rows);
   const ai = (content.about && content.about.ai) || {};
   const R = RESUME;
 
@@ -248,18 +211,6 @@ export function renderResume(content) {
         <p class="mod__body">${esc(h.body)}</p>
       </li>`;
     })
-    .join('');
-
-  const byId = new Map(projects.map((p) => [p.id, p]));
-  const work = R.workOrder
-    .map((id) => byId.get(id))
-    .filter(Boolean)
-    .map((p) => `<li><b>${esc(p.title)}</b><span>${esc(R.work[p.id] || p.short)}</span></li>`)
-    .join('');
-
-  const shift = rows
-    .slice(0, 4)
-    .map((r) => `<li><span class="old">${esc(r.old)}</span><span class="arrow" aria-hidden="true">→</span><span>${rich(r.now)}</span></li>`)
     .join('');
 
   const title = `${site.name || 'Drew Burton'} | Résumé`;
@@ -302,7 +253,6 @@ export function renderResume(content) {
   </header>
 
   <div class="body">
-    <dl class="catalog">${R.catalog.map((c) => `<div><dt>${esc(c.k)}</dt><dd>${esc(c.v)}</dd></div>`).join('')}</dl>
     <h2 class="plain-only">Summary</h2>
     <p class="summary">${rich(R.summary)}</p>
 
@@ -311,13 +261,11 @@ export function renderResume(content) {
         <h2 id="exp">Experience <span class="sub">as a learning path</span></h2>
         <ol class="path" style="list-style:none;margin:0">${modules}</ol>
       </section>
-      ${shift ? `<section class="shift" aria-labelledby="how"><h2 id="how">How I think <span class="sub">old way, my way</span></h2><ul>${shift}</ul></section>` : ''}
       <div class="foot"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b><span>${esc(ai.line || '')}</span></div>
       </div>
 
       <aside class="side">
         <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
-        <section class="sel" aria-labelledby="sel"><h2 id="sel">Selected work</h2><ul class="work">${work}</ul></section>
         <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
       </aside>
     </div>

@@ -53,10 +53,10 @@ For extra protection, put `/admin*` and `/api/admin*` behind Cloudflare Access (
 
 ## Résumé
 
-- **`/resume`** is a printable, one-page letter-size résumé built from the site's own content (work history, contact, "How I think"). Edits in `/admin` show up there. Its **Creative** and **Plain** switch and **Print or save as PDF** button live in the top bar.
+- **`/resume`** is a printable, one-page letter-size résumé built from the site's own content (work history and contact details). Edits in `/admin` show up there. Its **Creative** and **Plain** switch and **Print or save as PDF** button live in the top bar.
 - **Plain** is the applicant-tracking version: one column, standard headings, Arial, no graphics. It is also available directly at `/resume?plain`.
 - The PDFs in `public/assets/` (`drew-burton-resume.pdf` creative, `drew-burton-resume-ats.pdf` plain) are generated from the built-in defaults, so rerun `node scripts/resume-pdf.mjs` after changing résumé text in `src/defaults.mjs` or `src/resume.mjs`. It needs Chromium (`CHROMIUM_PATH=/path/to/chrome`, or `npx playwright install chromium`).
-- Résumé-only copy (summary, results, toolkit) is at the top of `src/resume.mjs`.
+- Résumé-only copy (summary, results, skills) is at the top of `src/resume.mjs`.
 
 ## Local development
 
