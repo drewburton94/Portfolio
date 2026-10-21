@@ -24,28 +24,36 @@ const safeUrl = (u) => {
 const range = (s) => esc(String(s ?? '').replace(/\s*[—–]\s*/g, '–'));
 
 export const RESUME = {
-  roleLine: 'Customer Success Enablement',
+  roleLine: 'Customer Education | Learning Experience Design',
+  portfolio: { url: 'https://www.DrewsBurton.com', label: 'www.DrewsBurton.com' },
   summary:
-    "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
+    "There's a lot of bad training out there. For over a decade I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
-    { n: 'Customer Engagement', t: 'This year brought more engagement in Academy than the previous four years combined.' },
-    { n: 'Churn & Renewal', key: true, t: 'At Algolia, I proved education is a renewal signal. 91% of accounts that took a course renewed, versus 79% of those that did not.' },
+    { n: 'Customer Engagement', t: 'In a single year, Academy engagement beat the previous four years combined.' },
+    { n: 'Churn & Renewal', t: "Found that Academy activity looks like an early renewal signal. 91% of accounts where someone took a course in the past year renewed, versus 79% of those that didn't." },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
-  // An item with `lead` renders as a bold lead-in followed by its text.
+  // A bullet with `plain` shows `text` on the designed page and `plain` on the plain (ATS) page.
+  // The entry with `roles` is the "Earlier roles" group on the designed page and separate roles on the plain page.
   experience: [
     {
-      role: 'Senior Instructional Designer', org: 'Algolia', when: '2024–Present',
+      role: 'Senior Instructional Designer', org: 'Algolia', when: '2024 - Present',
       bullets: [
-        { text: 'Drove record Academy engagement with interactive, applied learning, technical paths and certifications. One year exceeded the previous four combined.' },
-        { text: 'Linked learning to renewals: accounts with recent Academy activity renewed at 91% versus 79%. Now being integrated into Customer Success health signals.' },
+        { text: 'Led customer education strategy and the design of courses and content across Academy, from onboarding to certification.' },
+        {
+          text: 'Rebuilt Academy around interactive, applied learning and launched technical paths and certifications that drove record engagement.',
+          plain: 'Rebuilt Academy around interactive, applied learning and launched technical paths and certifications that drove record engagement. In a single year, engagement beat the previous four years combined.',
+        },
+        {
+          text: 'Analyzed Academy activity against renewals and shared the findings with Customer Success. Now being integrated into health signals.',
+          plain: "Analyzed Academy activity against renewals and shared the findings with Customer Success. Accounts where someone took a course in the past year renewed at 91%, versus 79% for those that didn't. Now being integrated into health signals.",
+        },
         { text: 'Built AI tools for Customer Success and customers: a dashboard that flags broken implementations, first-pass review skills, and an open-source skills library for coding agents.' },
         { text: 'Built an AI-native learning platform with search, an in-course AI tutor and intent-based paths. In internal testing.' },
-        { text: 'Led the direction for course design and content across Academy.' },
       ],
     },
     {
-      role: 'Instructional Designer', org: 'Talkdesk', when: '2021–2024',
+      role: 'Instructional Designer', org: 'Talkdesk', when: '2021 - 2024',
       bullets: [
         { text: 'Helped build the education function as the company scaled, setting standards for how learning is designed and delivered.' },
         { text: 'Owned global onboarding and manager resources.' },
@@ -53,26 +61,26 @@ export const RESUME = {
       ],
     },
     {
-      role: 'Instructional Designer', org: 'Kelly Services', when: '2018–2021',
+      role: 'Instructional Designer', org: 'Kelly Services', when: '2018 - 2021',
       bullets: [
         { text: 'Built training for a process automation rollout, enabling adoption for 2,000+ global operators.' },
         { text: 'Designed interactive e-learning and assessments tied to operational goals.' },
       ],
     },
     {
-      role: 'Earlier roles', org: '', when: '2015–2017',
-      bullets: [
-        { lead: 'Administrative Co-op, Dow Chemical | 2016–2017', text: 'Led a 2,000+ record data archival project in a regulated environment.' },
-        { lead: 'eLearning Developer, Delta College Corporate Services | 2015–2016', text: 'Developed e-learning modules and refined training content.' },
+      role: 'Earlier roles', org: '', when: '2015 - 2017',
+      roles: [
+        { title: 'Administrative Co-op', org: 'Dow Chemical', when: '2016 - 2017', text: 'Led a data archival project covering 2,000+ confidential records in a regulated environment.', short: 'Led a 2,000+ record data archival project in a regulated environment.' },
+        { title: 'eLearning Developer', org: 'Delta College Corporate Services', when: '2015 - 2016', text: 'Developed e-learning modules and refined training content.' },
       ],
     },
   ],
   chat: { q: 'Where does AI fit in your work?' },
   toolkit: [
-    { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
-    { k: 'Design & build', v: 'Claude, Codex, Figma, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
+    { k: 'Focus', v: 'Customer education, onboarding, product training, certification, learning analytics, customer success enablement' },
+    { k: 'Design & build', kPlain: 'Design and build', v: 'Claude, Codex, Figma, Adobe Premiere Pro, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
     { k: 'Learning', v: 'LMS administration, Articulate, Captivate, video and motion' },
-    { k: 'Data & infrastructure', v: 'Learning analytics, Supabase, GitHub, Vercel, Google Sheets and Apps Script' },
+    { k: 'Data & infrastructure', kPlain: 'Data and infrastructure', v: 'Learning analytics, Supabase, GitHub, Vercel, Google Sheets and Apps Script' },
   ],
 };
 
@@ -111,11 +119,13 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .top__role{font:500 11pt var(--sans);color:rgba(255,255,255,.82)}
 .contact{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:9px;font:500 8.2pt var(--mono);color:rgba(255,255,255,.86)}
 .contact a:hover{color:var(--sage)}
+.sep{display:none}
+.pl{display:none}
 .contact a{display:inline-flex;align-items:center;gap:6px}
 .ic{flex:none;width:11px;height:11px;color:var(--sage)}
 
 .body{padding:.34in .6in .4in}
-.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.18in}
+.summary{font-size:10.4pt;line-height:1.55;margin-bottom:.15in}
 .hl{font-style:normal;font-weight:700;background:linear-gradient(transparent 60%,var(--sage) 60%,var(--sage) 95%,transparent 95%);padding:0 1px}
 
 .cols{display:grid;grid-template-columns:1fr 2.3in;gap:0 .45in}
@@ -131,20 +141,20 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .mod--now::before{background:var(--sage);box-shadow:0 0 0 3px var(--paper),0 0 0 4.5px var(--ink)}
 .mod__meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font:500 6.8pt var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .mod__role{font:700 10.4pt/1.25 var(--disp);margin-top:1px}
-.mod__org{font-weight:600;color:var(--mut)}
+.mod__org{font-weight:600;color:var(--ink)}
 .mod__list{margin-top:3px;display:flex;flex-direction:column;gap:3px}
 .mod__list li{position:relative;padding-left:12px;font-size:8.8pt;line-height:1.45}
 .mod__list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--ink)}
 
 /* sidebar */
-.side{display:flex;flex-direction:column;gap:.26in}
-.stats__list{display:flex;flex-direction:column;gap:14px}
-.stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
+.side{display:flex;flex-direction:column;gap:.17in}
+.stats__list{display:flex;flex-direction:column;gap:9px}
+.stat{background:var(--bg);color:#fff;border-radius:9px;padding:9px 13px 10px}
 .stat b{display:block;font:800 11.6pt/1.15 var(--disp);white-space:nowrap;color:var(--sage);letter-spacing:-.01em}
-.stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
-.tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:8px}
+.stat span{display:block;font-size:7.9pt;line-height:1.38;color:rgba(255,255,255,.82);margin-top:2px}
+.tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:6px}
 .tk dt:first-child{margin-top:0}
-.tk dd{font-size:8.8pt;line-height:1.45}
+.tk dd{font-size:8.4pt;line-height:1.4}
 
 .main{display:flex;flex-direction:column}
 .chat{margin-top:auto;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:#f3f1eb}
@@ -166,38 +176,38 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .bubble b{font:700 8.8pt var(--disp)}
 
 /* plain: single column, standard headings, no graphics, for applicant tracking systems */
+body.plain .cr{display:none}
+body.plain .pl{display:revert}
+body.plain .sep{display:inline}
 .plain-only,.mod__line{display:none}
 body.plain .plain-only{display:flex}
-body.plain .mod__line{display:block;font:700 10pt/1.3 var(--sans)}
-body.plain .mod__meta,body.plain .mod__role,body.plain .stat:not(.stat--key),body.plain .top__kick,
+body.plain .mod__line{display:block;font:700 10.5pt/1.3 var(--sans)}
+body.plain .pl .mod__line{margin-top:.1in}
+body.plain .pl .mod__line:first-child{margin-top:0}
+body.plain .mod__meta,body.plain .mod__role,body.plain .stats,body.plain .top__kick,
 body.plain .chat,body.plain h2 .sub,body.plain .top::after{display:none}
 body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
 body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65in .06in}
 body.plain h1{font-size:24pt;letter-spacing:0;margin:0 0 2px}
-body.plain .top__role{color:var(--ink);font-size:11pt}
-body.plain .contact{color:var(--ink);margin-top:5px;font-size:9.5pt}
+body.plain .top__role{color:var(--ink);font-size:11.5pt}
+body.plain .contact{color:var(--ink);margin-top:5px;font-size:10pt;gap:4px 8px}
+body.plain .contact a{display:inline}
 body.plain .ic{display:none}
 body.plain .body{padding:.12in .65in .5in}
-body.plain h2{font-size:10pt;letter-spacing:.08em;border-bottom:1.5px solid var(--ink);padding-bottom:2px;margin:.14in 0 .06in;display:block}
+body.plain h2{font-size:11pt;letter-spacing:.08em;border-bottom:1.5px solid var(--ink);padding-bottom:2px;margin:.14in 0 .06in;display:block}
 body.plain h2::before{display:none}
-body.plain .summary{font-size:10pt;margin:0}
+body.plain .summary{font-size:10.5pt;margin:0}
 body.plain .cols{display:flex;flex-direction:column;gap:0}
 body.plain .side,body.plain .main{display:contents}
 body.plain .exp{order:2}body.plain .tkw{order:3}
-body.plain .stats__list{display:block}
-body.plain .stat{background:none;color:var(--ink);padding:0 0 3px 14px;border-radius:0;position:relative}
-body.plain .stat::before{content:'\\2022';position:absolute;left:3px}
-body.plain .stat b,body.plain .stat span{display:inline;font-size:9.6pt;line-height:1.4;color:var(--ink)}
-body.plain .stat b{font-weight:700}
-body.plain .stat span::before{content:': '}
 body.plain .path{padding-left:0;gap:.1in}body.plain .path::before,body.plain .mod::before{display:none}
 body.plain .mod__list{margin-top:1px;gap:2px}
-body.plain .mod__list li{font-size:9.6pt;line-height:1.4}
-body.plain .mod__list li::before{width:3px;height:3px;top:.6em}
-body.plain .tk dt{display:inline;font-size:9.6pt;letter-spacing:0;text-transform:none;font-weight:700;color:var(--ink);margin:0}
+body.plain .mod__list li{font-size:10pt;line-height:1.4}
+body.plain .mod__list li::before{content:'\\2022';width:auto;height:auto;top:0;left:2px;border-radius:0;background:none;line-height:inherit}
+body.plain .tk dt{display:inline;font-size:10pt;letter-spacing:0;text-transform:none;font-weight:700;color:var(--ink);margin:0}
 body.plain .tk dt::after{content:': '}
-body.plain .tk dd{display:inline;font-size:9.6pt}
+body.plain .tk dd{display:inline;font-size:10pt}
 body.plain .tk dd::after{content:'';display:block;height:3px}
 body.plain .hl{background:none;font-weight:400}
 body.plain .sheet{box-shadow:0 30px 80px rgba(0,0,0,.55)}
@@ -248,9 +258,12 @@ export function renderResume(content) {
   const github = safeUrl(site.github);
   const ICON_MAIL = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>';
   const ICON_IN = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
+  const ICON_WEB = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>';
+  const portfolio = safeUrl(R.portfolio && R.portfolio.url);
   const contactItems = [
     email && `<a href="mailto:${esc(email)}">${ICON_MAIL}${esc(email)}</a>`,
     linkedin && `<a href="${esc(linkedin)}">${ICON_IN}${esc(linkedin.replace(/^https:\/\/(www\.)?/, ''))}</a>`,
+    portfolio && `<a href="${esc(portfolio)}">${ICON_WEB}${esc(R.portfolio.label)}</a>`,
     github && `<a href="${esc(github)}">${esc(github.replace(/^https:\/\/(www\.)?/, ''))}</a>`,
   ].filter(Boolean);
 
@@ -258,12 +271,25 @@ export function renderResume(content) {
     .map((h, i) => {
       const n = R.experience.length - i;
       const now = i === 0;
-      const items = h.bullets.map((b) => `<li>${b.lead ? `<strong>${esc(b.lead)}:</strong> ` : ''}${esc(b.text)}</li>`).join('');
-      return `<li class="mod${now ? ' mod--now' : ''}">
-        <p class="mod__line">${esc(h.role)}${h.org ? `, ${esc(h.org)}` : ''} | ${esc(h.when)}</p>
+      const dual = (b) => (b.plain ? `<span class="cr">${esc(b.text)}</span><span class="pl">${esc(b.plain)}</span>` : esc(b.text));
+      let body;
+      if (h.roles) {
+        const roleName = (r) => `${r.title}, ${r.org} | ${r.when}`;
+        const crItems = h.roles.map((r) => `<li><strong>${esc(roleName(r))}:</strong> ${esc(r.short || r.text)}</li>`).join('');
+        const plRoles = h.roles.map((r) => `<p class="mod__line">${esc(roleName(r))}</p><ul class="mod__list"><li>${esc(r.text)}</li></ul>`).join('');
+        body = `<div class="mod__meta"><span>Module ${String(n).padStart(2, '0')}</span><span>${esc(h.when)}</span></div>
+        <h3 class="mod__role">${esc(h.role)}</h3>
+        <ul class="mod__list cr">${crItems}</ul>
+        <div class="pl">${plRoles}</div>`;
+      } else {
+        const items = h.bullets.map((b) => `<li>${dual(b)}</li>`).join('');
+        body = `<p class="mod__line">${esc(h.role)}${h.org ? `, ${esc(h.org)}` : ''} | ${esc(h.when)}</p>
         <div class="mod__meta"><span>Module ${String(n).padStart(2, '0')}</span><span>${esc(h.when)}</span></div>
         <h3 class="mod__role">${esc(h.role)}${h.org ? ` <span class="mod__org">· ${esc(h.org)}</span>` : ''}</h3>
-        <ul class="mod__list">${items}</ul>
+        <ul class="mod__list">${items}</ul>`;
+      }
+      return `<li class="mod${now ? ' mod--now' : ''}">
+        ${body}
       </li>`;
     })
     .join('');
@@ -302,7 +328,7 @@ export function renderResume(content) {
       <p class="top__kick">Course catalog · Customer education</p>
       <h1>${esc(site.name || 'Drew Burton')}</h1>
       <p class="top__role">${esc(R.roleLine)}</p>
-      <div class="contact">${contactItems.join('')}</div>
+      <div class="contact">${contactItems.join('<span class="sep" aria-hidden="true">|</span>')}</div>
     </div>
   </header>
 
@@ -318,8 +344,8 @@ export function renderResume(content) {
       </div>
 
       <aside class="side">
-        <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat${s.key ? ' stat--key' : ''}"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
-        <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
+        <section class="stats" aria-label="Results"><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
+        <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt>${t.kPlain ? `<span class="cr">${esc(t.k)}</span><span class="pl">${esc(t.kPlain)}</span>` : esc(t.k)}</dt><dd>${esc(t.v)}</dd>`).join('')}</dl></section>
         <div class="chat" role="group" aria-label="Chat">
           <div class="chat__bar"><i></i><span>Ask Drew</span></div>
           <div class="chat__log">

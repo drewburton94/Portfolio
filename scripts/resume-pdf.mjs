@@ -1,6 +1,6 @@
 // Writes the two résumé PDFs into public/assets/ from the built-in defaults:
-//   drew-burton-resume.pdf       the creative one-page version
-//   drew-burton-resume-ats.pdf   the plain version for applicant tracking systems
+//   Drew-Burton-Resume-Designed.pdf       the creative one-page version
+//   Drew-Burton-Resume.pdf   the plain version for applicant tracking systems
 // Needs Chromium: `npm install` then point PLAYWRIGHT_BROWSERS_PATH at an install (or `npx playwright install chromium`).
 // Run: node scripts/resume-pdf.mjs
 import { writeFileSync, mkdirSync } from 'node:fs';
@@ -23,7 +23,7 @@ writeFileSync(file, html);
 
 const exe = process.env.CHROMIUM_PATH || undefined;
 const browser = await chromium.launch({ executablePath: exe });
-for (const [mode, name] of [['creative', 'drew-burton-resume.pdf'], ['plain', 'drew-burton-resume-ats.pdf']]) {
+for (const [mode, name] of [['creative', 'Drew-Burton-Resume-Designed.pdf'], ['plain', 'Drew-Burton-Resume.pdf']]) {
   const page = await browser.newPage();
   await page.goto(`file://${file}${mode === 'plain' ? '?plain' : ''}`, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
