@@ -115,7 +115,7 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .ic{flex:none;width:11px;height:11px;color:var(--sage)}
 
 .body{padding:.34in .6in .4in}
-.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.18in;max-width:6.4in}
+.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.18in}
 .hl{font-style:normal;font-weight:700;background:linear-gradient(transparent 60%,var(--sage) 60%,var(--sage) 95%,transparent 95%);padding:0 1px}
 
 .cols{display:grid;grid-template-columns:1fr 2.3in;gap:0 .45in}
