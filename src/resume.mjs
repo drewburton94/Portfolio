@@ -28,9 +28,9 @@ export const RESUME = {
   summary:
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for *adoption, not just consumption*, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
-    { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined, in a single year' },
-    { n: '+12 pts renewal', t: 'Accounts that took an Academy course renewed at 91%, against 79% for those that did not. Education, shown to be a renewal signal.' },
-    { n: 'Strategy to launch', t: 'Led the strategy and design of learning for customers, internal teams, and executives.' },
+    { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined.' },
+    { n: '+12 pts renewal', t: 'Accounts that took a course renewed at 91%, versus 79% for those that did not. A renewal signal.' },
+    { n: 'Strategy to launch', t: 'Led strategy and design of learning for customers, internal teams, and executives.' },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
   // An item with `lead` renders as a bold lead-in followed by its text.
@@ -114,11 +114,11 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .contact a:hover{color:var(--sage)}
 
 .body{padding:.34in .6in .4in}
-.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.26in;max-width:6.4in}
+.summary{font-size:10.4pt;line-height:1.6;margin-bottom:.18in;max-width:6.4in}
 .hl{font-style:normal;font-weight:700;background:linear-gradient(transparent 60%,var(--sage) 60%,var(--sage) 95%,transparent 95%);padding:0 1px}
 
 .cols{display:grid;grid-template-columns:1fr 2.3in;gap:0 .45in}
-h2{display:flex;align-items:center;gap:9px;font:500 7.6pt var(--mono);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.16in}
+h2{display:flex;align-items:center;gap:9px;font:500 7.6pt var(--mono);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.12in}
 h2::before{content:'';flex:none;width:22px;height:3px;border-radius:9px;background:var(--ink)}
 h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 
@@ -136,24 +136,31 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .mod__list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--ink)}
 
 /* sidebar */
-.side{display:flex;flex-direction:column;gap:.24in}
-.stats__list{display:flex;flex-direction:column;gap:14px}
-.stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
+.side{display:flex;flex-direction:column;gap:.15in}
+.stats__list{display:flex;flex-direction:column;gap:10px}
+.stat{background:var(--bg);color:#fff;border-radius:9px;padding:8px 13px 9px}
 .stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--sage);letter-spacing:-.01em}
 .stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
-.tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:10px}
+.tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:8px}
 .tk dt:first-child{margin-top:0}
 .tk dd{font-size:8.8pt;line-height:1.45}
 
 .main{display:flex;flex-direction:column}
-.chat{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.chat{margin-top:auto;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:#f3f1eb}
+.chat__bar{display:flex;align-items:center;gap:5px;background:var(--ink);color:#fff;padding:4px 10px;font:500 6.8pt var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.chat__bar i{width:5px;height:5px;border-radius:50%;background:var(--sage)}
+.chat__bar span{margin-left:3px}
+.chat__log{display:flex;flex-direction:column;gap:5px;padding:7px 8px 6px}
+.chat__input{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:0 8px 8px;border:1px solid #b9b6ac;border-radius:100px;background:#fff;padding:3px 4px 3px 10px;font-size:7.4pt;color:var(--mut)}
+.chat__send{flex:none;width:.19in;height:.19in;border-radius:50%;background:var(--ink);position:relative}
+.chat__send::after{content:'';position:absolute;left:50%;top:50%;width:4px;height:4px;border-top:1.6px solid var(--sage);border-right:1.6px solid var(--sage);transform:translate(-65%,-50%) rotate(45deg)}
 .chat__who{font:500 6.4pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-.msg{display:flex;flex-direction:column;gap:3px;max-width:92%}
+.msg{display:flex;flex-direction:column;gap:3px;max-width:94%}
 .msg--in{align-items:flex-start}
 .msg--out{align-items:flex-end;align-self:flex-end}
 .msg--out .chat__who{padding-right:4px}
-.bubble{margin:0;font-size:8.6pt;line-height:1.42;padding:7px 12px 8px}
-.msg--in .bubble{background:#e6e4dd;color:var(--ink);border-radius:14px 14px 14px 3px}
+.bubble{margin:0;font-size:8.4pt;line-height:1.38;padding:6px 11px 7px}
+.msg--in .bubble{background:#fff;border:1px solid #d9d6cc;color:var(--ink);border-radius:14px 14px 14px 3px}
 .msg--out .bubble{background:var(--sage);color:var(--ink);border-radius:14px 14px 3px 14px}
 .bubble b{font:700 8.8pt var(--disp)}
 
@@ -310,8 +317,12 @@ export function renderResume(content) {
         <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
         <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
         <div class="chat" role="group" aria-label="Chat">
-          <div class="msg msg--in"><p class="bubble">${esc(R.chat.q)}</p></div>
-          <div class="msg msg--out"><span class="chat__who">Drew</span><p class="bubble"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b> ${esc(ai.line || '')}</p></div>
+          <div class="chat__bar"><i></i><span>Ask Drew</span></div>
+          <div class="chat__log">
+            <div class="msg msg--in"><p class="bubble">${esc(R.chat.q)}</p></div>
+            <div class="msg msg--out"><span class="chat__who">Drew</span><p class="bubble"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b> ${esc(ai.line || '')}</p></div>
+          </div>
+          <div class="chat__input" aria-hidden="true"><span>Type a message</span><span class="chat__send"></span></div>
         </div>
       </aside>
     </div>
