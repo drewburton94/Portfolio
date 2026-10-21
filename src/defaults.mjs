@@ -9,7 +9,7 @@ export const site = {
   email: 'Burton.Andrew@icloud.com',
   linkedin: 'https://www.linkedin.com/in/DrewSBurton',
   github: '', // add your GitHub URL to show it on the contact row
-  resume: '', // add e.g. 'assets/drew-burton-resume.pdf' to show the download button
+  resume: '/assets/drew-burton-resume-ats.pdf', // download button; the creative version is the /resume page
 };
 
 export const hero = {

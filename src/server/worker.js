@@ -1,6 +1,7 @@
 // Cloudflare Worker entry. Serves the dynamic pages and APIs; everything else
 // (styles, scripts, images, the /admin screens) is served from the static assets in /public.
 import * as home from './index.js';
+import * as resume from './resume.js';
 import * as chat from './api/chat.js';
 import * as collect from './api/collect.js';
 import * as login from './api/admin/login.js';
@@ -14,6 +15,7 @@ import * as media from './media/serve.js';
 
 const ROUTES = {
   '/': home,
+  '/resume': resume,
   '/api/chat': chat,
   '/api/collect': collect,
   '/api/admin/login': login,
