@@ -28,8 +28,8 @@ export const RESUME = {
   summary:
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
-    { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined.' },
-    { n: '+12 pts renewal', key: true, t: 'Proved education is a renewal signal. Accounts that took a course renewed at 91%, versus 79% for those that did not.' },
+    { n: 'Academy is growing', t: 'More people are joining and exploring more than ever. One year beat the previous four combined.' },
+    { n: 'Learners renew more', key: true, t: 'Proved education is a renewal signal: 91% of accounts that took a course renewed, versus 79% of those that did not.' },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
   // An item with `lead` renders as a bold lead-in followed by its text.
@@ -70,7 +70,7 @@ export const RESUME = {
   chat: { q: 'Where does AI fit in your work?' },
   toolkit: [
     { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
-    { k: 'Design & build', v: 'Claude Design, Claude Code, Codex, Figma, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
+    { k: 'Design & build', v: 'Claude, Codex, Figma, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
     { k: 'Learning', v: 'LMS administration, Articulate, Captivate, video and motion' },
     { k: 'Data & infrastructure', v: 'Learning analytics, Supabase, GitHub, Vercel, Google Sheets and Apps Script' },
   ],
@@ -103,8 +103,11 @@ padding:12px 20px;background:rgba(7,8,10,.92);backdrop-filter:blur(8px);color:#f
 /* the sheet */
 .sheet{position:relative;width:8.5in;min-height:11in;margin:22px auto 60px;background:var(--paper);overflow:hidden;
 box-shadow:0 30px 80px rgba(0,0,0,.55)}
-.top{display:block;background:var(--bg);color:#fff;padding:.4in .6in .36in;position:relative}
+.top{display:grid;grid-template-columns:1fr auto;gap:0 .4in;align-items:center;background:var(--bg);color:#fff;padding:.4in .6in .36in;position:relative}
 .top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--sage)}
+.facts{display:flex;flex-direction:column;gap:12px;border-left:2px solid var(--sage);padding:2px 0 2px 16px}
+.fact b{display:block;font:800 21pt/1 var(--disp);letter-spacing:-.01em;color:var(--sage)}
+.fact span{display:block;margin-top:3px;font:500 6.8pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8)}
 .top__kick{font:500 7.4pt var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:10px}
 .top__kick::before{content:'';width:26px;height:3px;border-radius:9px;background:var(--sage)}
 h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
@@ -140,7 +143,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .side{display:flex;flex-direction:column;gap:.26in}
 .stats__list{display:flex;flex-direction:column;gap:14px}
 .stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
-.stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--sage);letter-spacing:-.01em}
+.stat b{display:block;font:800 12.6pt/1.1 var(--disp);white-space:nowrap;color:var(--sage);letter-spacing:-.01em}
 .stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
 .tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:8px}
 .tk dt:first-child{margin-top:0}
@@ -175,6 +178,7 @@ body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
 body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65in .06in}
 body.plain h1{font-size:24pt;letter-spacing:0;margin:0 0 2px}
+body.plain .facts{display:none}
 body.plain .top__role{color:var(--ink);font-size:11pt}
 body.plain .contact{color:var(--ink);margin-top:5px;font-size:9.5pt}
 body.plain .ic{display:none}
@@ -204,7 +208,8 @@ body.plain .sheet{box-shadow:0 30px 80px rgba(0,0,0,.55)}
 
 @media screen and (max-width:8.9in){
   .sheet{width:calc(100% - 24px);min-height:0;margin:14px auto 40px}
-  .top{padding:22px 20px}
+  .top{grid-template-columns:1fr;gap:16px;padding:22px 20px}
+  .facts{flex-direction:row;gap:24px}
   h1{font-size:28pt}
   .body{padding:16px 20px 24px}
   .cols{grid-template-columns:1fr;gap:24px}
@@ -241,6 +246,7 @@ const JS = `
 export function renderResume(content) {
   const site = content.site || {};
   const ai = (content.about && content.about.ai) || {};
+  const facts = arr(content.about && content.about.facts).filter((f) => typeof f.n === 'number').slice(0, 2);
   const R = RESUME;
 
   const email = String(site.email || '').trim();
@@ -304,6 +310,7 @@ export function renderResume(content) {
       <p class="top__role">${esc(R.roleLine)}</p>
       <div class="contact">${contactItems.join('')}</div>
     </div>
+    ${facts.length ? `<div class="facts">${facts.map((f) => `<div class="fact"><b>${esc(f.n)}${esc(f.suffix || '')}</b><span>${esc(f.t)}</span></div>`).join('')}</div>` : ''}
   </header>
 
   <div class="body">
