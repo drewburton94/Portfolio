@@ -195,7 +195,7 @@
         pageHead('Projects & case studies', 'Each project is a card on the site that opens a full case study. The first image you add becomes the card and header image; YouTube links and extra images appear below the story.', resetButton(['projects'], 'projects')),
         list.map(function (p, i) { return projectItem(p, i); }),
         h('div', {}, h('button', { class: 'btn', type: 'button', onclick: function () {
-          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', year: String(new Date().getFullYear()), role: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', highlights: [], media: [] });
+          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', highlights: [], media: [] });
           markDirty('projects'); draw();
         } }, '+ Add a project')));
     }
@@ -205,12 +205,12 @@
         h('summary', {}, h('strong', {}, p.title || 'Untitled'), h('span', { class: 'dim' }, p.meta || ''), h('span', { class: 'chev' }, '›')),
         h('div', { class: 'item__body' },
           h('div', { class: 'grid2' }, F.text('Title', p, 'title'), F.text('Short line (shown on the card)', p, 'short')),
-          h('div', { class: 'grid3' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Year', p, 'year'), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
-          h('div', { class: 'grid2' }, F.text('Your role', p, 'role'), F.text('Project type', p, 'type')),
+          h('div', { class: 'grid2' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
+          F.text('Project type (shown in the case study)', p, 'type'),
           h('div', { class: 'grid2' }, F.text('Tools', p, 'tools'),
             F.text('Tags', p, 'tags', { hint: 'Separate with commas.', get: function () { return (p.tags || []).join(', '); }, set: function (v) { p.tags = v.split(',').map(function (s) { return s.trim(); }).filter(Boolean); } })),
           F.select('Artwork when there is no image', p, 'art', [['grid', 'Grid'], ['tunnel', 'Tunnel'], ['pulse', 'Pulse'], ['bars', 'Bars']]),
-          F.area('The problem', p, 'problem', { rows: 4, hint: 'Use *words* for a lime highlight and **words** for bold.' }),
+          F.area('The problem', p, 'problem', { rows: 4, hint: 'Leave blank to hide this block. Use *words* for lime and **words** for bold.' }),
           F.area('What I did', p, 'did', { rows: 7, hint: 'Leave a blank line between paragraphs.', get: function () { return (p.did || []).join('\n\n'); }, set: function (v) { p.did = v.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean); } }),
           F.area('Why it matters', p, 'why', { rows: 4 }),
           F.area("What I'd highlight", p, 'highlights', { rows: 4, hint: 'One per line.', get: function () { return (p.highlights || []).join('\n'); }, set: function (v) { p.highlights = v.split('\n').map(function (s) { return s.trim(); }).filter(Boolean); } }),
