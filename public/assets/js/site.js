@@ -482,7 +482,7 @@
       fab.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open) {
         panel.classList.remove('open'); void panel.offsetWidth; panel.classList.add('open');
-        if (!log.children.length) add("Hi! I'm Stanley, Drew's dog. Ask me questions about Drew (my owner): his work, his projects, his background.", 'msg--bot');
+        if (!log.children.length) add("Hi! I'm Stanley, Drew's dog. Ask me questions about Drew (my owner): his work, his projects, his background. Woof!", 'msg--bot');
         input.focus();
       } else { fab.focus(); }
     }
