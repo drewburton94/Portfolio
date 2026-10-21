@@ -168,13 +168,13 @@
     var wrapEl = h('div', { class: 'page' });
     function draw() {
       rc(wrapEl, 
-        pageHead('Work history', 'Shown in the History section of the site, newest first.', resetButton(['history'], 'work history')),
+        pageHead('Work history', 'Shown in the Experience section of the site, newest first.', resetButton(['history'], 'work history')),
         list.map(function (r, i) {
           return h('details', { class: 'item', open: i === 0 && !r.role ? true : false },
             h('summary', {}, h('strong', {}, r.role || 'New role'), h('span', { class: 'dim' }, [r.org, r.when].filter(Boolean).join(' · ')), h('span', { class: 'chev' }, '›')),
             h('div', { class: 'item__body' },
               h('div', { class: 'grid3' }, F.text('Role', r, 'role'), F.text('Company', r, 'org'), F.text('Dates', r, 'when', { placeholder: '2024 — Now' })),
-              F.area('What you did', r, 'body', { rows: 4 }),
+              F.area('What you did', r, 'body', { rows: 6, hint: 'One bullet per line.' }),
               h('div', { class: 'row-actions' },
                 h('button', { class: 'btn btn--sm', type: 'button', onclick: function () { move(list, i, -1); markDirty('history'); draw(); } }, '↑ Move up'),
                 h('button', { class: 'btn btn--sm', type: 'button', onclick: function () { move(list, i, 1); markDirty('history'); draw(); } }, '↓ Move down'),
@@ -207,6 +207,9 @@
           h('div', { class: 'grid2' }, F.text('Title', p, 'title'), F.text('Short line (shown on the card)', p, 'short')),
           h('div', { class: 'grid2' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
           F.text('Project type (shown in the case study)', p, 'type'),
+          h('div', { class: 'grid2' },
+            F.select('Header and card picture', p, 'heroArt', [['', 'First image below'], ['art', 'Placeholder artwork']], { hint: 'Placeholder artwork leaves every image for the story below.' }),
+            F.select('Case study layout', p, 'layout', [['', 'Story, then gallery'], ['staggered', 'Staggered: an image beside each paragraph']], { hint: 'Staggered pairs each "What I did" paragraph with the image in the same position.' })),
           F.text('Card image link (optional)', p, 'cover', { hint: 'Leave blank to use the first image below. Paste an image link, e.g. one from the Image library.' }),
           h('div', { class: 'grid2' }, F.text('Tools', p, 'tools'),
             F.text('Tags', p, 'tags', { hint: 'Separate with commas.', get: function () { return (p.tags || []).join(', '); }, set: function (v) { p.tags = v.split(',').map(function (s) { return s.trim(); }).filter(Boolean); } })),
@@ -412,7 +415,7 @@
   }
 
   // Analytics
-  var SECTION_LABELS = { about: 'About', 'how-i-think': 'How I think', 'human-first': 'Human first', work: 'Work', history: 'History', contact: 'Contact' };
+  var SECTION_LABELS = { about: 'About', 'how-i-think': 'How I think', 'human-first': 'Human first', work: 'Work', history: 'Experience', contact: 'Contact' };
   var CLICK_LABELS = { email: 'Email button', linkedin: 'LinkedIn', github: 'GitHub', resume: 'Résumé', 'lets-talk': "Let's talk", 'chat-open': 'Opened Stanley chat', 'ask-stanley': '"or ask Stanley" link', 'video-play': 'Played a video' };
 
   function barList(items, labelFn, total) {

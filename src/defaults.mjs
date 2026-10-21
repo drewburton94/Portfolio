@@ -9,7 +9,7 @@ export const site = {
   email: 'Burton.Andrew@icloud.com',
   linkedin: 'https://www.linkedin.com/in/DrewSBurton',
   github: '', // add your GitHub URL to show it on the contact row
-  resume: '/assets/Drew-Burton-Resume.pdf', // download button; the creative version is the /resume page
+  resume: '/assets/Drew-Burton-Resume-Designed.pdf', // the Download resume buttons (the designed version)
 };
 
 export const hero = {
@@ -79,6 +79,8 @@ export const projects = [
     tools: 'Claude, Claude Code, Supabase, Vercel',
     tags: ['Customer success', 'Diagnostics', 'AI agents'],
     art: 'pulse',
+    heroArt: 'art', // card and header use the placeholder artwork; screenshots sit beside each paragraph
+    layout: 'staggered',
     problem: '',
     did: [
       "**Search health dashboard.** Customer success managers had no single place to see how all their customers were doing. They had to check one account at a time across several tools. This puts every customer in one view and flags which ones need attention first.",
@@ -235,34 +237,47 @@ export const workIntro =
 
 export const history = [
   {
-    when: '2024 — Now',
-    role: 'Instructional Designer',
+    when: '2024 - Present',
+    role: 'Senior Instructional Designer',
     org: 'Algolia',
-    body: 'Own customer education across onboarding, product training, and technical learning. Redesigned Algolia Academy around interactive and applied experiences, and built technical learning paths and certifications that drove record engagement — more than the previous four years combined in a single year.',
+    body: [
+      'Led customer education strategy and the design of courses and content across Academy, from onboarding to certification.',
+      'Rebuilt Academy around interactive, applied learning and launched technical paths and certifications that drove record engagement. In a single year, engagement beat the previous four years combined.',
+      "Analyzed Academy activity against renewals and shared the findings with Customer Success. Accounts where someone took a course in the past year renewed at 91%, versus 79% for those that didn't. Now being integrated into health signals.",
+      'Built AI tools for Customer Success and customers: a dashboard that flags broken implementations, first-pass review skills, and an open-source skills library for coding agents.',
+      'Built an AI-native learning platform with search, an in-course AI tutor and intent-based paths. In internal testing.',
+    ].join('\n'),
   },
   {
-    when: '2020 — 2024',
+    when: '2021 - 2024',
     role: 'Instructional Designer',
     org: 'Talkdesk',
-    body: 'Helped build and shape the education function as the company scaled. Owned internal onboarding for a global workforce and partnered with HR, leadership, and Sales Enablement on leadership development and sales enablement.',
+    body: [
+      'Helped build the education function as the company scaled, setting standards for how learning is designed and delivered.',
+      'Owned global onboarding and manager resources.',
+      'Partnered with HR, leadership, and Sales Enablement on leadership development and sales skills.',
+    ].join('\n'),
   },
   {
-    when: '2018 — 2020',
+    when: '2018 - 2021',
     role: 'Instructional Designer',
     org: 'Kelly Services',
-    body: 'Designed interactive e-learning and assessments tied to operational goals. Built the training behind a large-scale process automation rollout, enabling adoption for 2,000+ global operators.',
+    body: [
+      'Built training for a process automation rollout, enabling adoption for 2,000+ global operators.',
+      'Designed interactive e-learning and assessments tied to operational goals.',
+    ].join('\n'),
   },
   {
-    when: '2016 — 2017',
+    when: '2016 - 2017',
     role: 'Administrative Co-op',
     org: 'Dow Chemical',
-    body: 'Led a data archival project covering 2,000+ confidential records in a highly regulated environment.',
+    body: 'Led a data archival project covering 2,000+ confidential records in a regulated environment.',
   },
   {
-    when: '2015 — 2016',
+    when: '2015 - 2016',
     role: 'eLearning Developer',
     org: 'Delta College Corporate Services',
-    body: 'Developed e-learning modules and supported evaluation and refinement of training content.',
+    body: 'Developed e-learning modules and refined training content.',
   },
 ];
 

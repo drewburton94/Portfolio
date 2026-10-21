@@ -145,6 +145,9 @@ ul, ol { padding: 0; list-style: none; }
 .timeline__row > .mono { font-size: 12px; letter-spacing: 0.08em; }
 .timeline h3 { font-weight: 700; font-size: 24px; letter-spacing: -0.03em; }
 .timeline .mono.dim { font-size: 13px; margin-top: 4px; }
+.timeline__list { margin-top: 12px; display: flex; flex-direction: column; gap: 9px; max-width: 64ch; }
+.timeline__list li { position: relative; padding-left: 20px; color: rgba(255, 255, 255, 0.78); font-size: 15px; line-height: 1.5; }
+.timeline__list li::before { content: ''; position: absolute; left: 2px; top: 0.6em; width: 6px; height: 6px; border-radius: 100px; background: var(--lime); }
 .timeline__body { margin-top: 12px; color: rgba(255, 255, 255, 0.78); max-width: 62ch; font-size: 15px; }
 
 .contact { padding: 110px 0 40px; }
@@ -408,3 +411,18 @@ body.case-open, body.case-open a, body.case-open button { cursor: auto !importan
 .gallery__yt { display: inline-block; margin-top: 8px; font-size: 12.5px; color: var(--lime); text-decoration: underline; text-underline-offset: 3px; }
 .gallery__yt:hover { color: #fff; }
 .gallery > .gallery__item--video:last-child:nth-child(odd):not(:only-child) { grid-column: auto; }
+
+/* ---------- staggered case study: an image and a paragraph per row, alternating sides ---------- */
+.proj__stagger { gap: clamp(44px, 6vw, 84px); }
+.stagger__row { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(28px, 4.5vw, 72px); align-items: center; }
+.stagger__row--flip .stagger__img { order: 2; }
+.stagger__img { margin: 0; min-width: 0; }
+.stagger__img img { display: block; width: 100%; height: auto; border-radius: 24px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.05); }
+.stagger__img figcaption { margin-top: 10px; font-size: 12.5px; color: var(--mut); }
+.stagger__txt { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.stagger__t { font-family: var(--disp); font-weight: 700; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; letter-spacing: -0.035em; text-wrap: balance; }
+.stagger__txt .proj__lead { font-size: clamp(17px, 1.5vw, 21px); }
+@media (max-width: 860px) {
+  .stagger__row { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .stagger__row--flip .stagger__img { order: 0; }
+}
