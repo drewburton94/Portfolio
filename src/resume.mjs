@@ -40,8 +40,8 @@ export const RESUME = {
         { text: 'Drove record Academy engagement with interactive, applied learning, technical paths and certifications. One year exceeded the previous four combined.' },
         { text: 'Linked learning to renewals: accounts with recent Academy activity renewed at 91% versus 79%. Now being integrated into Customer Success health signals.' },
         { text: 'Built AI tools for Customer Success and customers: a dashboard that flags broken implementations, first-pass review skills, and an open-source skills library for coding agents.' },
-        { text: 'Co-built an AI-native learning platform with search, an in-course AI tutor and intent-based paths. In internal testing.' },
-        { text: 'Launched a five-course executive path so Sales and Customer Success can engage decision-makers.' },
+        { text: 'Built an AI-native learning platform with search, an in-course AI tutor and intent-based paths. In internal testing.' },
+        { text: 'Led the direction for course design and content across Academy.' },
       ],
     },
     {
