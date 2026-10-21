@@ -70,7 +70,8 @@ export const RESUME = {
   ],
   toolkit: [
     { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
-    { k: 'Design & build', v: 'Claude Design, Claude Code, Adobe Creative Cloud, Figma' },
+    { k: 'Design & build', v: 'Claude Design, Claude Code, Codex, Figma' },
+    { k: 'Adobe', v: 'Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
     { k: 'Learning', v: 'LMS administration, Articulate, Captivate, video and motion' },
     { k: 'Data & infrastructure', v: 'Learning analytics, Supabase, GitHub, Vercel, Google Sheets and Apps Script' },
   ],
@@ -130,7 +131,6 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .mod::before{content:'';position:absolute;left:-22px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink)}
 .mod--now::before{background:var(--sage);box-shadow:0 0 0 3px var(--paper),0 0 0 4.5px var(--ink)}
 .mod__meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font:500 6.8pt var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
-.here{background:var(--ink);color:var(--sage);border-radius:100px;padding:1px 8px;letter-spacing:.12em}
 .mod__role{font:700 10.4pt/1.25 var(--disp);margin-top:1px}
 .mod__org{font-weight:600;color:var(--mut)}
 .mod__list{margin-top:3px;display:flex;flex-direction:column;gap:3px}
@@ -139,7 +139,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 
 /* sidebar */
 .side{display:flex;flex-direction:column;gap:.3in}
-.stats{display:flex;flex-direction:column;gap:12px}
+.stats__list{display:flex;flex-direction:column;gap:14px}
 .stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
 .stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--sage);letter-spacing:-.01em}
 .stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
@@ -157,7 +157,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 body.plain .plain-only{display:flex}
 body.plain .mod__line{display:block;font:700 10pt/1.3 var(--sans)}
 body.plain .mod__meta,body.plain .mod__role,body.plain .stats,body.plain .top__kick,body.plain .face,
-body.plain .foot,body.plain .here,body.plain h2 .sub,body.plain .top::after{display:none}
+body.plain .foot,body.plain h2 .sub,body.plain .top::after{display:none}
 body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
 body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65in .06in}
@@ -246,7 +246,7 @@ export function renderResume(content) {
       const items = h.bullets.map((b) => `<li>${b.lead ? `<strong>${esc(b.lead)}:</strong> ` : ''}${esc(b.text)}</li>`).join('');
       return `<li class="mod${now ? ' mod--now' : ''}">
         <p class="mod__line">${esc(h.role)}${h.org ? `, ${esc(h.org)}` : ''} | ${esc(h.when)}</p>
-        <div class="mod__meta"><span>Module ${String(n).padStart(2, '0')}</span><span>${esc(h.when)}</span>${now ? '<span class="here">You are here</span>' : ''}</div>
+        <div class="mod__meta"><span>Module ${String(n).padStart(2, '0')}</span><span>${esc(h.when)}</span></div>
         <h3 class="mod__role">${esc(h.role)}${h.org ? ` <span class="mod__org">· ${esc(h.org)}</span>` : ''}</h3>
         <ul class="mod__list">${items}</ul>
       </li>`;
