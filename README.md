@@ -51,6 +51,13 @@ npm run deploy
 
 For extra protection, put `/admin*` and `/api/admin*` behind Cloudflare Access (Zero Trust → Access → Applications).
 
+## Résumé
+
+- **`/resume`** is a printable, one-page letter-size résumé built from the site's contact details, with its own work history and portfolio link (kept in `src/resume.mjs`, separate from the site's History section). Its **Creative** and **Plain** switch and **Print or save as PDF** button live in the top bar.
+- **Plain** is the applicant-tracking version: one column, standard headings, Arial, no graphics. It is also available directly at `/resume?plain`.
+- The PDFs in `public/assets/` (`Drew-Burton-Resume-Designed.pdf` creative, `Drew-Burton-Resume.pdf` plain) are generated from the built-in defaults, so rerun `node scripts/resume-pdf.mjs` after changing résumé text in `src/defaults.mjs` or `src/resume.mjs`. It needs Chromium (`CHROMIUM_PATH=/path/to/chrome`, or `npx playwright install chromium`).
+- Résumé-only copy (summary, results, work history, skills) is at the top of `src/resume.mjs`.
+
 ## Local development
 
 ```bash

@@ -168,13 +168,13 @@
     var wrapEl = h('div', { class: 'page' });
     function draw() {
       rc(wrapEl, 
-        pageHead('Work history', 'Shown in the History section of the site, newest first.', resetButton(['history'], 'work history')),
+        pageHead('Work history', 'Shown in the Experience section of the site, newest first.', resetButton(['history'], 'work history')),
         list.map(function (r, i) {
           return h('details', { class: 'item', open: i === 0 && !r.role ? true : false },
             h('summary', {}, h('strong', {}, r.role || 'New role'), h('span', { class: 'dim' }, [r.org, r.when].filter(Boolean).join(' · ')), h('span', { class: 'chev' }, '›')),
             h('div', { class: 'item__body' },
               h('div', { class: 'grid3' }, F.text('Role', r, 'role'), F.text('Company', r, 'org'), F.text('Dates', r, 'when', { placeholder: '2024 — Now' })),
-              F.area('What you did', r, 'body', { rows: 4 }),
+              F.area('What you did', r, 'body', { rows: 6, hint: 'One bullet per line.' }),
               h('div', { class: 'row-actions' },
                 h('button', { class: 'btn btn--sm', type: 'button', onclick: function () { move(list, i, -1); markDirty('history'); draw(); } }, '↑ Move up'),
                 h('button', { class: 'btn btn--sm', type: 'button', onclick: function () { move(list, i, 1); markDirty('history'); draw(); } }, '↓ Move down'),
@@ -195,7 +195,7 @@
         pageHead('Projects & case studies', 'Each project is a card on the site that opens a full case study. The first image you add becomes the card and header image; YouTube links and extra images appear below the story.', resetButton(['projects'], 'projects')),
         list.map(function (p, i) { return projectItem(p, i); }),
         h('div', {}, h('button', { class: 'btn', type: 'button', onclick: function () {
-          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', highlights: [], media: [] });
+          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', media: [] });
           markDirty('projects'); draw();
         } }, '+ Add a project')));
     }
@@ -207,6 +207,9 @@
           h('div', { class: 'grid2' }, F.text('Title', p, 'title'), F.text('Short line (shown on the card)', p, 'short')),
           h('div', { class: 'grid2' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
           F.text('Project type (shown in the case study)', p, 'type'),
+          h('div', { class: 'grid2' },
+            F.select('Header and card picture', p, 'heroArt', [['', 'First image below'], ['cover', 'The card image link'], ['art', 'Placeholder artwork']], { hint: 'The card and header can use their own picture, so every image below is left for the story.' }),
+            F.select('Case study layout', p, 'layout', [['', 'Story, then gallery'], ['staggered', 'Staggered: an image beside each paragraph']], { hint: 'Staggered pairs each "What I did" paragraph with the image in the same position.' })),
           F.text('Card image link (optional)', p, 'cover', { hint: 'Leave blank to use the first image below. Paste an image link, e.g. one from the Image library.' }),
           h('div', { class: 'grid2' }, F.text('Tools', p, 'tools'),
             F.text('Tags', p, 'tags', { hint: 'Separate with commas.', get: function () { return (p.tags || []).join(', '); }, set: function (v) { p.tags = v.split(',').map(function (s) { return s.trim(); }).filter(Boolean); } })),
@@ -214,7 +217,6 @@
           F.area('The problem', p, 'problem', { rows: 4, hint: 'Leave blank to hide this block. Use *words* for lime and **words** for bold.' }),
           F.area('What I did', p, 'did', { rows: 7, hint: 'Leave a blank line between paragraphs.', get: function () { return (p.did || []).join('\n\n'); }, set: function (v) { p.did = v.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean); } }),
           F.area('Why it matters', p, 'why', { rows: 4 }),
-          F.area("What I'd highlight", p, 'highlights', { rows: 4, hint: 'One per line.', get: function () { return (p.highlights || []).join('\n'); }, set: function (v) { p.highlights = v.split('\n').map(function (s) { return s.trim(); }).filter(Boolean); } }),
           h('div', { class: 'item__body', style: 'border:1px solid var(--line);border-radius:14px;padding:14px' },
             h('span', { class: 'lbl' }, 'Interactive preview (optional)'),
             h('p', { class: 'hint' }, 'Shows a course or demo people can click through, under the heading "Try it". Leave the file blank to hide it. Put the HTML file (and any folders it needs) in public/embeds/ on GitHub, then enter its path.'),
@@ -412,7 +414,7 @@
   }
 
   // Analytics
-  var SECTION_LABELS = { about: 'About', 'how-i-think': 'How I think', 'human-first': 'Human first', work: 'Work', history: 'History', contact: 'Contact' };
+  var SECTION_LABELS = { about: 'About', 'how-i-think': 'How I think', 'human-first': 'Human first', work: 'Work', history: 'Experience', contact: 'Contact' };
   var CLICK_LABELS = { email: 'Email button', linkedin: 'LinkedIn', github: 'GitHub', resume: 'Résumé', 'lets-talk': "Let's talk", 'chat-open': 'Opened Stanley chat', 'ask-stanley': '"or ask Stanley" link', 'video-play': 'Played a video' };
 
   function barList(items, labelFn, total) {

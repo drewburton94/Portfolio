@@ -16,16 +16,16 @@ function projectsKnowledge(projects) {
     p.problem ? `The problem: ${clean(p.problem)}` : '',
     p.did && p.did.length ? `What Drew did:\n${p.did.map(clean).join('\n\n')}` : '',
     p.why ? `Why it matters: ${clean(p.why)}` : '',
-    p.highlights && p.highlights.length ? `Highlights:\n${p.highlights.map((h) => '- ' + clean(h)).join('\n')}` : '',
   ].filter(Boolean).join('\n\n'));
-  return `## Selected works on the site (${projects.length} projects)\n\n${parts.join('\n\n')}\n\n---\n\n`;
+  return `## The case studies on the site (${projects.length} projects)\n\nThese are the project pages visitors can open. They are the main source for what Drew did and why.\n\n${parts.join('\n\n')}`;
 }
 
 function buildKnowledge(base, projects) {
-  const a = base.indexOf('## Featured work strip');
-  const b = base.indexOf('# 3. Approach');
+  const open = '<!--PROJECTS-->', close = '<!--/PROJECTS-->';
+  const a = base.indexOf(open);
+  const b = base.indexOf(close);
   if (a < 0 || b < 0 || b < a) return base;
-  return base.slice(0, a) + projectsKnowledge(projects) + base.slice(b);
+  return base.slice(0, a) + projectsKnowledge(projects) + '\n' + base.slice(b + close.length);
 }
 
 export const DEFAULTS = {

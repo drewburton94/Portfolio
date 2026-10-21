@@ -66,15 +66,32 @@ const embedBlock = (p) => {
 
 // ---- project media (uploaded images + YouTube) ---------------------------
 const firstImage = (p) => arr(p.media).find((m) => m && m.type === 'image' && safeUrl(m.src));
+const isImage = (m) => m && m.type === 'image' && safeUrl(m.src);
+// Staggered layout: each "What I did" paragraph gets the image at the same position, alternating sides.
+const staggerRows = (p) => {
+  if (p.layout !== 'staggered') return null;
+  const imgs = arr(p.media).filter(isImage);
+  const paras = arr(p.did);
+  const n = Math.min(imgs.length, paras.length);
+  return { rows: paras.slice(0, n).map((d, i) => ({ d, m: imgs[i] })), rest: paras.slice(n), used: new Set(imgs.slice(0, n)) };
+};
 const galleryItems = (p) => {
-  const first = firstImage(p);
-  return arr(p.media).filter((m) => m && m !== first && (m.type === 'youtube' ? ytId(m.id) : m.type === 'image' && safeUrl(m.src)));
+  const st = staggerRows(p);
+  const first = p.heroArt ? null : firstImage(p);
+  return arr(p.media).filter((m) => m && m !== first && !(st && st.used.has(m)) && (m.type === 'youtube' ? ytId(m.id) : m.type === 'image' && safeUrl(m.src)));
+};
+const stagRow = (r, i) => {
+  const t = String(r.d).match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
+  const title = t ? t[1].replace(/[.:]+$/, '') : '';
+  const text = t ? t[2] : r.d;
+  return `<div class="stagger__row${i % 2 ? ' stagger__row--flip' : ''}" data-reveal><figure class="stagger__img"><img src="${esc(safeUrl(r.m.src))}" alt="${esc(r.m.alt || title)}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">${r.m.caption ? `<figcaption class="mono">${esc(r.m.caption)}</figcaption>` : ''}</figure><div class="stagger__txt">${title ? `<h3 class="stagger__t">${esc(title)}</h3>` : ''}${text ? `<p class="proj__lead">${rich(text)}</p>` : ''}</div></div>`;
 };
 const visual = (p, where) => {
-  const cover = where === 'card' && safeUrl(p.cover) ? { src: p.cover, alt: p.title } : null;
-  const img = cover || firstImage(p);
+  const cover = safeUrl(p.cover) && (where === 'card' || p.heroArt === 'cover') ? { src: p.cover, alt: p.title } : null;
   const a = art[p.art] ? p.art : 'grid';
   const artEl = `<div class="art art--${a}">${art[a]}</div>`;
+  if (p.heroArt === 'art') return artEl;
+  const img = cover || firstImage(p);
   if (img) {
     // The artwork sits underneath, so a missing image file falls back to it instead of a broken icon.
     return `<div class="shotwrap">${artEl}<img class="shot" src="${esc(safeUrl(img.src))}" alt="${esc(img.alt || p.title)}" loading="lazy" decoding="async" onerror="this.remove()"></div>`;
@@ -88,7 +105,7 @@ const mediaTile = (m, i, items) => {
   const id = ytId(m.id);
   const n = items.slice(0, i + 1).filter((x) => x.type === 'youtube').length;
   const name = m.title ? esc(m.title) : `video ${n}`;
-  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
+  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img class="yt__thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" loading="lazy" decoding="async" onload="if(this.naturalWidth&lt;400){this.onload=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
 };
 
 export function render(content) {
@@ -167,6 +184,7 @@ const foot = (depth) => {
   <div class="texture__vignette"></div>
 </div>
 <div class="blob" data-blob aria-hidden="true"><span>View</span></div>
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged image"><button class="lightbox__x" type="button" aria-label="Close image">×</button><figure><img alt=""><figcaption class="mono" hidden></figcaption></figure></dialog>
 <div class="chat" data-chat>
   <button class="chat__fab" type="button" data-chat-open data-magnet data-onlime aria-expanded="false" aria-controls="chat-panel"><img class="chat__face" src="${depth ? '../' : ''}assets/img/stanley.webp" alt="" width="38" height="38">Ask me about Drew</button>
   <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Ask about Drew" hidden>
@@ -195,6 +213,17 @@ const foot = (depth) => {
 };
 
 const arrowLink = (href, label) => `<a class="pill" data-magnet data-onlime href="${href}">${label} <span data-arrow aria-hidden="true">↗</span></a>`;
+
+// The designed résumé PDF. Used when no résumé link is saved in the admin.
+const resumeHref = safeUrl(site.resume) || '/assets/Drew-Burton-Resume-Designed.pdf';
+const resumeLink = () => arrowLink(esc(resumeHref), 'Download resume').replace('href=', 'download href=');
+// One line per bullet. A single line stays a paragraph.
+const histBody = (b) => {
+  const lines = String(b ?? '').split('\n').map((l) => l.trim().replace(/^[-\u2022]\s*/, '')).filter(Boolean);
+  return lines.length > 1
+    ? `<ul class="timeline__list">${lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`
+    : `<p class="timeline__body">${esc(lines[0] || '')}</p>`;
+};
 
 // ---- home ----------------------------------------------------------------
 const heroWords = hero.headline
@@ -298,11 +327,11 @@ ${chrome(0)}
 <section id="history" class="history">
   <div class="wrap stack">
     <div class="history__head">
-      <div class="stack stack--tight"><p class="kicker">The receipts</p><h2 class="display display--sm">History</h2></div>
-      ${safeUrl(site.resume) ? arrowLink(esc(safeUrl(site.resume)), 'Download résumé').replace('href=', 'download href=') : ''}
+      <h2 class="display display--sm">Experience</h2>
+      ${resumeLink()}
     </div>
     <div class="timeline">
-      ${history.map((h) => `<div class="timeline__row" data-reveal><div class="mono lime-t">${esc(h.when)}</div><div><h3>${esc(h.role)}</h3><p class="mono dim">${esc(h.org)}</p><p class="timeline__body">${esc(h.body)}</p></div></div>`).join('')}
+      ${history.map((h) => `<div class="timeline__row" data-reveal><div class="mono lime-t">${esc(h.when)}</div><div><h3>${esc(h.role)}</h3><p class="mono dim">${esc(h.org)}</p>${histBody(h.body)}</div></div>`).join('')}
     </div>
   </div>
 </section>
@@ -315,8 +344,9 @@ ${chrome(0)}
       ${arrowLink('mailto:' + esc(site.email), 'Email')}
       ${safeUrl(site.linkedin) ? arrowLink(esc(safeUrl(site.linkedin)), 'LinkedIn') : ''}
       ${safeUrl(site.github) ? arrowLink(esc(safeUrl(site.github)), 'GitHub') : ''}
+      ${resumeLink()}
     </div>
-    <p class="mono dim">${esc(site.email)} · <button class="linkish" type="button" data-ask-stanley>or ask Stanley</button></p>
+    <p class="mono dim"><button class="linkish" type="button" data-ask-stanley>Or ask Stanley</button></p>
   </div>
 </section>
 
@@ -330,6 +360,7 @@ const caseDialog = `
     const next = projects[(i + 1) % projects.length];
     const meta = [['Type', p.type], ['Tools', p.tools]].filter((m) => m[1]);
     const gallery = galleryItems(p);
+    const st = staggerRows(p);
     return `<article class="case__art wrap stack stack--lg proj" id="case-${p.id}" data-title="${esc(p.title)}" hidden>
     <button class="back mono" type="button" data-case-close><span>←</span> All work</button>
     <header class="stack stack--tight">
@@ -338,15 +369,15 @@ const caseDialog = `
       <p class="proj__short">${esc(p.short)}</p>
       <ul class="chips">${arr(p.tags).map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
     </header>
-    <div class="proj__herowrap"><div class="proj__hero">${visual(p, 'hero')}</div>${firstImage(p)?.caption ? `<p class="proj__cap mono">${esc(firstImage(p).caption)}</p>` : ''}</div>
+    <div class="proj__herowrap"><div class="proj__hero">${visual(p, 'hero')}</div>${!p.heroArt && firstImage(p)?.caption ? `<p class="proj__cap mono">${esc(firstImage(p).caption)}</p>` : ''}</div>
+    ${st && st.rows.length ? `<section class="proj__sec proj__stagger"><h3 class="kicker lime-t">What I did</h3>${st.rows.map(stagRow).join('')}${st.rest.map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
     <div class="proj__body${meta.length ? '' : ' proj__body--solo'}">
       ${meta.length ? `<dl class="proj__meta">${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : ''}
       <div class="stack stack--lg">
         ${p.problem ? `<section class="proj__sec"><h3 class="kicker lime-t">The problem</h3><p class="proj__lead">${rich(p.problem)}</p></section>` : ''}
-        ${arr(p.did).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${arr(p.did).map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
+        ${!(st && st.rows.length) && arr(p.did).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${arr(p.did).map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
         ${embedBlock(p)}
         ${p.why ? `<section class="proj__sec"><h3 class="kicker lime-t">Why it matters</h3><p class="proj__lead">${rich(p.why)}</p></section>` : ''}
-        ${arr(p.highlights).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${arr(p.highlights).map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>` : ''}
       </div>
     </div>
     ${gallery.length ? `<div class="gallery">${gallery.map((m, i) => mediaTile(m, i, gallery)).join('')}</div>` : ''}
