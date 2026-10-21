@@ -29,8 +29,8 @@ export const RESUME = {
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for *adoption, not just consumption*, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
     { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined, in a single year' },
-    { n: '91% vs 79%', t: 'Renewal rate where someone took a course versus where nobody did' },
-    { n: '2,000+', t: 'Global operators enabled by a process automation rollout' },
+    { n: '+12 pts renewal', t: 'Accounts that took an Academy course renewed at 91%, against 79% for those that did not. Education, shown to be a renewal signal.' },
+    { n: 'Strategy to launch', t: 'Led the strategy and design of learning for customers, internal teams, and executives.' },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
   // An item with `lead` renders as a bold lead-in followed by its text.
