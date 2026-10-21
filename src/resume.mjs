@@ -28,8 +28,8 @@ export const RESUME = {
   summary:
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
-    { n: 'I grow education programs', t: 'Academy now draws more people, and they explore further. One year beat the previous four combined.' },
-    { n: 'At Algolia, I proved', key: true, t: 'education is a renewal signal: 91% of accounts that took a course renewed, versus 79% of those that did not.' },
+    { n: 'Customer Engagement', t: 'This year brought more engagement in Academy than the previous four years combined.' },
+    { n: 'Churn & Renewal', key: true, t: 'At Algolia, I proved education is a renewal signal. 91% of accounts that took a course renewed, versus 79% of those that did not.' },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
   // An item with `lead` renders as a bold lead-in followed by its text.
@@ -140,7 +140,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .side{display:flex;flex-direction:column;gap:.26in}
 .stats__list{display:flex;flex-direction:column;gap:14px}
 .stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
-.stat b{display:block;font:800 12.6pt/1.1 var(--disp);color:var(--sage);letter-spacing:-.01em}
+.stat b{display:block;font:800 11.6pt/1.15 var(--disp);white-space:nowrap;color:var(--sage);letter-spacing:-.01em}
 .stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
 .tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:8px}
 .tk dt:first-child{margin-top:0}
@@ -190,8 +190,7 @@ body.plain .stat{background:none;color:var(--ink);padding:0 0 3px 14px;border-ra
 body.plain .stat::before{content:'\\2022';position:absolute;left:3px}
 body.plain .stat b,body.plain .stat span{display:inline;font-size:9.6pt;line-height:1.4;color:var(--ink)}
 body.plain .stat b{font-weight:700}
-body.plain .stat span::before{content:' '}
-body.plain .stat:not(.stat--key) span::before{content:': '}
+body.plain .stat span::before{content:': '}
 body.plain .path{padding-left:0;gap:.1in}body.plain .path::before,body.plain .mod::before{display:none}
 body.plain .mod__list{margin-top:1px;gap:2px}
 body.plain .mod__list li{font-size:9.6pt;line-height:1.4}
