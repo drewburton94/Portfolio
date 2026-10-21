@@ -207,6 +207,7 @@
           h('div', { class: 'grid2' }, F.text('Title', p, 'title'), F.text('Short line (shown on the card)', p, 'short')),
           h('div', { class: 'grid2' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
           F.text('Project type (shown in the case study)', p, 'type'),
+          F.text('Card image link (optional)', p, 'cover', { hint: 'Leave blank to use the first image below. Paste an image link, e.g. one from the Image library.' }),
           h('div', { class: 'grid2' }, F.text('Tools', p, 'tools'),
             F.text('Tags', p, 'tags', { hint: 'Separate with commas.', get: function () { return (p.tags || []).join(', '); }, set: function (v) { p.tags = v.split(',').map(function (s) { return s.trim(); }).filter(Boolean); } })),
           F.select('Artwork when there is no image', p, 'art', [['grid', 'Grid'], ['tunnel', 'Tunnel'], ['pulse', 'Pulse'], ['bars', 'Bars']]),

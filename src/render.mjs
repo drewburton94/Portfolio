@@ -60,12 +60,13 @@ const galleryItems = (p) => {
   return arr(p.media).filter((m) => m && m !== first && (m.type === 'youtube' ? ytId(m.id) : m.type === 'image' && safeUrl(m.src)));
 };
 const visual = (p, where) => {
-  const img = firstImage(p);
+  const cover = where === 'card' && safeUrl(p.cover) ? { src: p.cover, alt: p.title } : null;
+  const img = cover || firstImage(p);
   const a = art[p.art] ? p.art : 'grid';
   const artEl = `<div class="art art--${a}">${art[a]}</div>`;
   if (img) {
     // The artwork sits underneath, so a missing image file falls back to it instead of a broken icon.
-    return `<div class="shotwrap">${artEl}<img class="shot" src="${esc(safeUrl(img.src))}" alt="${esc(img.alt || p.title)}" ${where === 'card' ? 'loading="lazy"' : ''} decoding="async" onerror="this.remove()"></div>`;
+    return `<div class="shotwrap">${artEl}<img class="shot" src="${esc(safeUrl(img.src))}" alt="${esc(img.alt || p.title)}" loading="lazy" decoding="async" onerror="this.remove()"></div>`;
   }
   return artEl;
 };
@@ -160,7 +161,7 @@ const foot = (depth) => {
     <div class="chat__log" data-chat-log role="log" aria-live="polite"></div>
     <div class="chat__chips" data-chat-chips>
       <button type="button">What does Drew do?</button>
-      <button type="button">Tell me about the Academy LMS</button>
+      <button type="button">Tell me about the AI-Native LMS</button>
       <button type="button">Where has Drew worked?</button>
     </div>
     <form class="chat__form" data-chat-form autocomplete="off">
