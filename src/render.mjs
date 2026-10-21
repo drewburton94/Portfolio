@@ -184,6 +184,7 @@ const foot = (depth) => {
   <div class="texture__vignette"></div>
 </div>
 <div class="blob" data-blob aria-hidden="true"><span>View</span></div>
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged image"><button class="lightbox__x" type="button" aria-label="Close image">×</button><figure><img alt=""><figcaption class="mono" hidden></figcaption></figure></dialog>
 <div class="chat" data-chat>
   <button class="chat__fab" type="button" data-chat-open data-magnet data-onlime aria-expanded="false" aria-controls="chat-panel"><img class="chat__face" src="${depth ? '../' : ''}assets/img/stanley.webp" alt="" width="38" height="38">Ask me about Drew</button>
   <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Ask about Drew" hidden>

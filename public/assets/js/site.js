@@ -307,6 +307,44 @@
     fromHash();
   }
 
+  // ---- click any image to enlarge it ---------------------------------------
+  var lb = document.getElementById('lightbox');
+  if (lb) {
+    var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('figcaption'), lbBack = null;
+    var ZOOM = '.gallery__item:not(.gallery__item--video) img, .stagger__img img, .proj__hero img.shot, .portrait img';
+    var openLb = function (img) {
+      lbBack = img;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      var fig = img.closest('figure'), cap = fig && fig.querySelector('figcaption');
+      lbCap.textContent = cap ? cap.textContent : '';
+      lbCap.hidden = !lbCap.textContent;
+      lb.showModal();
+      document.body.classList.add('lb-open');
+    };
+    $(ZOOM).forEach(function (img) {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge image' + (img.alt ? ': ' + img.alt : ''));
+    });
+    document.addEventListener('click', function (e) {
+      var img = e.target.closest && e.target.closest(ZOOM);
+      if (img && !lb.open) { e.preventDefault(); openLb(img); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && !lb.open && document.activeElement && document.activeElement.matches && document.activeElement.matches(ZOOM)) {
+        e.preventDefault(); openLb(document.activeElement);
+      }
+    });
+    lb.addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('close', function () {
+      document.body.classList.remove('lb-open');
+      lbImg.removeAttribute('src');
+      if (lbBack && lbBack.focus) { try { lbBack.focus({ preventScroll: true }); } catch (err) { /* ignore */ } }
+    });
+  }
+
   // ---- cookie-free analytics (no cookies, no IP stored; respects Do Not Track) --
   var dnt = navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true;
   function track(type, name, extra) {

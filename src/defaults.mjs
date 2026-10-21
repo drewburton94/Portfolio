@@ -116,7 +116,7 @@ export const projects = [
     cover: '/assets/projects/cover-ai-native-lms.png',
     media: [
       { type: 'image', src: '/assets/projects/1-lms-home-search.gif', alt: 'The platform home page, with a search box asking what you want to learn and floating suggested topics.', caption: 'Ask what you want to learn, in your own words.' },
-      { type: 'image', src: '/assets/projects/2-lms-intent-picker.png', alt: 'A course start screen offering four ways in: overview, learn, practice, or show me everything.', caption: 'Overview, how-to, practice, or everything. People pick the depth they came for.' },
+      { type: 'image', src: '/assets/projects/2-lms-home-search.webp', alt: 'The platform home page, focused on search: a large search box with AI Mode, a list or live tiles toggle, and floating suggested topics.', caption: 'Search comes first, with AI Mode a click away.' },
       { type: 'image', src: '/assets/projects/3-lms-content-catalog.png', alt: 'The content catalog with product and topic filters and course cards.', caption: 'Or browse by topic, level and product.' },
     ],
   },
@@ -170,7 +170,7 @@ export const projects = [
       file: '/embeds/course-preview/index.html',
       title: 'Dynamic Facets: Configuration',
       intro: 'Click through a course I built, the way a learner would.',
-      height: '',
+      height: '820',
     },
   },
   {
