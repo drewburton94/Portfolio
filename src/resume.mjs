@@ -29,8 +29,7 @@ export const RESUME = {
     "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for *adoption, not just consumption*, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
     { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined.' },
-    { n: '+12 pts renewal', t: 'Accounts that took a course renewed at 91%, versus 79% for those that did not. A renewal signal.' },
-    { n: 'Strategy to launch', t: 'Led strategy and design of learning for customers, internal teams, and executives.' },
+    { n: '+12 pts renewal', key: true, t: 'Proved education is a renewal signal. Accounts that took a course renewed at 91%, versus 79% for those that did not.' },
   ],
   // Résumé work history. Kept here, apart from the site's History section, so the two can be worded differently.
   // An item with `lead` renders as a bold lead-in followed by its text.
@@ -136,9 +135,9 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .mod__list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--ink)}
 
 /* sidebar */
-.side{display:flex;flex-direction:column;gap:.15in}
-.stats__list{display:flex;flex-direction:column;gap:10px}
-.stat{background:var(--bg);color:#fff;border-radius:9px;padding:8px 13px 9px}
+.side{display:flex;flex-direction:column;gap:.26in}
+.stats__list{display:flex;flex-direction:column;gap:14px}
+.stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
 .stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--sage);letter-spacing:-.01em}
 .stat span{display:block;font-size:8.2pt;line-height:1.4;color:rgba(255,255,255,.82);margin-top:2px}
 .tk dt{font:500 6.8pt var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:8px}
@@ -168,7 +167,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .plain-only,.mod__line{display:none}
 body.plain .plain-only{display:flex}
 body.plain .mod__line{display:block;font:700 10pt/1.3 var(--sans)}
-body.plain .mod__meta,body.plain .mod__role,body.plain .stats,body.plain .top__kick,
+body.plain .mod__meta,body.plain .mod__role,body.plain .stat:not(.stat--key),body.plain .top__kick,
 body.plain .chat,body.plain h2 .sub,body.plain .top::after{display:none}
 body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
@@ -314,7 +313,7 @@ export function renderResume(content) {
       </div>
 
       <aside class="side">
-        <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
+        <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat${s.key ? ' stat--key' : ''}"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
         <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
         <div class="chat" role="group" aria-label="Chat">
           <div class="chat__bar"><i></i><span>Ask Drew</span></div>
