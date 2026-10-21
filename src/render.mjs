@@ -377,7 +377,6 @@ const caseDialog = `
         ${!(st && st.rows.length) && arr(p.did).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${arr(p.did).map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
         ${embedBlock(p)}
         ${p.why ? `<section class="proj__sec"><h3 class="kicker lime-t">Why it matters</h3><p class="proj__lead">${rich(p.why)}</p></section>` : ''}
-        ${arr(p.highlights).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${arr(p.highlights).map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>` : ''}
       </div>
     </div>
     ${gallery.length ? `<div class="gallery">${gallery.map((m, i) => mediaTile(m, i, gallery)).join('')}</div>` : ''}

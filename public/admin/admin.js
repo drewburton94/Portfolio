@@ -195,7 +195,7 @@
         pageHead('Projects & case studies', 'Each project is a card on the site that opens a full case study. The first image you add becomes the card and header image; YouTube links and extra images appear below the story.', resetButton(['projects'], 'projects')),
         list.map(function (p, i) { return projectItem(p, i); }),
         h('div', {}, h('button', { class: 'btn', type: 'button', onclick: function () {
-          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', highlights: [], media: [] });
+          list.push({ id: 'project-' + Math.random().toString(36).slice(2, 6), title: 'New project', short: '', meta: '', type: '', tools: '', tags: [], art: 'grid', problem: '', did: [], why: '', media: [] });
           markDirty('projects'); draw();
         } }, '+ Add a project')));
     }
@@ -217,7 +217,6 @@
           F.area('The problem', p, 'problem', { rows: 4, hint: 'Leave blank to hide this block. Use *words* for lime and **words** for bold.' }),
           F.area('What I did', p, 'did', { rows: 7, hint: 'Leave a blank line between paragraphs.', get: function () { return (p.did || []).join('\n\n'); }, set: function (v) { p.did = v.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean); } }),
           F.area('Why it matters', p, 'why', { rows: 4 }),
-          F.area("What I'd highlight", p, 'highlights', { rows: 4, hint: 'One per line.', get: function () { return (p.highlights || []).join('\n'); }, set: function (v) { p.highlights = v.split('\n').map(function (s) { return s.trim(); }).filter(Boolean); } }),
           h('div', { class: 'item__body', style: 'border:1px solid var(--line);border-radius:14px;padding:14px' },
             h('span', { class: 'lbl' }, 'Interactive preview (optional)'),
             h('p', { class: 'hint' }, 'Shows a course or demo people can click through, under the heading "Try it". Leave the file blank to hide it. Put the HTML file (and any folders it needs) in public/embeds/ on GitHub, then enter its path.'),

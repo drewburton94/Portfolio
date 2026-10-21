@@ -16,7 +16,6 @@ function projectsKnowledge(projects) {
     p.problem ? `The problem: ${clean(p.problem)}` : '',
     p.did && p.did.length ? `What Drew did:\n${p.did.map(clean).join('\n\n')}` : '',
     p.why ? `Why it matters: ${clean(p.why)}` : '',
-    p.highlights && p.highlights.length ? `Highlights:\n${p.highlights.map((h) => '- ' + clean(h)).join('\n')}` : '',
   ].filter(Boolean).join('\n\n'));
   return `## Selected works on the site (${projects.length} projects)\n\n${parts.join('\n\n')}\n\n---\n\n`;
 }

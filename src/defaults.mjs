@@ -60,11 +60,6 @@ export const projects = [
       "**Where it went.** It's now being integrated into the customer success platform and into how the company thinks about churn and renewal, so Academy activity sits next to the other signals CSMs use. I reshaped it for each reader, executives, CSM leaders and the Academy team, because the same finding lands differently for each.",
     ],
     why: "Completions tell you who clicked. Renewals tell you who stayed. Education earns its place when it connects to what customers do and what the business needs. It's why I connect courses to feature adoption, and why I work with the product design team on learning inside the product, so help shows up where people are already working.",
-    highlights: [
-      'Kept asking whether the pattern was real or a proxy',
-      'Plain language for every reader, caveats kept in the data',
-      "Said plainly where education can't help",
-    ],
     media: [
       { type: 'image', src: '/assets/projects/1-academy-engagement-tiers.png', alt: 'Bar chart of renewal rate by Academy activity tier: 96% strong, 88% some, 81% lapsed, 78% cold.', caption: 'The more an account learned, the more it renewed.' },
       { type: 'image', src: '/assets/projects/2-academy-courses-vs-none.png', alt: 'Bar chart of renewal rate: 91% where someone took a course, 79% where nobody did.', caption: 'Where someone took a course, renewal ran 12 points higher.' },
@@ -90,11 +85,6 @@ export const projects = [
       "Most of it is in pilot. Some is still being tested.",
     ],
     why: "I build a tool when people keep doing the same manual work, or hopping between places to find one answer. I start small, put a rough version in front of a few people, and let their feedback shape it. The goal is to automate the repetitive first pass and leave the judgment to people.",
-    highlights: [
-      'Start with a friction point, not a technology',
-      'Automate the first pass. People make the call.',
-      'Pilot small, learn, then scale',
-    ],
     media: [
       { type: 'image', src: '/assets/projects/1-search-health-dashboard.png', alt: 'Screenshot of the search health dashboard.', caption: 'Four customers flagged, eleven indices quietly fine. A CSM sees where to look first.' },
       { type: 'image', src: '/assets/projects/2-health-check-skill.png', alt: 'Screenshot of the health check skill.', caption: 'A first-pass review with scores, evidence, and what still needs a human.' },
@@ -121,11 +111,6 @@ export const projects = [
       "I designed it and built the front-end prototype. A colleague built the backend and course infrastructure, and I wrote down what each screen is for so the intent survived the handoff. It's in internal testing now, with a limited pilot next. Early feedback says some navigation is too hidden and results can feel overwhelming, and I'm working on both.",
     ],
     why: "People learn differently now. They ask a question, expect an answer, and want to get back to work. AI isn't bolted on here. Search, the tutor and the recommendations are the platform, and they point to the next step. Every search also tells us what someone cares about, which makes education a way to understand customers, not only teach them.",
-    highlights: [
-      'AI native, with search and a tutor built in',
-      'Learning shaped by intent, not a fixed path',
-      'A way to understand what customers care about',
-    ],
     // The card shows the intent picker. The case study opens with the home-search GIF.
     cover: '/assets/projects/2-lms-intent-picker.png',
     media: [
@@ -150,11 +135,6 @@ export const projects = [
       "It's useful from early evaluation through expansion and planning, and it's live now.",
     ],
     why: "The goal wasn't more content. It was the right content for an audience we weren't supporting. Adoption depends on more than the people clicking around in the product. The leaders who fund it need to understand it too, and education can help create that alignment.",
-    highlights: [
-      "Found an audience Academy wasn't serving",
-      'Short courses built to be shared',
-      'Teaches real capabilities, not a sales pitch',
-    ],
     media: [
       { type: 'image', src: '/assets/projects/1-executive-learning-path.png', alt: 'The five Executive Learning Path courses in order: What Is Algolia, Why Algolia, The Business Value of Search and Discovery, The Future of AI Search and Discovery, and Turning Strategy into Results.', caption: 'Five short courses. Take one or all five.' },
       { type: 'youtube', id: '_piTxcT-x5w', title: 'Executive Learning Path video', caption: '' },
@@ -181,11 +161,6 @@ export const projects = [
       "**Think beyond the course.** Courses are part of a bigger ecosystem: how someone finds a resource, how it connects to their work, and whether they can come back when they need help. Sometimes the better answer isn't a course at all. It's a tool, a reusable resource, or help built into the experience.",
     ],
     why: "Courses shouldn't feel like homework. I design around real goals, meaningful practice, and the people using them. Success isn't someone finishing a course. It's what they're able to do with what they learned.",
-    highlights: [
-      'Designed for the learner, not the format',
-      'Real practice over passive content',
-      "Sometimes the answer isn't a course",
-    ],
     media: [],
     // Interactive preview shown under "Try it". The file lives in public/embeds/course-preview/.
     embed: {
@@ -217,11 +192,6 @@ export const projects = [
       "**Think beyond the video.** Sometimes a short animation is right. Sometimes a walkthrough, or video plus hands-on practice. Video shouldn't repeat the page. It should add something another format can't, like a process unfolding or a complex relationship made visible.",
     ],
     why: "People shouldn't have to work harder to understand something just because it's complicated. I use video to cut that complexity. The goal isn't to make something that looks good. It's to make something that makes sense.",
-    highlights: [
-      'Script first, visuals timed to the spoken word',
-      'Motion that guides attention, not decoration',
-      'Reusable systems that scale production',
-    ],
     // Captions are blank on purpose until Drew supplies them.
     media: [
       { type: 'youtube', id: '_piTxcT-x5w', title: '', caption: '' },
