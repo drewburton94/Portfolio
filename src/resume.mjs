@@ -24,9 +24,9 @@ const safeUrl = (u) => {
 const range = (s) => esc(String(s ?? '').replace(/\s*[—–]\s*/g, '–'));
 
 export const RESUME = {
-  roleLine: 'Learning experience designer & builder',
+  roleLine: 'Customer Education and Customer Success',
   summary:
-    "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for *adoption, not just consumption*, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
+    "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
     { n: '4 yrs in 1', t: 'Record Academy engagement: more than the previous four years combined.' },
     { n: '+12 pts renewal', key: true, t: 'Proved education is a renewal signal. Accounts that took a course renewed at 91%, versus 79% for those that did not.' },
@@ -111,6 +111,8 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .top__role{font:500 11pt var(--sans);color:rgba(255,255,255,.82)}
 .contact{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:9px;font:500 8.2pt var(--mono);color:rgba(255,255,255,.86)}
 .contact a:hover{color:var(--sage)}
+.contact a{display:inline-flex;align-items:center;gap:6px}
+.ic{flex:none;width:11px;height:11px;color:var(--sage)}
 
 .body{padding:.34in .6in .4in}
 .summary{font-size:10.4pt;line-height:1.6;margin-bottom:.18in;max-width:6.4in}
@@ -175,6 +177,7 @@ body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65i
 body.plain h1{font-size:24pt;letter-spacing:0;margin:0 0 2px}
 body.plain .top__role{color:var(--ink);font-size:11pt}
 body.plain .contact{color:var(--ink);margin-top:5px;font-size:9.5pt}
+body.plain .ic{display:none}
 body.plain .body{padding:.12in .65in .5in}
 body.plain h2{font-size:10pt;letter-spacing:.08em;border-bottom:1.5px solid var(--ink);padding-bottom:2px;margin:.14in 0 .06in;display:block}
 body.plain h2::before{display:none}
@@ -243,9 +246,11 @@ export function renderResume(content) {
   const email = String(site.email || '').trim();
   const linkedin = safeUrl(site.linkedin);
   const github = safeUrl(site.github);
+  const ICON_MAIL = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>';
+  const ICON_IN = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
   const contactItems = [
-    email && `<a href="mailto:${esc(email)}">${esc(email)}</a>`,
-    linkedin && `<a href="${esc(linkedin)}">${esc(linkedin.replace(/^https:\/\/(www\.)?/, ''))}</a>`,
+    email && `<a href="mailto:${esc(email)}">${ICON_MAIL}${esc(email)}</a>`,
+    linkedin && `<a href="${esc(linkedin)}">${ICON_IN}${esc(linkedin.replace(/^https:\/\/(www\.)?/, ''))}</a>`,
     github && `<a href="${esc(github)}">${esc(github.replace(/^https:\/\/(www\.)?/, ''))}</a>`,
   ].filter(Boolean);
 
