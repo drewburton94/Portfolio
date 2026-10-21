@@ -77,7 +77,7 @@ const staggerRows = (p) => {
 };
 const galleryItems = (p) => {
   const st = staggerRows(p);
-  const first = p.heroArt === 'art' ? null : firstImage(p);
+  const first = p.heroArt ? null : firstImage(p);
   return arr(p.media).filter((m) => m && m !== first && !(st && st.used.has(m)) && (m.type === 'youtube' ? ytId(m.id) : m.type === 'image' && safeUrl(m.src)));
 };
 const stagRow = (r, i) => {
@@ -87,7 +87,7 @@ const stagRow = (r, i) => {
   return `<div class="stagger__row${i % 2 ? ' stagger__row--flip' : ''}" data-reveal><figure class="stagger__img"><img src="${esc(safeUrl(r.m.src))}" alt="${esc(r.m.alt || title)}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">${r.m.caption ? `<figcaption class="mono">${esc(r.m.caption)}</figcaption>` : ''}</figure><div class="stagger__txt">${title ? `<h3 class="stagger__t">${esc(title)}</h3>` : ''}${text ? `<p class="proj__lead">${rich(text)}</p>` : ''}</div></div>`;
 };
 const visual = (p, where) => {
-  const cover = where === 'card' && safeUrl(p.cover) ? { src: p.cover, alt: p.title } : null;
+  const cover = safeUrl(p.cover) && (where === 'card' || p.heroArt === 'cover') ? { src: p.cover, alt: p.title } : null;
   const a = art[p.art] ? p.art : 'grid';
   const artEl = `<div class="art art--${a}">${art[a]}</div>`;
   if (p.heroArt === 'art') return artEl;
@@ -368,7 +368,7 @@ const caseDialog = `
       <p class="proj__short">${esc(p.short)}</p>
       <ul class="chips">${arr(p.tags).map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
     </header>
-    <div class="proj__herowrap"><div class="proj__hero">${visual(p, 'hero')}</div>${p.heroArt !== 'art' && firstImage(p)?.caption ? `<p class="proj__cap mono">${esc(firstImage(p).caption)}</p>` : ''}</div>
+    <div class="proj__herowrap"><div class="proj__hero">${visual(p, 'hero')}</div>${!p.heroArt && firstImage(p)?.caption ? `<p class="proj__cap mono">${esc(firstImage(p).caption)}</p>` : ''}</div>
     ${st && st.rows.length ? `<section class="proj__sec proj__stagger"><h3 class="kicker lime-t">What I did</h3>${st.rows.map(stagRow).join('')}${st.rest.map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
     <div class="proj__body${meta.length ? '' : ' proj__body--solo'}">
       ${meta.length ? `<dl class="proj__meta">${meta.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : ''}

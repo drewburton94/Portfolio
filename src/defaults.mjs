@@ -74,7 +74,8 @@ export const projects = [
     tools: 'Claude, Claude Code, Supabase, Vercel',
     tags: ['Customer success', 'Diagnostics', 'AI agents'],
     art: 'pulse',
-    heroArt: 'art', // card and header use the placeholder artwork; screenshots sit beside each paragraph
+    cover: '/assets/projects/cover-ai-tools.png',
+    heroArt: 'cover', // card and header use the cover picture; screenshots sit beside each paragraph
     layout: 'staggered',
     problem: '',
     did: [
@@ -111,8 +112,8 @@ export const projects = [
       "I designed it and built the front-end prototype. A colleague built the backend and course infrastructure, and I wrote down what each screen is for so the intent survived the handoff. It's in internal testing now, with a limited pilot next. Early feedback says some navigation is too hidden and results can feel overwhelming, and I'm working on both.",
     ],
     why: "People learn differently now. They ask a question, expect an answer, and want to get back to work. AI isn't bolted on here. Search, the tutor and the recommendations are the platform, and they point to the next step. Every search also tells us what someone cares about, which makes education a way to understand customers, not only teach them.",
-    // The card shows the intent picker. The case study opens with the home-search GIF.
-    cover: '/assets/projects/2-lms-intent-picker.png',
+    // The card shows the cover picture. The case study opens with the home-search GIF.
+    cover: '/assets/projects/cover-ai-native-lms.png',
     media: [
       { type: 'image', src: '/assets/projects/1-lms-home-search.gif', alt: 'The platform home page, with a search box asking what you want to learn and floating suggested topics.', caption: 'Ask what you want to learn, in your own words.' },
       { type: 'image', src: '/assets/projects/2-lms-intent-picker.png', alt: 'A course start screen offering four ways in: overview, learn, practice, or show me everything.', caption: 'Overview, how-to, practice, or everything. People pick the depth they came for.' },
@@ -149,6 +150,8 @@ export const projects = [
     tools: '',
     tags: ['Course design', 'Interactive learning', 'Certification'],
     art: 'grid',
+    cover: '/assets/projects/cover-courses.png',
+    heroArt: 'cover',
     problem: '',
     did: [
       "I start with the bigger picture. Who is the learner? What are they trying to accomplish? What's getting in their way? And what do they need to be able to do differently afterward?",
@@ -179,6 +182,8 @@ export const projects = [
     tools: 'After Effects, Premiere Pro, Illustrator',
     tags: ['Video production', 'Motion design', 'Visual storytelling'],
     art: 'grid',
+    cover: '/assets/projects/cover-videos.png',
+    heroArt: 'cover',
     problem: '',
     did: [
       "I start with what someone needs to take away. What should they understand? What should they remember? And is video even the right way to say it?",

@@ -208,7 +208,7 @@
           h('div', { class: 'grid2' }, F.text('Type of work (card label)', p, 'meta', { placeholder: 'learning platform · redesign' }), F.text('Link name', p, 'id', { hint: 'Used in the web address, e.g. #work/academy. Letters, numbers and dashes.', set: function (v) { p.id = slug(v) || p.id; } })),
           F.text('Project type (shown in the case study)', p, 'type'),
           h('div', { class: 'grid2' },
-            F.select('Header and card picture', p, 'heroArt', [['', 'First image below'], ['art', 'Placeholder artwork']], { hint: 'Placeholder artwork leaves every image for the story below.' }),
+            F.select('Header and card picture', p, 'heroArt', [['', 'First image below'], ['cover', 'The card image link'], ['art', 'Placeholder artwork']], { hint: 'The card and header can use their own picture, so every image below is left for the story.' }),
             F.select('Case study layout', p, 'layout', [['', 'Story, then gallery'], ['staggered', 'Staggered: an image beside each paragraph']], { hint: 'Staggered pairs each "What I did" paragraph with the image in the same position.' })),
           F.text('Card image link (optional)', p, 'cover', { hint: 'Leave blank to use the first image below. Paste an image link, e.g. one from the Image library.' }),
           h('div', { class: 'grid2' }, F.text('Tools', p, 'tools'),
