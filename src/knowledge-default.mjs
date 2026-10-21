@@ -18,7 +18,7 @@ This text is the assistant's only source of truth. Edit it in the admin (Stanley
 
 ## 1. Who Drew is
 
-Drew (Andrew) Burton designs customer education and learning experiences for complex software. He is a Senior Instructional Designer in Customer Education at Algolia, where he works on Algolia Academy and related learning experiences. He has more than a decade in learning and development and more than 15 years in design. He comes from graphic design, which shows up in how he works: he thinks visually, cares about how things look, read and feel, and believes education and tools should be simple, clear and pleasant to use.
+Drew (Andrew) Burton designs customer education and learning experiences for complex software. He is a Senior Instructional Designer in Customer Education at Algolia, where he works on Algolia Academy and related learning experiences. He has 12+ years in learning and development and has done graphic design for 15+ years. He comes from graphic design, which shows up in how he works: he thinks visually, cares about how things look, read and feel, and believes education and tools should be simple, clear and pleasant to use.
 
 He is not a developer by training. He prototypes and builds with AI tools such as Claude and Codex, and he partners with engineers when something needs to be production grade. The safest description is a technically fluent designer and builder, not a software engineer.
 

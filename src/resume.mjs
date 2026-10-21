@@ -27,7 +27,7 @@ export const RESUME = {
   roleLine: 'Customer Education | Learning Experience Design',
   portfolio: { url: 'https://www.DrewsBurton.com', label: 'www.DrewsBurton.com' },
   summary:
-    "There's a lot of bad training out there. For over a decade I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
+    "There's a lot of bad training out there. For 12+ years I've built education programs with one goal: make learning clear, useful, and human. I design for adoption, not just consumption, and increasingly I build the systems themselves: learning platforms, diagnostic tools, and interactive experiences that help customers become confident, capable users of the product.",
   stats: [
     { n: 'Customer Engagement', t: 'In a single year, Academy engagement beat the previous four years combined.' },
     { n: 'Churn & Renewal', t: "Found that Academy activity looks like an early renewal signal. 91% of accounts where someone took a course in the past year renewed, versus 79% of those that didn't." },

@@ -346,7 +346,7 @@ ${chrome(0)}
       ${safeUrl(site.github) ? arrowLink(esc(safeUrl(site.github)), 'GitHub') : ''}
       ${resumeLink()}
     </div>
-    <p class="mono dim">${esc(site.email)} · <button class="linkish" type="button" data-ask-stanley>or ask Stanley</button></p>
+    <p class="mono dim"><button class="linkish" type="button" data-ask-stanley>Or ask Stanley</button></p>
   </div>
 </section>
 
