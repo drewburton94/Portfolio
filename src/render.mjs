@@ -105,7 +105,7 @@ const mediaTile = (m, i, items) => {
   const id = ytId(m.id);
   const n = items.slice(0, i + 1).filter((x) => x.type === 'youtube').length;
   const name = m.title ? esc(m.title) : `video ${n}`;
-  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
+  return `<figure class="gallery__item gallery__item--video"><button class="yt" type="button" data-yt="${id}" aria-label="Play ${name}"><img class="yt__thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" loading="lazy" decoding="async" onload="if(this.naturalWidth&lt;400){this.onload=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'"><span class="yt__play" aria-hidden="true"></span></button>${m.caption ? `<figcaption class="mono">${esc(m.caption)}</figcaption>` : ''}<a class="gallery__yt mono" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube</a></figure>`;
 };
 
 export function render(content) {

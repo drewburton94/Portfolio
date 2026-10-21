@@ -276,6 +276,7 @@
     var arts = $('.case__art', dlg), baseTitle = document.title;
     var showCase = function (id, push) {
       var hit = false;
+      if (window.__pauseVideos) window.__pauseVideos();
       arts.forEach(function (a) { var on = a.id === 'case-' + id; a.hidden = !on; if (on) { hit = true; document.title = a.getAttribute('data-title') + ' · Drew Burton'; } });
       if (!hit) return;
       if (!dlg.open) { dlg.showModal(); document.body.classList.add('case-open'); }
@@ -284,6 +285,7 @@
       if (window.__track) window.__track('project', id);
     };
     var hideCase = function (fromHash) {
+      if (window.__pauseVideos) window.__pauseVideos();
       if (dlg.open) dlg.close();
       document.body.classList.remove('case-open');
       document.title = baseTitle;
@@ -383,20 +385,73 @@
     else if (a.hasAttribute('data-ask-stanley')) track('click', 'ask-stanley');
   });
 
-  // ---- YouTube: load the player only when asked (no third-party requests until click) --
+  // ---- YouTube: the player loads only when asked, and takes over the thumbnail smoothly --
+  var ytFrames = [];
+  var YT_ORIGIN = 'https://www.youtube-nocookie.com';
+  // Ask a player to pause. Needs enablejsapi=1 on the embed; harmless if it is not ready yet.
+  function pauseVideos(except) {
+    ytFrames = ytFrames.filter(function (f) { return f.isConnected; });
+    ytFrames.forEach(function (f) {
+      if (f === except) return;
+      try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), YT_ORIGIN); } catch (err) { /* ignore */ }
+    });
+  }
+  window.__pauseVideos = pauseVideos;
+  // Warm the connection as soon as someone shows interest, so the click starts faster.
+  var ytWarm = false;
+  function warmYouTube() {
+    if (ytWarm) return;
+    ytWarm = true;
+    [YT_ORIGIN, 'https://www.youtube.com', 'https://i.ytimg.com'].forEach(function (h) {
+      var l = document.createElement('link');
+      l.rel = 'preconnect';
+      l.href = h;
+      if (h !== 'https://i.ytimg.com') l.crossOrigin = '';
+      document.head.appendChild(l);
+    });
+  }
+  ['pointerover', 'focusin', 'touchstart'].forEach(function (t) {
+    document.addEventListener(t, function (e) { if (e.target.closest && e.target.closest('[data-yt]')) warmYouTube(); }, { passive: true });
+  });
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-yt]');
     if (!b) return;
+    warmYouTube();
+    var id = b.getAttribute('data-yt');
+    var label = (b.getAttribute('aria-label') || 'video').replace(/^Play /, '');
+
+    // Same box, same thumbnail, so nothing jumps. The player fades in over it once it has loaded.
+    var box = document.createElement('div');
+    box.className = 'yt is-loading';
+    var thumb = b.querySelector('img');
+    if (thumb) { var t2 = thumb.cloneNode(true); t2.removeAttribute('onload'); t2.removeAttribute('onerror'); t2.loading = 'eager'; box.append(t2); }
+    var play = document.createElement('span');
+    play.className = 'yt__play';
+    play.setAttribute('aria-hidden', 'true');
+    box.append(play);
+
     var f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+    f.src = YT_ORIGIN + '/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
-    var label = (b.getAttribute('aria-label') || 'video').replace(/^Play /, '');
     f.title = label.charAt(0).toUpperCase() + label.slice(1);
-    var box = document.createElement('div');
-    box.className = 'yt';
+    f.setAttribute('aria-busy', 'true');
+    var ready = function () {
+      if (box.classList.contains('is-ready')) return;
+      box.classList.remove('is-loading');
+      box.classList.add('is-ready');
+      f.removeAttribute('aria-busy');
+      // Once the player is showing, drop the thumbnail layers.
+      setTimeout(function () { box.querySelectorAll('img, .yt__play').forEach(function (n) { n.remove(); }); }, 500);
+    };
+    f.addEventListener('load', function () { setTimeout(ready, 150); });
+    setTimeout(ready, 6000); // never leave the loading state hanging
     box.append(f);
+
+    pauseVideos(f); // one video at a time
+    ytFrames.push(f);
     b.replaceWith(box);
+    f.focus({ preventScroll: true });
     track('click', 'video-play');
   });
 
