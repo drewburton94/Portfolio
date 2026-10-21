@@ -70,8 +70,7 @@ export const RESUME = {
   ],
   toolkit: [
     { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
-    { k: 'Design & build', v: 'Claude Design, Claude Code, Codex, Figma' },
-    { k: 'Adobe', v: 'Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
+    { k: 'Design & build', v: 'Claude Design, Claude Code, Codex, Figma, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
     { k: 'Learning', v: 'LMS administration, Articulate, Captivate, video and motion' },
     { k: 'Data & infrastructure', v: 'Learning analytics, Supabase, GitHub, Vercel, Google Sheets and Apps Script' },
   ],
