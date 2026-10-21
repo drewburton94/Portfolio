@@ -68,6 +68,7 @@ export const RESUME = {
       ],
     },
   ],
+  chat: { q: 'Where does AI fit in your work?' },
   toolkit: [
     { plainOnly: true, k: 'Focus areas', v: 'Customer education, instructional design, e-learning development, learning program strategy, enablement, learning analytics, applied AI in learning design, project management' },
     { k: 'Design & build', v: 'Claude Design, Claude Code, Codex, Figma, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud' },
@@ -103,7 +104,7 @@ padding:12px 20px;background:rgba(7,8,10,.92);backdrop-filter:blur(8px);color:#f
 /* the sheet */
 .sheet{position:relative;width:8.5in;min-height:11in;margin:22px auto 60px;background:var(--paper);overflow:hidden;
 box-shadow:0 30px 80px rgba(0,0,0,.55)}
-.top{display:grid;grid-template-columns:1fr auto;gap:6px 22px;align-items:center;background:var(--bg);color:#fff;padding:.4in .6in .36in;position:relative}
+.top{display:block;background:var(--bg);color:#fff;padding:.4in .6in .36in;position:relative}
 .top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--sage)}
 .top__kick{font:500 7.4pt var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:10px}
 .top__kick::before{content:'';width:26px;height:3px;border-radius:9px;background:var(--sage)}
@@ -111,8 +112,6 @@ h1{font:800 31pt/1 var(--disp);letter-spacing:-.02em;margin:6px 0 4px}
 .top__role{font:500 11pt var(--sans);color:rgba(255,255,255,.82)}
 .contact{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:9px;font:500 8.2pt var(--mono);color:rgba(255,255,255,.86)}
 .contact a:hover{color:var(--sage)}
-.face{grid-column:2;grid-row:1/span 3;width:1.02in;height:1.02in;border-radius:50%;border:3px solid var(--sage);overflow:hidden;background:#15181a}
-.face img{width:100%;height:100%;object-fit:cover;display:block}
 
 .body{padding:.34in .6in .4in}
 .summary{font-size:10.4pt;line-height:1.6;margin-bottom:.26in;max-width:6.4in}
@@ -137,7 +136,7 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .mod__list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--ink)}
 
 /* sidebar */
-.side{display:flex;flex-direction:column;gap:.3in}
+.side{display:flex;flex-direction:column;gap:.24in}
 .stats__list{display:flex;flex-direction:column;gap:14px}
 .stat{background:var(--bg);color:#fff;border-radius:9px;padding:11px 14px 12px}
 .stat b{display:block;font:800 15pt/1.05 var(--disp);color:var(--sage);letter-spacing:-.01em}
@@ -147,19 +146,23 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .tk dd{font-size:8.8pt;line-height:1.45}
 
 .main{display:flex;flex-direction:column}
-.foot{margin-top:auto;display:flex;align-items:flex-end;gap:7px}
-.foot__av{flex:none;width:.34in;height:.34in;border-radius:50%;border:2px solid var(--sage);object-fit:cover;background:#15181a}
-.foot__msg{display:flex;flex-direction:column;gap:3px;min-width:0}
-.foot__who{font:500 6.4pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding-left:4px}
-.foot__bubble{background:var(--sage);color:var(--ink);font-size:8.6pt;line-height:1.42;padding:8px 12px 9px;border-radius:14px 14px 14px 3px}
-.foot__bubble b{font:700 8.8pt var(--disp)}
+.chat{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.chat__who{font:500 6.4pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.msg{display:flex;flex-direction:column;gap:3px;max-width:92%}
+.msg--in{align-items:flex-start}
+.msg--out{align-items:flex-end;align-self:flex-end}
+.msg--out .chat__who{padding-right:4px}
+.bubble{margin:0;font-size:8.6pt;line-height:1.42;padding:7px 12px 8px}
+.msg--in .bubble{background:#e6e4dd;color:var(--ink);border-radius:14px 14px 14px 3px}
+.msg--out .bubble{background:var(--sage);color:var(--ink);border-radius:14px 14px 3px 14px}
+.bubble b{font:700 8.8pt var(--disp)}
 
 /* plain: single column, standard headings, no graphics, for applicant tracking systems */
 .plain-only,.mod__line{display:none}
 body.plain .plain-only{display:flex}
 body.plain .mod__line{display:block;font:700 10pt/1.3 var(--sans)}
-body.plain .mod__meta,body.plain .mod__role,body.plain .stats,body.plain .top__kick,body.plain .face,
-body.plain .foot,body.plain h2 .sub,body.plain .top::after{display:none}
+body.plain .mod__meta,body.plain .mod__role,body.plain .stats,body.plain .top__kick,
+body.plain .chat,body.plain h2 .sub,body.plain .top::after{display:none}
 body.plain{font-family:Arial,Helvetica,sans-serif}
 body.plain *{font-family:Arial,Helvetica,sans-serif!important}
 body.plain .top{display:block;background:none;color:var(--ink);padding:.5in .65in .06in}
@@ -192,7 +195,7 @@ body.plain .sheet{box-shadow:0 30px 80px rgba(0,0,0,.55)}
 
 @media screen and (max-width:8.9in){
   .sheet{width:calc(100% - 24px);min-height:0;margin:14px auto 40px}
-  .top{grid-template-columns:1fr;padding:22px 20px}.face{grid-column:1;grid-row:auto;width:84px;height:84px;order:-1}
+  .top{padding:22px 20px}
   h1{font-size:28pt}
   .body{padding:16px 20px 24px}
   .cols{grid-template-columns:1fr;gap:24px}
@@ -290,7 +293,6 @@ export function renderResume(content) {
       <p class="top__role">${esc(R.roleLine)}</p>
       <div class="contact">${contactItems.join('')}</div>
     </div>
-    <div class="face"><img src="/assets/img/drew-head.webp" alt="" width="200" height="200"></div>
   </header>
 
   <div class="body">
@@ -307,7 +309,10 @@ export function renderResume(content) {
       <aside class="side">
         <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
         <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
-        <div class="foot"><img class="foot__av" src="/assets/img/drew-head.webp" alt="" width="60" height="60"><div class="foot__msg"><span class="foot__who">Drew</span><p class="foot__bubble"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b> ${esc(ai.line || '')}</p></div></div>
+        <div class="chat" role="group" aria-label="Chat">
+          <div class="msg msg--in"><p class="bubble">${esc(R.chat.q)}</p></div>
+          <div class="msg msg--out"><span class="chat__who">Drew</span><p class="bubble"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b> ${esc(ai.line || '')}</p></div>
+        </div>
       </aside>
     </div>
   </div>
