@@ -147,9 +147,12 @@ h2 .sub{letter-spacing:.06em;text-transform:none;color:var(--mut)}
 .tk dd{font-size:8.8pt;line-height:1.45}
 
 .main{display:flex;flex-direction:column}
-.foot{margin-top:auto;display:flex;flex-direction:column;gap:1px;font-size:8.8pt;background:var(--sage);border-radius:8px;padding:10px 14px}
-.foot b{font:700 9.4pt var(--disp)}
-.foot span{color:var(--ink)}
+.foot{margin-top:auto;display:flex;align-items:flex-end;gap:7px}
+.foot__av{flex:none;width:.34in;height:.34in;border-radius:50%;border:2px solid var(--sage);object-fit:cover;background:#15181a}
+.foot__msg{display:flex;flex-direction:column;gap:3px;min-width:0}
+.foot__who{font:500 6.4pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding-left:4px}
+.foot__bubble{background:var(--sage);color:var(--ink);font-size:8.6pt;line-height:1.42;padding:8px 12px 9px;border-radius:14px 14px 14px 3px}
+.foot__bubble b{font:700 8.8pt var(--disp)}
 
 /* plain: single column, standard headings, no graphics, for applicant tracking systems */
 .plain-only,.mod__line{display:none}
@@ -193,7 +196,6 @@ body.plain .sheet{box-shadow:0 30px 80px rgba(0,0,0,.55)}
   h1{font-size:28pt}
   .body{padding:16px 20px 24px}
   .cols{grid-template-columns:1fr;gap:24px}
-  .foot{flex-direction:column;gap:4px}.foot span{text-align:left}
   body{font-size:10.5pt}.mod__list li{font-size:10pt}.stat span,.tk dd{font-size:9.4pt}
 }
 @media screen and (prefers-reduced-motion:no-preference){
@@ -305,7 +307,7 @@ export function renderResume(content) {
       <aside class="side">
         <section class="stats" aria-labelledby="res"><h2 id="res" class="plain-only">Key results</h2><div class="stats__list">${R.stats.map((s) => `<div class="stat"><b>${esc(s.n)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></section>
         <section class="tkw" aria-labelledby="tk"><h2 id="tk">Skills</h2><dl class="tk">${R.toolkit.map((t) => `<dt${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.k)}</dt><dd${t.plainOnly ? ' class="plain-only"' : ''}>${esc(t.v)}</dd>`).join('')}</dl></section>
-        <div class="foot"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b><span>${esc(ai.line || '')}</span></div>
+        <div class="foot"><img class="foot__av" src="/assets/img/drew-head.webp" alt="" width="60" height="60"><div class="foot__msg"><span class="foot__who">Drew</span><p class="foot__bubble"><b>${esc(ai.kicker || 'Human first. AI enabled.')}</b> ${esc(ai.line || '')}</p></div></div>
       </aside>
     </div>
   </div>
