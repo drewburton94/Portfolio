@@ -136,7 +136,7 @@ Drew wants broader, more strategic customer education work, not just a similar r
 
 ## 13. Tools
 
-Design and video: Claude, Figma, Adobe Premiere Pro, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud. Build and prototype: Claude, Claude Code, Codex, Cursor, Artifacts. Learning platforms and authoring: WorkRamp and the new Academy platform, LMS administration, Articulate, Captivate. Hosting and data: Supabase, GitHub, Vercel, Google Sheets with Apps Script, learning analytics. A typical handoff is an intent document plus a zip package.
+Design and video: Claude, Figma, Adobe Premiere Pro, Adobe After Effects, Adobe Illustrator, Adobe Creative Cloud. Build and prototype: Claude, Claude Code, Codex, Cursor, Artifacts. Course authoring tools: Articulate Rise, Articulate Storyline, Lectora, Adobe Captivate. Learning platforms: WorkRamp, Bridge LMS, SAP SuccessFactors, the new Academy platform, and LMS administration. Hosting and data: Supabase, GitHub, Vercel, Google Sheets with Apps Script, learning analytics. A typical handoff is an intent document plus a zip package.
 
 ## 14. Quick answers
 
