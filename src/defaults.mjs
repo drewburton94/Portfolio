@@ -158,6 +158,41 @@ export const projects = [
       { type: 'youtube', id: '_piTxcT-x5w', title: 'Executive Learning Path video', caption: '' },
     ],
   },
+  {
+    id: 'courses',
+    title: 'Courses',
+    short: 'A sampling of courses, and how I design them.',
+    meta: 'course design · interactive learning',
+    type: 'Course design',
+    tools: '',
+    tags: ['Course design', 'Interactive learning', 'Certification'],
+    art: 'grid',
+    problem: '',
+    did: [
+      "I start with the bigger picture. Who is the learner? What are they trying to accomplish? What's getting in their way? And what do they need to be able to do differently afterward?",
+      "Not every audience needs the same experience. A developer implementing a feature, a business user improving results, and an executive evaluating the product need different things. I design around those differences instead of fitting everyone into one format.",
+      "**Start with the person.** Their role, goals, existing knowledge, and the problem they're trying to solve.",
+      "**Focus on behaviors.** What someone should be able to do afterward, not just what they should remember.",
+      "**Make it practical.** Realistic scenarios, interactive exercises, simulations, and embedded tools.",
+      "**Keep it focused.** Approachable, relevant, and easy to navigate, out of respect for people's time.",
+      "**Choose the right format.** Sometimes a guided simulation. Sometimes a short video, an assistant, or a simple explanation.",
+      "**Think beyond the course.** Courses are part of a bigger ecosystem: how someone finds a resource, how it connects to their work, and whether they can come back when they need help. Sometimes the better answer isn't a course at all. It's a tool, a reusable resource, or help built into the experience.",
+    ],
+    why: "Courses shouldn't feel like homework. I design around real goals, meaningful practice, and the people using them. Success isn't someone finishing a course. It's what they're able to do with what they learned.",
+    highlights: [
+      'Designed for the learner, not the format',
+      'Real practice over passive content',
+      "Sometimes the answer isn't a course",
+    ],
+    media: [],
+    // Interactive preview shown under "Try it". The file lives in public/embeds/course-preview/.
+    embed: {
+      file: '/embeds/course-preview/index.html',
+      title: 'Dynamic Facets: Configuration',
+      intro: 'Click through a course I built, the way a learner would.',
+      height: '',
+    },
+  },
 ];
 
 export const workIntro =

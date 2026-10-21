@@ -53,6 +53,17 @@ const art = {
 };
 
 
+// ---- optional interactive embed (a course or demo served from /embeds/) ----------
+const safeEmbed = (f) => (/^\/embeds\/[\w.\-/]+$/.test(String(f ?? '')) && !String(f).includes('..') ? String(f) : '');
+const embedBlock = (p) => {
+  const e = p.embed || {};
+  const file = safeEmbed(e.file);
+  if (!file) return '';
+  const h = Number(e.height);
+  const style = h >= 240 && h <= 2000 ? ` style="--embed-h:${Math.round(h)}px"` : '';
+  return `<section class="proj__sec proj__embed"><h3 class="kicker lime-t">Try it</h3>${e.intro ? `<p class="proj__intro">${esc(e.intro)}</p>` : ''}<div class="embed"${style}><iframe src="${esc(file)}" title="${esc(e.title || 'Interactive preview')}" loading="lazy" allow="fullscreen" sandbox="allow-scripts allow-forms allow-popups"></iframe></div><p class="embed__open"><a class="mono" href="${esc(file)}" target="_blank" rel="noopener">Open full screen</a></p></section>`;
+};
+
 // ---- project media (uploaded images + YouTube) ---------------------------
 const firstImage = (p) => arr(p.media).find((m) => m && m.type === 'image' && safeUrl(m.src));
 const galleryItems = (p) => {
@@ -328,6 +339,7 @@ const caseDialog = `
       <div class="stack stack--lg">
         ${p.problem ? `<section class="proj__sec"><h3 class="kicker lime-t">The problem</h3><p class="proj__lead">${rich(p.problem)}</p></section>` : ''}
         ${arr(p.did).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I did</h3>${arr(p.did).map((d) => `<p class="proj__lead">${rich(d)}</p>`).join('')}</section>` : ''}
+        ${embedBlock(p)}
         ${p.why ? `<section class="proj__sec"><h3 class="kicker lime-t">Why it matters</h3><p class="proj__lead">${rich(p.why)}</p></section>` : ''}
         ${arr(p.highlights).length ? `<section class="proj__sec"><h3 class="kicker lime-t">What I'd highlight</h3><ul class="hlist">${arr(p.highlights).map((h) => `<li>${rich(h)}</li>`).join('')}</ul></section>` : ''}
       </div>
