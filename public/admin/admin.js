@@ -368,7 +368,7 @@
     ta.value = root.knowledge; upd();
     return h('div', { class: 'page' },
       pageHead("Stanley's knowledge", 'The chat assistant answers only from this text. Add facts, fix wording, or delete anything you do not want it to say. Changes apply to the next question.', resetButton(['knowledge'], "Stanley's knowledge")),
-      !state.session.hasChatKey ? h('p', { class: 'err' }, 'The chat is not switched on yet: add ANTHROPIC_API_KEY as a secret in Cloudflare.') : null,
+      !state.session.hasChatKey ? h('p', { class: 'err' }, 'The chat is not switched on yet: add GEMINI_API_KEY as a secret in Cloudflare (Settings → Variables and secrets).') : null,
       h('div', { class: 'card' }, h('div', { class: 'field' }, h('label', {}, 'What Stanley knows'), ta, count)));
   }
 

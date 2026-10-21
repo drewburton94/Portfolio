@@ -37,7 +37,7 @@ npx wrangler r2 bucket create drew-portfolio-media
 npm run db:remote
 npx wrangler secret put ADMIN_PASSWORD
 npx wrangler secret put SESSION_SECRET
-npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler secret put GEMINI_API_KEY
 npm run deploy
 ```
 

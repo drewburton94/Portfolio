@@ -26,5 +26,6 @@ enabled = true
 # or run `npx wrangler secret put NAME`:
 #   ADMIN_PASSWORD     the password for /admin
 #   SESSION_SECRET     any long random string (signs login cookies, salts analytics hashes)
-#   ANTHROPIC_API_KEY  powers the Stanley chat assistant
-# Optional variable: CHAT_MODEL (default claude-haiku-5-5)
+#   GEMINI_API_KEY     powers the Stanley chat assistant (Google AI Studio has a free tier)
+#   (or ANTHROPIC_API_KEY to use Claude instead)
+# Optional variables: GEMINI_MODEL (default gemini-2.5-flash), CHAT_MODEL (Claude model)

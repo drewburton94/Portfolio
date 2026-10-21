@@ -19,7 +19,7 @@ KNOWLEDGE:
 ${knowledge}`;
 
 export async function onRequestPost({ request, env }) {
-  if (!env.ANTHROPIC_API_KEY) return json({ error: 'The assistant is not configured yet.' }, 503);
+  if (!env.GEMINI_API_KEY && !env.ANTHROPIC_API_KEY) return json({ error: 'The assistant is not configured yet.' }, 503);
   const ip = clientIp(request);
   if (await overLimit(env, `chat:${await sha256Hex(ip)}`, 20, 10 * 60 * 1000)) {
     return json({ error: "You've asked a lot of questions. Please try again in a few minutes." }, 429);
@@ -46,26 +46,46 @@ export async function onRequestPost({ request, env }) {
     } catch { /* analytics must never break the chat */ }
   }
 
+  const system = systemPrompt(content.knowledge, content.site.email);
+  const unavailable = () => json({ error: 'The assistant is unavailable right now. Please try again shortly.' }, 502);
+
   try {
+    // Gemini is used when GEMINI_API_KEY is set (it has a free tier); otherwise Claude.
+    if (env.GEMINI_API_KEY) {
+      const model = env.GEMINI_MODEL || 'gemini-2.5-flash';
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] })),
+          generationConfig: { maxOutputTokens: 600, temperature: 0.6, thinkingConfig: { thinkingBudget: 0 } },
+        }),
+      });
+      if (r.status === 429) return json({ error: "Stanley is a bit busy right now. Please try again in a minute." }, 429);
+      if (!r.ok) {
+        console.error('Gemini API error', r.status, await r.text());
+        return unavailable();
+      }
+      const data = await r.json();
+      const reply = (data.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim();
+      return json({ reply: reply || "Sorry, I couldn't come up with an answer." });
+    }
+
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: env.CHAT_MODEL || 'claude-haiku-5-5',
-        max_tokens: 450,
-        system: systemPrompt(content.knowledge, content.site.email),
-        messages,
-      }),
+      body: JSON.stringify({ model: env.CHAT_MODEL || 'claude-haiku-5-5', max_tokens: 450, system, messages }),
     });
     if (!r.ok) {
       console.error('Anthropic API error', r.status, await r.text());
-      return json({ error: 'The assistant is unavailable right now. Please try again shortly.' }, 502);
+      return unavailable();
     }
     const data = await r.json();
     const reply = (data.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('').trim();
     return json({ reply: reply || "Sorry, I couldn't come up with an answer." });
   } catch (err) {
     console.error(err);
-    return json({ error: 'The assistant is unavailable right now. Please try again shortly.' }, 502);
+    return unavailable();
   }
 }
