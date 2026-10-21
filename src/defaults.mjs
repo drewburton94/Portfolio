@@ -132,6 +132,32 @@ export const projects = [
       { type: 'image', src: '/assets/projects/3-lms-content-catalog.png', alt: 'The content catalog with product and topic filters and course cards.', caption: 'Or browse by topic, level and product.' },
     ],
   },
+  {
+    id: 'executive-path',
+    title: 'Executive Learning Path',
+    short: 'Learning for the people who approve the investment, not the people who implement it.',
+    meta: 'learning path · executive audience',
+    type: 'Learning path',
+    tools: '',
+    tags: ['Learning path', 'Executive audience', 'Enablement'],
+    art: 'grid',
+    problem: "Customer education usually teaches the people who use the product. But someone else decides whether to keep investing in it, and sets the priorities around it. Academy had nothing for those leaders, and Sales and CS had no easy resource to share with them.",
+    did: [
+      "**Start with the audience.** Executives don't need to know how to configure the product. They need to know what it enables, why it matters, and how it supports their priorities. So I built five short courses: what it is, why people choose it, what it's worth, where AI is taking it, and how to turn strategy into results.",
+      "**Built to be shared.** Each course stands alone, so a CSM, an account exec or a customer champion can send one at the right moment. It teaches real capabilities and ties them to business outcomes. It's not a sales deck.",
+      "It's useful from early evaluation through expansion and planning, and it's live now.",
+    ],
+    why: "The goal wasn't more content. It was the right content for an audience we weren't supporting. Adoption depends on more than the people clicking around in the product. The leaders who fund it need to understand it too, and education can help create that alignment.",
+    highlights: [
+      "Found an audience Academy wasn't serving",
+      'Short courses built to be shared',
+      'Teaches real capabilities, not a sales pitch',
+    ],
+    media: [
+      { type: 'image', src: '/assets/projects/1-executive-learning-path.png', alt: 'The five Executive Learning Path courses in order: What Is Algolia, Why Algolia, The Business Value of Search and Discovery, The Future of AI Search and Discovery, and Turning Strategy into Results.', caption: 'Five short courses. Take one or all five.' },
+      { type: 'youtube', id: '_piTxcT-x5w', title: 'Executive Learning Path video', caption: '' },
+    ],
+  },
 ];
 
 export const workIntro =

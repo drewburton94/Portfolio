@@ -354,7 +354,10 @@
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
     f.title = b.getAttribute('aria-label') || 'Video';
-    b.replaceWith(f);
+    var box = document.createElement('div');
+    box.className = 'yt';
+    box.append(f);
+    b.replaceWith(box);
     track('click', 'video-play');
   });
 
