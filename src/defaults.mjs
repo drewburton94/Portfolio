@@ -156,6 +156,12 @@ export const projects = [
     did: [
       "**Course authoring tools.** I've built courses in Articulate Rise, Articulate Storyline, Lectora and Adobe Captivate.",
       "**Learning platforms.** I've worked in WorkRamp, Bridge LMS and SAP SuccessFactors.",
+      "**Dynamic Facets: Configuration.** A feature course that moves from an overview, to how it works, to hands-on practice, with realistic scenarios and feedback. You can click through it below.",
+      "**A/B Testing learning path.** Four parts: why A/B testing matters, designing a strong experiment, launching and monitoring a test, and interpreting and optimizing the results.",
+      "**Self-serve onboarding.** With a teammate, I rebuilt a seven-step customer learning path around the real stages of an implementation: planning, designing the UI, data and integrations, capturing events, front-end work, establishing relevance, and going live.",
+      "**Executive learning path.** Five short courses for customer executives, each one able to stand on its own: what Algolia is, why people choose it, the business value of search and discovery, where AI search is going, and turning strategy into results.",
+      "**Courses alongside product releases.** As part of the Customer Education team, I've built courses timed with launches, including Data Transformations, Crawler, Dynamic Re-Ranking, Advanced Personalization, Multi-Signal Ranking, Smart Groups, Recommend, Federated Search and NeuralSearch.",
+      "**Certifications.** Hands-on certifications built around real scenarios and simulations, so people prove they can do the work instead of recalling facts.",
     ],
     why: "Having worked across this many tools means I can pick the one that fits the course, instead of fitting the course to the tool.",
     media: [],
