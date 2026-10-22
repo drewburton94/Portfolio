@@ -2,6 +2,13 @@ name = "portfolio"
 main = "src/server/worker.js"
 compatibility_date = "2025-01-01"
 
+# Custom domains. Wrangler attaches these on every deploy (it creates the DNS records and certificates).
+# If a deploy fails with a DNS conflict, delete the old record for that hostname in Cloudflare DNS and redeploy.
+routes = [
+  { pattern = "drewsburton.com", custom_domain = true },
+  { pattern = "www.drewsburton.com", custom_domain = true },
+]
+
 # Static files: styles, scripts, images and the /admin screens.
 [assets]
 directory = "./public"
