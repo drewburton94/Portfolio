@@ -131,7 +131,10 @@ const head = (title, desc, depth, extra = '') => {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
-<link rel="icon" href="${p}assets/img/drew-head.webp" type="image/webp">
+<link rel="icon" href="${p}favicon.ico" sizes="48x48">
+<link rel="icon" href="${p}assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="${p}assets/img/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="${p}assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
